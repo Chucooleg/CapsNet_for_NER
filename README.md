@@ -1,12 +1,6 @@
 # CapsNet_for_NER
 Adapt Capsule Network for Name Entity Recognition Task
 
-|External Link|About|
-|--|--|
-|[Dynamic Routing Between Capsules](https://arxiv.org/pdf/1710.09829.pdf)|Sabour, Frosst, Hinton (2017)|
-# CapsNet_for_NER
-Adapt Capsule Network for Name Entity Recognition Task
-
 |Internal Link|About|
 |--|--|
 |[Team Project Proposal Link](https://docs.google.com/document/d/18QAYJCnR6R6I7ZAx1IiJ15jRZTj0gFlsQEk012ih-xU/edit?usp=sharing)|For submission|
