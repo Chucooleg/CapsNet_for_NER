@@ -30,4 +30,6 @@ Adapt Capsule Network for Name Entity Recognition Task
 |[OntoNotes Release 5.0](https://catalog.ldc.upenn.edu/LDC2013T19)|download, intro|
 |[CoNLL-2003 Dataset](https://www.clips.uantwerpen.be/conll2003/ner/)|download, intro|
 |[Introduction to the CoNLL-2003 Shared Task: Language-Independent Named Entity Recognition](http://www.aclweb.org/anthology/W03-0419)|Introduction of the dataset|
-|[CoNLL-2003 Shared Task](https://gist.github.com/JackNhat/0dc0b57b248df1b970a0d64475b31580)|Links to other recent NER papers using CoNLL-2003|
+|[CoNLL-2003 Shared Task](https://gist.github.com/JackNhat/0dc0b57b248df1b970a0d64475b31580)|CoNLL-2003 Benchmark papers|
+|[OntoNotes coreference annotation and modeling](https://github.com/magizbox/underthesea/wiki/TASK-CONLL-2012)|OntoNotes Benchmark papers|
+|[Named Entity Recognition: Exploring Features](http://www.oegai.at/konvens2012/proceedings/17_tkachenko12o/17_tkachenko12o.pdf)|Explore faetures for NER task. Both CoNLL-2003 and OntoNotes version 4 are used.|

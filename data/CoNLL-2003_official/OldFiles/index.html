@@ -1,0 +1,358 @@
+<html><head><title>
+Language-Independent Named Entity Recognition (II)
+</title></head><body bgcolor="#ffffff"><p>
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+<tr><td bgcolor="#00ccff" valign="top">&nbsp;
+</table><p>
+
+<h1>Language-Independent Named Entity Recognition (II)</h1>
+<p>
+Named entities are phrases that contain the names of persons,
+organizations, locations, times and quantities.
+Example:
+<p>
+<blockquote>
+[ORG <font color="#0000ff">U.N.</font> ]
+official
+[PER <font color="#ff0000">Ekeus</font> ]
+heads
+for
+[LOC <font color="#00ff00">Baghdad</font> ]
+.
+</blockquote>
+<p>
+The shared task of CoNLL-2003 concerns language-independent named
+entity recognition.
+We will concentrate on four types of named entities: persons,
+locations, organizations and names of miscellaneous entities that do
+not belong to the previous three groups.
+The participants of the shared task will be offered training and test
+data for two languages.
+They will use the data for developing a named-entity recognition
+system that includes a machine learning component.
+For each language, additional information (lists of names and 
+non-annotated data) will be supplied as well.
+The challenge for the participants is to find ways of incorporating 
+this information in their system.
+<p>
+<h2>Background information</h2>
+<p>
+Named Entity Recognition (NER) is a subtask of Information Extraction.
+Different NER systems were evaluated as a part of the Sixth Message
+Understanding Conference in 1995
+(<a href="http://www.cs.nyu.edu/cs/faculty/grishman/muc6.html">MUC6</a>).
+The target language was English.
+The participating systems performed well.
+However, many of them used language-specific resources for performing
+the task and it is unknown how they would have performed on another
+language than English [<a href="#PD97">PD97</a>].
+<p>
+After 1995, NER systems have been developed for some European languages
+and a few Asian languages.
+There have been at least two studies that have applied one NER system
+to different languages.
+Palmer and Day [<a href="#PD97">PD97</a>] have used statistical methods
+for finding named entities in newswire articles in Chinese, English,
+French, Japanese, Portuguese and Spanish.
+They found that the difficulty of the NER task was different for the
+six languages but that a large part of the task could be performed
+with simple methods.
+Cucerzan and Yarowsky [<a href="#CY99">CY99</a>] used both
+morphological and contextual clues for identifying named entities in
+English, Greek, Hindi, Rumanian and Turkish.
+With minimal supervision, they obtained overall F measures between 40
+and 70, depending on the languages used.
+In the shared task at
+<a href="../../conll2002/ner/">CoNLL-2002</a>,
+twelve different learning systems were applied to data in Spanish and 
+Dutch.
+<p>
+<h2>Software and Data</h2>
+<p>
+The CoNLL-2003 shared task data files contain four columns separated by 
+a single space.
+Each word has been put on a separate line and there is an empty line
+after each sentence.
+The first item on each line is a word, the second a part-of-speech (POS)
+tag, the third a syntactic chunk tag and the fourth the named entity
+tag.
+The chunk tags and the named entity tags have the format I-TYPE which
+means that the word is inside a phrase of type TYPE.
+Only if two phrases of the same type immediately follow each other,
+the first word of the second phrase will have tag B-TYPE to show
+that it starts a new phrase.
+A word with tag O is not part of a phrase.
+Here is an example:
+<p>
+<pre>
+   U.N.         NNP  I-NP  I-ORG 
+   official     NN   I-NP  O 
+   Ekeus        NNP  I-NP  I-PER 
+   heads        VBZ  I-VP  O 
+   for          IN   I-PP  O 
+   Baghdad      NNP  I-NP  I-LOC 
+   .            .    O     O 
+</pre>
+<p>
+The data consists of three files per language: one training file and
+two test files testa and testb.
+The first test file will be used in the development phase for finding
+good parameters for the learning system.
+The second test file will be used for the final evaluation.
+There are data files available for English and German.
+The German files contain an extra column (the second) which holds the 
+lemma of each word.
+<p>
+<ul>
+<li> <a href="../ner.tgz">http://cnts.uia.ac.be/conll2003/ner.tgz</a>
+<br> The training, development and test data sets for English and German
+     as well as evaluation software for this shared task 
+     in one gzipped tar file.
+     Fetch this file, extract the data files with the command
+     <tt>tar zxf ner.tgz</tt> and follow the instructions in
+     the file <tt>ner/000README</tt>.
+<br> Individual files:
+     <a href="000README">README</a>,
+     <a href="etc">annotation</a>,
+     <a href="lists/">lists</a>,
+     <a href="bin/">software</a>
+<li> <a href="../eng.raw.tar">http://cnts.uia.ac.be/conll2003/eng.raw.tar</a>
+<br> <a href="../deu.raw.tar">http://cnts.uia.ac.be/conll2003/deu.raw.tar</a>
+<br> The unannotated data sets for English and German in one tar file
+     (<a href="000README">README</a>).
+<br> Note: you need the main file 
+     <a href="../ner.tgz">ner.tgz</a>
+     as well.
+     It contains the software for building the data.
+<li> <a href="http://cnts.uia.ac.be/conll2000/chunking/output.html">http://cnts.uia.ac.be/conll2000/chunking/output.html</a>
+<br> Output example of the evaluation program for this shared task:
+     <a href="http://cnts.uia.ac.be/conll2002/ner/bin/conlleval.txt">conlleval</a>.
+     The example deals with text chunking, a task which uses the same
+     output format as this named entity task.
+     The program requires the output of the NER system for each word 
+     to be appended to the corresponding line in the test file, 
+     with a single space between the line and the output tag.
+     Make sure you keep the empty lines in the test file otherwise
+     the software may mistakingly regard separate entities as one 
+     big entity.
+</ul>
+<p>
+The English data is a collection of news wire articles from the 
+<a href="http://about.reuters.com/researchandstandards/corpus/">Reuters
+Corpus</a>.
+The annotation has been done by people of the University of Antwerp.
+Because of copyright reasons we only make available the annotations.
+In order to build the complete data sets you will need access to the
+Reuters Corpus.
+It can be obtained for research purposes without any charge from
+<a href="http://about.reuters.com/researchandstandards/corpus/">Reuters</a>.
+<p>
+The German data is a collection of articles from the Frankfurter 
+Rundschau.
+The named entities have been annotated by people of the University 
+of Antwerp. 
+Only the annotations are available here.
+In order to build these data sets you need access to the 
+ECI Multilingual Text Corpus.
+It can be ordered from the
+<a href="http://www.ldc.upenn.edu/Catalog/CatalogEntry.jsp?catalogId=LDC94T5">
+Linguistic Data Consortium</a>
+(2003 non-member price: US$ 35.00).
+<p>
+<h2>Submission guidelines</h2>
+<p>
+Submit paper of at most four pages describing the learning
+approach and your results on the test set by 
+March 16, 2003
+to  
+<a href="mailto:erikt@uia.ua.ac.be">erikt@uia.ua.ac.be</a> .
+Your results should at least contain overall F-rates and F-rates for
+the four entity categories (PER, ORG, LOC and MISC) as generated by
+the evaluation software for the English test set.
+<p>
+If you have used other resources than the training data (lists of
+named entities, non-annotated data or others) then please also 
+include in your paper the performance of your system while 
+using the training data only.
+In this way we can measure the benefit of using the additional
+resources while at the same time make a fair comparison between the
+different learning systems.
+<p>
+<ul>
+<li> March 16, 2003: 
+     Shared task abstract submission deadline (passed).
+<br> Style information: see
+     <a href="http://www.sims.berkeley.edu/research/conferences/hlt-naacl03/format.html">HLT-NAACL 2003</a>
+     site but anonymization is not required.
+<br> Number of submissions: 17.
+<li> March 24, 2003: Notification of acceptance.
+<li> March 25, 2003: Final test set for English becomes available.
+<li> March 25, 2003: Data for second language becomes available.
+<li> April 10, 2003: Deadline for camera-ready paper (passed), 4 pages
+     [<a href="guidelines.txt">guidelines</a>]
+<br> Example submission:
+     [<a href="example.tex">latex</a>]
+     [<a href="example.ps">ps</a>]
+     [<a href="example.pdf">pdf</a>]
+     (note: standard font is 10pt!)
+<br> Number of papers: 16.
+     Six papers have been selected for presentation in the shared task 
+     session.
+<li> May 31-June 1: Conference.
+</ul>
+<p>
+Questions about the shared task can be sent to
+<a href="mailto:erikt@uia.ua.ac.be">erikt@uia.ua.ac.be</a>
+(Erik Tjong Kim Sang) and
+<a href="mailto:fien.demeulder@ua.ac.be">fien.demeulder@ua.ac.be</a>
+(Fien De Meulder).
+<p>
+<h2>Related information</h2>
+<p>
+<ul>
+<li> <a href="http://cnts.uia.ac.be/conll2003/">http://cnts.uia.ac.be/conll2003/</a>
+<br> Home page of the workshop on Computational Natural Language
+     Learning (CoNLL-2003) of which this shared task is part of.
+<li> <a href="http://cnts.uia.ac.be/conll2002/ner/">http://cnts.uia.ac.be/conll2002/ner/</a>
+<br> The shared task of CoNLL-2002 dealt with language-independent named
+     entity recognition as well (for Spanish and Dutch).
+<li> <a href="http://research.microsoft.com/conferences/mulner-acl03/">http://research.microsoft.com/conferences/mulner-acl03/</a>
+<br> At ACL 2003 (July 12, 2003, Sapporo, Japan) 
+     there is a workshop with a similar topic as this shared task:
+     Multilingual and Mixed-language Named Entity Recognition:
+     Combining Statistical and Symbolic Models.
+<li> <a href="http://www.accenture.com/techlabs/icmlworkshop2003/">http://www.accenture.com/techlabs/icmlworkshop2003/</a>
+<br> Another related workshop will be held at ICML 2003
+     (August 21, 2003, Washinton DC, USA):
+     The Continuum from Labeled to Unlabeled Data in Machine Learning
+     and Data Mining.
+<li> <a href="http://www.cs.nyu.edu/cs/faculty/grishman/muc6.html">http://www.cs.nyu.edu/cs/faculty/grishman/muc6.html</a>
+<br> Home page of the Sixth Message Understanding Conference (1995)
+     that introduced named entity recognition as shared task.
+<li> <a href="http://www.itl.nist.gov/iaui/894.02/related_projects/muc/">http://www.itl.nist.gov/iaui/894.02/related_projects/muc/</a>
+<br> Home page of the Seventh Message Understanding Conference (1998)
+     which contained a named entity recognition as shared task.
+<li> <a href="http://www.nist.gov/speech/tests/ie-er/er_99/er_99.htm">http://www.nist.gov/speech/tests/ie-er/er_99/er_99.htm</a>
+<br> Home page of the 1999 DARPA-TIDES Information Extraction-Entity 
+     Recognition (IE-ER) technology evaluation project, which contained
+     a named entity recognition task.
+<li> <a href="http://www.itl.nist.gov/iaui/894.02/related_projects/tipster/met.htm">http://www.itl.nist.gov/iaui/894.02/related_projects/tipster/met.htm</a>
+<br> Information on the Multilingual Entity Task Conference (MET)
+     which contained named entity recognition for Chinese, Japanese
+     and Spanish
+     (<a href="http://www.itl.nist.gov/iaui/894.02/related_projects/muc/proceedings/muc_7_proceedings/overview.html">overview</a>).
+<li> <a href="http://www.calle.com/world/">http://www.calle.com/world/</a>
+<br> List of about 2.8 million locations on Earth.
+</ul>
+<p>
+<h2>References</h2>
+<p>
+A paper that is related to the topic of this shared task is the 
+EMNLP-99 paper by Cucerzan and Yarowsky [<a href="#CY99">CY99</a>].
+Interesting papers about using unsupervised data, though not for
+named entity recognition, are those of 
+Mitchell [<a href="#Mit99">Mit99</a>]
+and
+Banko and Brill [<a href="#BB01">BB01</a>].
+<p>
+<ul>
+<li> <strong>[<a name="BB01">BB01</a>]</strong><br>
+     Michele Banko and Eric Brill,
+     Scaling to Very Very Large Corpora for Natural Language
+     Disambiguation.
+     In <cite>Proceedings of ACL 2001</cite>,
+     Toulouse, France, 2001, pp. 26-33.
+<br> <a href="http://www.research.microsoft.com/users/mbanko/ACL2001VeryVeryLargeCorpora.pdf">http://www.research.microsoft.com/users/mbanko/ACL2001VeryVeryLargeCorpora.pdf</a>
+<li> <strong>[<a name="Bor99">Bor99</a>]</strong><br>
+     Andrew Borthwick,
+     <cite>A Maximum Entropy Approach to Named Entity
+     Recognition</cite>.
+     PhD thesis, New York University, 1999.
+<br> <a href="http://cs.nyu.edu/cs/projects/proteus/publication/papers/borthwick_thesis.ps">http://cs.nyu.edu/cs/projects/proteus/publication/papers/borthwick_thesis.ps</a>
+<li> <strong>[<a name="BV00">BV00</a>]</strong><br>
+     Sabine Buchholz and Antal van den Bosch,
+     Integrating seed names and n-grams for a named entity list and
+     classifier,
+     In: <cite>Proceedings of LREC-2000</cite>, Athens, Greece, June
+     2000, pp. 1215-1221. 
+<br> <a href="http://ilk.kub.nl/downloads/pub/papers/ilk.0002.ps.gz">http://ilk.kub.nl/downloads/pub/papers/ilk.0002.ps.gz</a>
+<li> <strong>[<a name="CMP02">CMP02</a>]</strong><br>
+     Xavier Carreras, Llu&iacute;s M&agrave;rques and Llu&iacute;s
+     Padr&oacute;, 
+     Named Entity Extraction using AdaBoost
+     In: 
+     <cite>Proceedings of CoNLL-2002</cite>,
+     Taipei, Taiwan, 2002, pp. 167-170. 
+<br> <a href="http://cnts.uia.ac.be/conll2002/ps/16770car.ps">http://cnts.uia.ac.be/conll2002/ps/16770car.ps</a>
+<li> <strong>[<a name="CBFR99">CBFR99</a>]</strong><br>
+     Nancy Chinchor, Erica Brown, Lisa Ferro and Patty Robinson,
+     <cite>1999 Named Entity Recognition Task Definition</cite>,
+     MITRE, 1999.
+<br> <a href="http://www.nist.gov/speech/tests/ie-er/er_99/doc/ne99_taskdef_v1_4.pdf">http://www.nist.gov/speech/tests/ie-er/er_99/doc/ne99_taskdef_v1_4.pdf</a>
+<li> <strong>[<a name="Col02">Col02</a>]</strong><br>
+     Michael Collins,
+     Ranking Algorithms for Named-Entity Extraction: Boosting and the
+     Voted Perceptron
+     In <cite>Proceedings of ACL 2002</cite>,
+     University of Pennsylvania, PA, 2002.
+<br> <a href="http://www.ai.mit.edu/people/mcollins/papers/finalNEacl2002.ps">http://www.ai.mit.edu/people/mcollins/papers/finalNEacl2002.ps</a>
+<li> <strong>[<a name="CBFR99">CS99</a>]</strong><br>
+     Michael Collins and Yoram Singer,
+     Unsupervised models for named entity classification. 
+     In <cite>Proceedings of the 1999 Joint SIGDAT Conference on Empirical
+     Methods in Natural Language Processing and Very Large
+     Corpora</cite>,
+     University of Maryland, MD, 1999.
+<br> <a href="http://citeseer.nj.nec.com/collins99unsupervised.html">http://citeseer.nj.nec.com/collins99unsupervised.html</a>
+<li> <strong>[<a name="CY99">CY99</a>]</strong><br>
+     Silviu Cucerzan and David Yarowsky, 
+     Language independent named entity recognition combining
+     morphological and contextual evidence. 
+     In <cite>Proceedings of 1999 Joint SIGDAT Conference on EMNLP and
+     VLC</cite>,
+     University of Maryland, MD, 1999.
+<br> <a href="http://citeseer.nj.nec.com/cucerzan99language.html">http://citeseer.nj.nec.com/cucerzan99language.html</a>
+<li> <strong>[<a name="Mit99">Mit99</a>]</strong><br>
+     Tom M. Mitchell,
+     The Role of Unlabeled Data in Supervised Learning.
+     In <cite>Proceedings of the Sixth International Colloquium on
+     Cognitive Science</cite>, 
+     San Sebastian, Spain, 1999.
+<br> <a href="http://citeseer.nj.nec.com/mitchell99role.html">http://citeseer.nj.nec.com/mitchell99role.html</a>
+<li> <strong>[<a name="MMG99">MMG99</a>]</strong><br>
+     Andrei Mikheev, Marc Moens and Claire Grover,
+     Named Entity Recognition without Gazetteers,
+     In <cite>Proceedings of EACL'99</cite>,
+     Bergen, Norway, 1999, pp. 1-8.
+<br> <a href="http://www.ltg.ed.ac.uk/~mikheev/papers_my/eacl99.ps">http://www.ltg.ed.ac.uk/~mikheev/papers_my/eacl99.ps</a>
+<li> <strong>[<a name="Nor89">Nor89</a>]</strong><br>
+     Eric W. Noreen,
+     <cite>Computer-Intensive Methods for Testing Hypotheses</cite>
+     John Wiley & Sons,
+     1989.
+<li> <strong>[<a name="PD97">PD97</a>]</strong><br>
+     David D. Palmer and David S. Day,
+     A Statistical Profile of the Named Entity Task.
+     In <cite>Proceedings of Fifth ACL Conference for Applied Natural
+     Language Processing (ANLP-97),</cite>
+     Washington D.C., 1997
+<br> <a href="http://crow.ee.washington.edu/people/palmer/papers/anlp97.ps">http://crow.ee.washington.edu/people/palmer/papers/anlp97.ps</a>
+<li> <strong>[<a name="TKS02">TKS02</a>]</strong><br>
+     Erik F. Tjong Kim Sang,
+     Introduction to the CoNLL-2002 Shared Task: Language-Independent
+     Named Entity Recognition.
+     In: 
+     <cite>Proceedings of CoNLL-2002</cite>,
+     Taipei, Taiwan, 2002, pp. 155-158. 
+<br> <a href="http://cnts.uia.ac.be/conll2002/ps/15558tjo.ps">http://cnts.uia.ac.be/conll2002/ps/15558tjo.ps</a>
+</ul>
+
+<p><hr><address>
+Last update: May 05, 2003.
+<a href="mailto:erikt@uia.ua.ac.be">erikt@uia.ua.ac.be</a>,
+<a href="mailto:fien.demeulder@ua.ac.be">fien.demeulder@ua.ac.be</a>
+</address>
+<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 
+<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+<br> <br> <br>
+</body></html>

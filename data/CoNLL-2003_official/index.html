@@ -1,0 +1,690 @@
+<html><head><title>
+Language-Independent Named Entity Recognition (II)
+</title></head><body bgcolor="#ffffff"><p>
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+<tr><td bgcolor="#00ccff" valign="top">&nbsp;
+</table><p>
+
+<h1>Language-Independent Named Entity Recognition (II)</h1>
+<p>
+Named entities are phrases that contain the names of persons,
+organizations, locations, times and quantities.
+Example:
+<p>
+<blockquote>
+[ORG <font color="#0000ff">U.N.</font> ]
+official
+[PER <font color="#ff0000">Ekeus</font> ]
+heads
+for
+[LOC <font color="#00ff00">Baghdad</font> ]
+.
+</blockquote>
+<p>
+The shared task of 
+<a href="../">CoNLL-2003</a>
+concerns language-independent named entity recognition.
+We will concentrate on four types of named entities: persons,
+locations, organizations and names of miscellaneous entities that do
+not belong to the previous three groups.
+The participants of the shared task will be offered training and test
+data for two languages.
+They will use the data for developing a named-entity recognition
+system that includes a machine learning component.
+For each language, additional information (lists of names and 
+non-annotated data) will be supplied as well.
+The challenge for the participants is to find ways of incorporating 
+this information in their system.
+<p>
+<h2>Background information</h2>
+<p>
+Named Entity Recognition (NER) is a subtask of Information Extraction.
+Different NER systems were evaluated as a part of the Sixth Message
+Understanding Conference in 1995
+(<a href="http://www.cs.nyu.edu/cs/faculty/grishman/muc6.html">MUC6</a>).
+The target language was English.
+The participating systems performed well.
+However, many of them used language-specific resources for performing
+the task and it is unknown how they would have performed on another
+language than English [<a href="#PD97">PD97</a>].
+<p>
+After 1995, NER systems have been developed for some European languages
+and a few Asian languages.
+There have been at least two studies that have applied one NER system
+to different languages.
+Palmer and Day [<a href="#PD97">PD97</a>] have used statistical methods
+for finding named entities in newswire articles in Chinese, English,
+French, Japanese, Portuguese and Spanish.
+They found that the difficulty of the NER task was different for the
+six languages but that a large part of the task could be performed
+with simple methods.
+Cucerzan and Yarowsky [<a href="#CY99">CY99</a>] used both
+morphological and contextual clues for identifying named entities in
+English, Greek, Hindi, Rumanian and Turkish.
+With minimal supervision, they obtained overall F measures between 40
+and 70, depending on the languages used.
+In the shared task at
+<a href="../../conll2002/ner/">CoNLL-2002</a>,
+twelve different learning systems were applied to data in Spanish and 
+Dutch.
+<p>
+<h2>Software and Data</h2>
+<p>
+The CoNLL-2003 shared task data files contain four columns separated by 
+a single space.
+Each word has been put on a separate line and there is an empty line
+after each sentence.
+The first item on each line is a word, the second a part-of-speech (POS)
+tag, the third a syntactic chunk tag and the fourth the named entity
+tag.
+The chunk tags and the named entity tags have the format I-TYPE which
+means that the word is inside a phrase of type TYPE.
+Only if two phrases of the same type immediately follow each other,
+the first word of the second phrase will have tag B-TYPE to show
+that it starts a new phrase.
+A word with tag O is not part of a phrase.
+Here is an example:
+<p>
+<pre>
+   U.N.         NNP  I-NP  I-ORG 
+   official     NN   I-NP  O 
+   Ekeus        NNP  I-NP  I-PER 
+   heads        VBZ  I-VP  O 
+   for          IN   I-PP  O 
+   Baghdad      NNP  I-NP  I-LOC 
+   .            .    O     O 
+</pre>
+<p>
+The data consists of three files per language: one training file and
+two test files testa and testb.
+The first test file will be used in the development phase for finding
+good parameters for the learning system.
+The second test file will be used for the final evaluation.
+There are data files available for English and German.
+The German files contain an extra column (the second) which holds the 
+lemma of each word.
+<p>
+<ul>
+<li> <a href="../ner.tgz">http://www.cnts.ua.ac.be/conll2003/ner.tgz</a>
+<br> The training, development and test data sets for English and German
+     as well as evaluation software for this shared task 
+     in one gzipped tar file.
+     Fetch this file, extract the data files with the command
+     <tt>tar zxf ner.tgz</tt> and follow the instructions in
+     the file <tt>ner/000README</tt>.
+<br> Individual files:
+     <a href="000README">README</a>,
+     <a href="etc">annotation</a>,
+     <a href="lists/">lists</a>,
+     <a href="bin/">software</a>
+<li> <a href="../eng.raw.tar">http://www.cnts.ua.ac.be/conll2003/eng.raw.tar</a>
+<br> <a href="../deu.raw.tar">http://www.cnts.ua.ac.be/conll2003/deu.raw.tar</a>
+<br> The unannotated data sets for English and German in one tar file
+     (<a href="000README">README</a>).
+<br> Note: you need the main file 
+     <a href="../ner.tgz">ner.tgz</a>
+     as well.
+     It contains the software for building the data.
+<li> <a href="http://www.cnts.ua.ac.be/conll2003/ner/annotation.txt">http://www.cnts.ua.ac.be/conll2003/ner/annotation.txt</a>
+<br> Annotation guidelines for the named entity tasks.
+<li> <a href="http://www.cnts.ua.ac.be/conll2000/chunking/output.html">http://www.cnts.ua.ac.be/conll2000/chunking/output.html</a>
+<br> Output example of the evaluation program for this shared task:
+     <a href="http://www.cnts.ua.ac.be/conll2002/ner/bin/conlleval.txt">conlleval</a>.
+     The example deals with text chunking, a task which uses the same
+     output format as this named entity task.
+     The program requires the output of the NER system for each word 
+     to be appended to the corresponding line in the test file, 
+     with a single space between the line and the output tag.
+     Make sure you keep the empty lines in the test file otherwise
+     the software may mistakingly regard separate entities as one 
+     big entity.
+</ul>
+<p>
+The English data is a collection of news wire articles from the 
+<a href="http://trec.nist.gov/data/reuters/reuters.html">Reuters
+Corpus</a>.
+The annotation has been done by people of the University of Antwerp.
+Because of copyright reasons we only make available the annotations.
+In order to build the complete data sets you will need access to the
+Reuters Corpus.
+It can be obtained for research purposes without any charge from
+<a href="http://trec.nist.gov/data/reuters/reuters.html">NIST</a>.
+<p>
+The German data is a collection of articles from the Frankfurter 
+Rundschau.
+The named entities have been annotated by people of the University 
+of Antwerp. 
+Only the annotations are available here.
+In order to build these data sets you need access to the 
+ECI Multilingual Text Corpus.
+It can be ordered from the
+<a href="http://www.ldc.upenn.edu/Catalog/CatalogEntry.jsp?catalogId=LDC94T5">
+Linguistic Data Consortium</a>
+(2003 non-member price: US$ 35.00).
+<p>
+<h2>Results</h2>
+<p>
+Sixteen systems have participated in the CoNLL-2003 shared task. 
+They used a wide variety of machine learning techniques and 
+different feature sets.
+Here is the result table for the English test set:
+<p>
+<pre>
+                +-----------+---------+-----------+
+     English    | precision |  recall |     F     |
+   +------------+-----------+---------+-----------+
+   | [<a href="#FIJZ03">FIJZ03</a>]   |  88.99%   |  88.54% | 88.76&plusmn;0.7 |
+   | [<a href="#CN03">CN03</a>]     |  88.12%   |  88.51% | 88.31&plusmn;0.7 |
+   | [<a href="#KSNM03">KSNM03</a>]   |  85.93%   |  86.21% | 86.07&plusmn;0.8 |
+   | [<a href="#ZJ03">ZJ03</a>]     |  86.13%   |  84.88% | 85.50&plusmn;0.9 |
+   | [<a href="#CMP03b">CMP03b</a>]   |  84.05%   |  85.96% | 85.00&plusmn;0.8 |
+   | [<a href="#CC03">CC03</a>]     |  84.29%   |  85.50% | 84.89&plusmn;0.9 |
+   | [<a href="#MMP03">MMP03</a>]    |  84.45%   |  84.90% | 84.67&plusmn;1.0 |
+   | [<a href="#CMP03a">CMP03a</a>]   |  85.81%   |  82.84% | 84.30&plusmn;0.9 |
+   | [<a href="#ML03">ML03</a>]     |  84.52%   |  83.55% | 84.04&plusmn;0.9 |
+   | [<a href="#BON03">BON03</a>]    |  84.68%   |  83.18% | 83.92&plusmn;1.0 |
+   | [<a href="#MLP03">MLP03</a>]    |  80.87%   |  84.21% | 82.50&plusmn;1.0 |
+   | [<a href="#WNC03">WNC03</a>]*   |  82.02%   |  81.39% | 81.70&plusmn;0.9 |
+   | [<a href="#WP03">WP03</a>]     |  81.60%   |  78.05% | 79.78&plusmn;1.0 |
+   | [<a href="#HV03">HV03</a>]     |  76.33%   |  80.17% | 78.20&plusmn;1.0 |
+   | [<a href="#DD03">DD03</a>]     |  75.84%   |  78.13% | 76.97&plusmn;1.2 |
+   | [<a href="#Ham03">Ham03</a>]    |  69.09%   |  53.26% | 60.15&plusmn;1.3 |
+   +------------+-----------+---------+-----------+
+   | baseline   |  71.91%   |  50.90% | 59.61&plusmn;1.2 |
+   +------------+--------- -+---------+-----------+
+
+                +-----------+---------+-----------+
+     German     | precision |  recall |     F     |
+   +------------+-----------+---------+-----------+
+   | [<a href="#FIJZ03">FIJZ03</a>]   |  83.87%   |  63.71% | 72.41&plusmn;1.3 |
+   | [<a href="#KSNM03">KSNM03</a>]   |  80.38%   |  65.04% | 71.90&plusmn;1.2 |
+   | [<a href="#ZJ03">ZJ03</a>]     |  82.00%   |  63.03% | 71.27&plusmn;1.5 |
+   | [<a href="#MMP03">MMP03</a>]    |  75.97%   |  64.82% | 69.96&plusmn;1.4 |
+   | [<a href="#CMP03b">CMP03b</a>]   |  75.47%   |  63.82% | 69.15&plusmn;1.3 |
+   | [<a href="#BON03">BON03</a>]    |  74.82%   |  63.82% | 68.88&plusmn;1.3 |
+   | [<a href="#CC03">CC03</a>]     |  75.61%   |  62.46% | 68.41&plusmn;1.4 |
+   | [<a href="#ML03">ML03</a>]     |  75.97%   |  61.72% | 68.11&plusmn;1.4 |
+   | [<a href="#MLP03">MLP03</a>]    |  69.37%   |  66.21% | 67.75&plusmn;1.4 |
+   | [<a href="#CMP03a">CMP03a</a>]   |  77.83%   |  58.02% | 66.48&plusmn;1.5 |
+   | [<a href="#WNC03">WNC03</a>]    |  75.20%   |  59.35% | 66.34&plusmn;1.3 |
+   | [<a href="#CN03">CN03</a>]     |  76.83%   |  57.34% | 65.67&plusmn;1.4 |
+   | [<a href="#HV03">HV03</a>]     |  71.15%   |  56.55% | 63.02&plusmn;1.4 |
+   | [<a href="#DD03">DD03</a>]     |  63.93%   |  51.86% | 57.27&plusmn;1.6 |
+   | [<a href="#WP03">WP03</a>]     |  71.05%   |  44.11% | 54.43&plusmn;1.4 |
+   | [<a href="#Ham03">Ham03</a>]    |  63.49%   |  38.25% | 47.74&plusmn;1.5 |
+   +------------+-----------+---------+-----------+
+   | baseline   |  31.86%   |  28.89% | 30.30&plusmn;1.3 |
+   +------------+--------- -+---------+-----------+
+</pre>
+<p>
+Here are some remarks on these results:
+<p>
+<ul>
+<li>
+   The baseline results have been produced by a system which only
+   selects complete unambiguous named entities which appear in the 
+   training data.
+<li>
+   The significance intervals for the F rates
+   have been obtained with bootstrap resampling 
+   [<a href="#Nor89">Nor89</a>].
+   F rates outside of these intervals are assumed to be significantly
+   different from the related F rate (p&lt;0.05).
+<li>
+   The results of the system of 
+   [<a href="#WNC03">WNC03</a>] 
+   for the English test data have been corrected in their paper 
+   after the submission deadline 
+   (new F=82.69, see their paper).
+</ul>
+<p>
+A discussion of the shared task results can be found in the introduction paper
+[<a href="#TD03">TD03</a>].
+<p>
+<h2>Related information</h2>
+<p>
+<ul>
+<li> <a href="http://www.cnts.ua.ac.be/conll2003/">http://www.cnts.ua.ac.be/conll2003/</a>
+<br> Home page of the workshop on Computational Natural Language
+     Learning (CoNLL-2003) of which this shared task is part of.
+<li> <a href="http://www.cnts.ua.ac.be/conll2002/ner/">http://www.cnts.ua.ac.be/conll2002/ner/</a>
+<br> The shared task of CoNLL-2002 dealt with language-independent named
+     entity recognition as well (for Spanish and Dutch).
+<li> <a href="http://research.microsoft.com/conferences/mulner-acl03/">http://research.microsoft.com/conferences/mulner-acl03/</a>
+<br> At ACL 2003 (July 12, 2003, Sapporo, Japan) 
+     there is a workshop with a similar topic as this shared task:
+     Multilingual and Mixed-language Named Entity Recognition:
+     Combining Statistical and Symbolic Models.
+<li> <a href="http://www.accenture.com/techlabs/icmlworkshop2003/">http://www.accenture.com/techlabs/icmlworkshop2003/</a>
+<br> Another related workshop will be held at ICML 2003
+     (August 21, 2003, Washinton DC, USA):
+     The Continuum from Labeled to Unlabeled Data in Machine Learning
+     and Data Mining.
+<li> <a href="http://www.cs.nyu.edu/cs/faculty/grishman/muc6.html">http://www.cs.nyu.edu/cs/faculty/grishman/muc6.html</a>
+<br> Home page of the Sixth Message Understanding Conference (1995)
+     that introduced named entity recognition as shared task.
+<li> <a href="http://www.itl.nist.gov/iaui/894.02/related_projects/muc/">http://www.itl.nist.gov/iaui/894.02/related_projects/muc/</a>
+<br> Home page of the Seventh Message Understanding Conference (1998)
+     which contained a named entity recognition as shared task.
+<li> <a href="http://www.nist.gov/speech/tests/ie-er/er_99/er_99.htm">http://www.nist.gov/speech/tests/ie-er/er_99/er_99.htm</a>
+<br> Home page of the 1999 DARPA-TIDES Information Extraction-Entity 
+     Recognition (IE-ER) technology evaluation project, which contained
+     a named entity recognition task.
+<li> <a href="http://www.itl.nist.gov/iaui/894.02/related_projects/tipster/met.htm">http://www.itl.nist.gov/iaui/894.02/related_projects/tipster/met.htm</a>
+<br> Information on the Multilingual Entity Task Conference (MET)
+     which contained named entity recognition for Chinese, Japanese
+     and Spanish
+     (<a href="http://www.itl.nist.gov/iaui/894.02/related_projects/muc/proceedings/muc_7_proceedings/overview.html">overview</a>).
+<li> <a href="http://www.calle.com/world/">http://www.calle.com/world/</a>
+<br> List of about 2.8 million locations on Earth.
+</ul>
+<p>
+<h2>References</h2>
+<p>
+This is a list of papers that are relevant for this task. 
+<p>
+<h3>CoNLL-2003 Shared Task Papers</h3>
+<p>
+<ul>
+<li> <strong>[<a name="TD03">TD03</a>]</strong><br>
+     Erik F. Tjong Kim Sang and Fien De Meulder,
+     Introduction to the CoNLL-2003 Shared Task: Language-Independent
+     Named Entity Recognition.
+     In: 
+     <cite>Proceedings of CoNLL-2003</cite>,
+     Edmonton, Canada, 2003, pp. 142-147. 
+     <br>
+     paper:
+     [<a href="../ps/14247tjo.ps">ps</a>]
+     [<a href="../ps/14247tjo.ps.gz">ps.gz</a>]
+     [<a href="../pdf/14247tjo.pdf">pdf</a>]
+     [<a href="../bibtex/14247tjo.txt">bibtex</a>]
+     (with corrections)
+     <br>
+     sheets:
+     [<a href="../ps/14247tjo.sh.ps">ps</a>]
+     [<a href="../ps/14247tjo.sh.ps.gz">ps.gz</a>]
+     [<a href="../pdf/14247tjo.sh.pdf">pdf</a>]
+<li> <strong>[<a name="BON03">BON03</a>]</strong><br>
+     Oliver Bender, Franz Josef Och and Hermann Ney,
+     Maximum Entropy Models for Named Entity Recognition
+     In: 
+     <cite>Proceedings of CoNLL-2003</cite>,
+     Edmonton, Canada, 2003, pp. 148-151. 
+     <br>
+     paper:
+     [<a href="../ps/14851ben.ps">ps</a>]
+     [<a href="../ps/14851ben.ps.gz">ps.gz</a>]
+     [<a href="../pdf/14851ben.pdf">pdf</a>]
+     [<a href="../bibtex/14851ben.txt">bibtex</a>]
+     <br>
+     system output:
+     [<a href="results/bender.tgz">tgz</a>]
+     [<a href="results/bender/">files</a>]
+<li> <strong>[<a name="CMP03a">CMP03a</a>]</strong><br>
+     Xavier Carreras, Llu&iacute;s M&agrave;rquez, and Llu&iacute;s Padr&oacute;,
+     Learning a Perceptron-Based Named Entity Chunker via Online
+     Recognition Feedback.
+     In: 
+     <cite>Proceedings of CoNLL-2003</cite>,
+     Edmonton, Canada, 2003, pp. 156-159. 
+     <br>
+     paper:
+     [<a href="../ps/15659car.ps">ps</a>]
+     [<a href="../ps/15659car.ps.gz">ps.gz</a>]
+     [<a href="../pdf/15659car.pdf">pdf</a>]
+     [<a href="../bibtex/15659car.txt">bibtex</a>]
+     <br>
+     system output:
+     [<a href="results/carrerasa.tgz">tgz</a>]
+     [<a href="results/carrerasa/">files</a>]
+<li> <strong>[<a name="CMP03b">CMP03b</a>]</strong><br>
+     Xavier Carreras, Llu&iacute;s M&agrave;rquez, and Llu&iacute;s Padr&oacute;,
+     A Simple Named Entity Extractor using AdaBoost.
+     In: 
+     <cite>Proceedings of CoNLL-2003</cite>,
+     Edmonton, Canada, 2003, pp. 152-155. 
+     <br>
+     paper:
+     [<a href="../ps/15255car.ps">ps</a>]
+     [<a href="../ps/15255car.ps.gz">ps.gz</a>]
+     [<a href="../pdf/15255car.pdf">pdf</a>]
+     [<a href="../bibtex/15255car.txt">bibtex</a>]
+     <br>
+     system output:
+     [<a href="results/carrerasb.tgz">tgz</a>]
+     [<a href="results/carrerasb/">files</a>]
+<li> <strong>[<a name="CN03">CN03</a>]</strong><br>
+     Hai Leong Chieu and Hwee Tou Ng,
+     Named Entity Recognition with a Maximum Entropy Approach.
+     In: 
+     <cite>Proceedings of CoNLL-2003</cite>,
+     Edmonton, Canada, 2003, pp. 160-163. 
+     <br>
+     paper:
+     [<a href="../ps/16063chi.ps">ps</a>]
+     [<a href="../ps/16063chi.ps.gz">ps.gz</a>]
+     [<a href="../pdf/16063chi.pdf">pdf</a>]
+     [<a href="../bibtex/16063chi.txt">bibtex</a>]
+     <br>
+     system output:
+     [<a href="results/chieu.tgz">tgz</a>]
+     [<a href="results/chieu/">files</a>]
+<li> <strong>[<a name="CC03">CC03</a>]</strong><br>
+     James R. Curran and Stephen Clark,
+     Language Independent NER using a Maximum Entropy Tagger.
+     In: 
+     <cite>Proceedings of CoNLL-2003</cite>,
+     Edmonton, Canada, 2003, pp. 164-167. 
+     <br>
+     paper:
+     [<a href="../ps/16467cur.ps">ps</a>]
+     [<a href="../ps/16467cur.ps.gz">ps.gz</a>]
+     [<a href="../pdf/16467cur.pdf">pdf</a>]
+     [<a href="../bibtex/16467cur.txt">bibtex</a>]
+     <br>
+     system output:
+     [<a href="results/curran.tgz">tgz</a>]
+     [<a href="results/curran/">files</a>]
+<li> <strong>[<a name="DD03">DD03</a>]</strong><br>
+     Fien De Meulder and Walter Daelemans,
+     Memory-Based Named Entity Recognition using Unannotated Data.
+     In: 
+     <cite>Proceedings of CoNLL-2003</cite>,
+     Edmonton, Canada, 2003, pp. 208-211. 
+     <br>
+     paper:
+     [<a href="../ps/20811dem.ps">ps</a>]
+     [<a href="../ps/20811dem.ps.gz">ps.gz</a>]
+     [<a href="../pdf/20811dem.pdf">pdf</a>]
+     [<a href="../bibtex/20811dem.txt">bibtex</a>]
+     <br>
+     system output:
+     [<a href="results/demeulder.tgz">tgz</a>]
+     [<a href="results/demeulder/">files</a>]
+<li> <strong>[<a name="FIJZ03">FIJZ03</a>]</strong><br>
+     Radu Florian, Abe Ittycheriah, Hongyan Jing and Tong Zhang,
+     Named Entity Recognition through Classifier Combination.
+     In: 
+     <cite>Proceedings of CoNLL-2003</cite>,
+     Edmonton, Canada, 2003, pp. 168-171. 
+     <br>
+     paper:
+     [<a href="../ps/16871flo.ps">ps</a>]
+     [<a href="../ps/16871flo.ps.gz">ps.gz</a>]
+     [<a href="../pdf/16871flo.pdf">pdf</a>]
+     [<a href="../bibtex/16871flo.txt">bibtex</a>]
+     <br>
+     system output:
+     [<a href="results/florian.tgz">tgz</a>]
+     [<a href="results/florian/">files</a>]
+<li> <strong>[<a name="Ham03">Ham03</a>]</strong><br>
+     James Hammerton,
+     Named Entity Recognition with Long Short-Term Memory.
+     In: 
+     <cite>Proceedings of CoNLL-2003</cite>,
+     Edmonton, Canada, 2003, pp. 172-175. 
+     <br>
+     paper:
+     [<a href="../ps/17275ham.ps">ps</a>]
+     [<a href="../ps/17275ham.ps.gz">ps.gz</a>]
+     [<a href="../pdf/17275ham.pdf">pdf</a>]
+     [<a href="../bibtex/17275ham.txt">bibtex</a>]
+     <br>
+     system output:
+     [<a href="results/hammerton.tgz">tgz</a>]
+     [<a href="results/hammerton/">files</a>]
+<li> <strong>[<a name="HV03">HV03</a>]</strong><br>
+     Iris Hendrickx and Antal van den Bosch,
+     Memory-based one-step named-entity recognition: 
+     Effects of seed list features, classifier stacking, and
+     unannotated data. 
+     In: 
+     <cite>Proceedings of CoNLL-2003</cite>,
+     Edmonton, Canada, 2003, pp. 176-179. 
+     <br>
+     paper:
+     [<a href="../ps/17679hen.ps">ps</a>]
+     [<a href="../ps/17679hen.ps.gz">ps.gz</a>]
+     [<a href="../pdf/17679hen.pdf">pdf</a>]
+     [<a href="../bibtex/17679hen.txt">bibtex</a>]
+     <br>
+     system output:
+     [<a href="results/hendrickx.tgz">tgz</a>]
+     [<a href="results/hendrickx/">files</a>]
+<li> <strong>[<a name="KSNM03">KSNM03</a>]</strong><br>
+     Dan Klein, Joseph Smarr, Huy Nguyen and Christopher D. Manning,
+     Named Entity Recognition with Character-Level Models.
+     In: 
+     <cite>Proceedings of CoNLL-2003</cite>,
+     Edmonton, Canada, 2003, pp. 180-183. 
+     <br>
+     paper:
+     [<a href="../ps/18083kle.ps">ps</a>]
+     [<a href="../ps/18083kle.ps.gz">ps.gz</a>]
+     [<a href="../pdf/18083kle.pdf">pdf</a>]
+     [<a href="../bibtex/18083kle.txt">bibtex</a>]
+     <br>
+     system output:
+     [<a href="results/klein.tgz">tgz</a>]
+     [<a href="results/klein/">files</a>]
+<li> <strong>[<a name="MMP03">MMP03</a>]</strong><br>
+     James Mayfield, Paul McNamee and Christine Piatko,
+     Named Entity Recognition using Hundreds of Thousands of Features.
+     In: 
+     <cite>Proceedings of CoNLL-2003</cite>,
+     Edmonton, Canada, 2003, pp. 184-187. 
+     <br>
+     paper:
+     [<a href="../ps/18487may.ps">ps</a>]
+     [<a href="../ps/18487may.ps.gz">ps.gz</a>]
+     [<a href="../pdf/18487may.pdf">pdf</a>]
+     [<a href="../bibtex/18487may.txt">bibtex</a>]
+     <br>
+     system output:
+     [<a href="results/mayfield.tgz">tgz</a>]
+     [<a href="results/mayfield/">files</a>]
+<li> <strong>[<a name="ML03">ML03</a>]</strong><br>
+     Andrew McCallum and Wei Li,
+     Early results for Named Entity Recognition with Conditional Random
+     Fields, Feature Induction and Web-Enhanced Lexicons.
+     In: 
+     <cite>Proceedings of CoNLL-2003</cite>,
+     Edmonton, Canada, 2003, pp. 188-191. 
+     <br>
+     paper:
+     [<a href="../ps/18891mcc.ps">ps</a>]
+     [<a href="../ps/18891mcc.ps.gz">ps.gz</a>]
+     [<a href="../pdf/18891mcc.pdf">pdf</a>]
+     [<a href="../bibtex/18891mcc.txt">bibtex</a>]
+     <br>
+     system output:
+     [<a href="results/mccallum.tgz">tgz</a>]
+     [<a href="results/mccallum/">files</a>]
+<li> <strong>[<a name="MLP03">MLP03</a>]</strong><br>
+     Robert Munro, Daren Ler, and Jon Patrick,
+     Meta-Learning Orthographic and Contextual Models for Language
+     Independent Named Entity Recognition.
+     In: 
+     <cite>Proceedings of CoNLL-2003</cite>,
+     Edmonton, Canada, 2003, pp. 192-195. 
+     <br>
+     paper:
+     [<a href="../ps/19295mun.ps">ps</a>]
+     [<a href="../ps/19295mun.ps.gz">ps.gz</a>]
+     [<a href="../pdf/19295mun.pdf">pdf</a>]
+     [<a href="../bibtex/19295mun.txt">bibtex</a>]
+     <br>
+     system output:
+     [<a href="results/munro.tgz">tgz</a>]
+     [<a href="results/munro/">files</a>]
+<li> <strong>[<a name="WP03">WP03</a>]</strong><br>
+     Casey Whitelaw and Jon Patrick,
+     Named Entity Recognition Using a Character-based Probabilistic
+     Approach.
+     In: 
+     <cite>Proceedings of CoNLL-2003</cite>,
+     Edmonton, Canada, 2003, pp. 196-199. 
+     <br>
+     paper:
+     [<a href="../ps/19699whi.ps">ps</a>]
+     [<a href="../ps/19699whi.ps.gz">ps.gz</a>]
+     [<a href="../pdf/19699whi.pdf">pdf</a>]
+     [<a href="../bibtex/19699whi.txt">bibtex</a>]
+     <br>
+     system output:
+     [<a href="results/whitelaw.tgz">tgz</a>]
+     [<a href="results/whitelaw/">files</a>]
+<li> <strong>[<a name="WNC03">WNC03</a>]</strong><br>
+     Dekai Wu, Grace Ngai and Marine Carpuat,
+     A Stacked, Voted, Stacked Model for Named Entity Recognition.
+     In: 
+     <cite>Proceedings of CoNLL-2003</cite>,
+     Edmonton, Canada, 2003, pp. 200-203. 
+     <br>
+     paper:
+     [<a href="../ps/20003wu.ps">ps</a>]
+     [<a href="../ps/20003wu.ps.gz">ps.gz</a>]
+     [<a href="../pdf/20003wu.pdf">pdf</a>]
+     [<a href="../bibtex/20003wu.txt">bibtex</a>]
+     (with corrections)
+     <br>
+     system output:
+     [<a href="results/wu.tgz">tgz</a>]
+     [<a href="results/wu/">files</a>]
+<li> <strong>[<a name="ZJ03">ZJ03</a>]</strong><br>
+     Tong Zhang and David Johnson,
+     A Robust Risk Minimization based Named Entity Recognition System.
+     In: 
+     <cite>Proceedings of CoNLL-2003</cite>,
+     Edmonton, Canada, 2003, pp. 204-207. 
+     <br>
+     paper:
+     [<a href="../ps/20407zha.ps">ps</a>]
+     [<a href="../ps/20407zha.ps.gz">ps.gz</a>]
+     [<a href="../pdf/20407zha.pdf">pdf</a>]
+     [<a href="../bibtex/20407zha.txt">bibtex</a>]
+     <br>
+     system output:
+     [<a href="results/zhang.tgz">tgz</a>]
+     [<a href="results/zhang/">files</a>]
+</ul>
+<p>
+<h3>Other related publications</h3>
+<p>
+A paper that is related to the topic of this shared task is the 
+EMNLP-99 paper by Cucerzan and Yarowsky [<a href="#CY99">CY99</a>].
+Interesting papers about using unsupervised data, though not for
+named entity recognition, are those of 
+Mitchell [<a href="#Mit99">Mit99</a>]
+and
+Banko and Brill [<a href="#BB01">BB01</a>].
+<p>
+<ul>
+<li> <strong>[<a name="BB01">BB01</a>]</strong><br>
+     Michele Banko and Eric Brill,
+     Scaling to Very Very Large Corpora for Natural Language
+     Disambiguation.
+     In <cite>Proceedings of ACL 2001</cite>,
+     Toulouse, France, 2001, pp. 26-33.
+<br> <a href="http://www.research.microsoft.com/users/mbanko/ACL2001VeryVeryLargeCorpora.pdf">http://www.research.microsoft.com/users/mbanko/ACL2001VeryVeryLargeCorpora.pdf</a>
+<li> <strong>[<a name="Bor99">Bor99</a>]</strong><br>
+     Andrew Borthwick,
+     <cite>A Maximum Entropy Approach to Named Entity
+     Recognition</cite>.
+     PhD thesis, New York University, 1999.
+<br> <a href="http://cs.nyu.edu/cs/projects/proteus/publication/papers/borthwick_thesis.ps">http://cs.nyu.edu/cs/projects/proteus/publication/papers/borthwick_thesis.ps</a>
+<li> <strong>[<a name="BV00">BV00</a>]</strong><br>
+     Sabine Buchholz and Antal van den Bosch,
+     Integrating seed names and n-grams for a named entity list and
+     classifier,
+     In: <cite>Proceedings of LREC-2000</cite>, Athens, Greece, June
+     2000, pp. 1215-1221. 
+<br> <a href="http://ilk.kub.nl/downloads/pub/papers/ilk.0002.ps.gz">http://ilk.kub.nl/downloads/pub/papers/ilk.0002.ps.gz</a>
+<li> <strong>[CM03]</strong><br>
+     Xavier Carreras and Llu&iacute;s M&agrave;rquez,
+     Phrase Recognition by Filtering and Ranking with Perceptrons.
+     In "Proceedings  of the International Conference on Recent Advances
+     in Natural Language Processing, RANLP-2003", Borovets, Bulgaria, 2003.<br>
+     <a href="http://www.lsi.upc.es/~nlp/papers/2003/ranlp2003-cm.ps.gz">http://
+www.lsi.upc.es/~nlp/papers/2003/ranlp2003-cm.ps.gz</a>
+<li> <strong>[<a name="CMP02">CMP02</a>]</strong><br>
+     Xavier Carreras, Llu&iacute;s M&agrave;rques and Llu&iacute;s
+     Padr&oacute;, 
+     Named Entity Extraction using AdaBoost
+     In: 
+     <cite>Proceedings of CoNLL-2002</cite>,
+     Taipei, Taiwan, 2002, pp. 167-170. 
+<br> <a href="http://www.cnts.ua.ac.be/conll2002/ps/16770car.ps">http://www.cnts.ua.ac.be/conll2002/ps/16770car.ps</a>
+<li> <strong>[<a name="CBFR99">CBFR99</a>]</strong><br>
+     Nancy Chinchor, Erica Brown, Lisa Ferro and Patty Robinson,
+     <cite>1999 Named Entity Recognition Task Definition</cite>,
+     MITRE, 1999.
+<br> <a href="http://www.nist.gov/speech/tests/ie-er/er_99/doc/ne99_taskdef_v1_4.pdf">http://www.nist.gov/speech/tests/ie-er/er_99/doc/ne99_taskdef_v1_4.pdf</a>
+<li> <strong>[<a name="Col02">Col02</a>]</strong><br>
+     Michael Collins,
+     Ranking Algorithms for Named-Entity Extraction: Boosting and the
+     Voted Perceptron
+     In <cite>Proceedings of ACL 2002</cite>,
+     University of Pennsylvania, PA, 2002.
+<br> <a href="http://www.ai.mit.edu/people/mcollins/papers/finalNEacl2002.ps">http://www.ai.mit.edu/people/mcollins/papers/finalNEacl2002.ps</a>
+<li> <strong>[<a name="CBFR99">CS99</a>]</strong><br>
+     Michael Collins and Yoram Singer,
+     Unsupervised models for named entity classification. 
+     In <cite>Proceedings of the 1999 Joint SIGDAT Conference on Empirical
+     Methods in Natural Language Processing and Very Large
+     Corpora</cite>,
+     University of Maryland, MD, 1999.
+<br> <a href="http://citeseer.nj.nec.com/collins99unsupervised.html">http://citeseer.nj.nec.com/collins99unsupervised.html</a>
+<li> <strong>[<a name="CY99">CY99</a>]</strong><br>
+     Silviu Cucerzan and David Yarowsky, 
+     Language independent named entity recognition combining
+     morphological and contextual evidence. 
+     In <cite>Proceedings of 1999 Joint SIGDAT Conference on EMNLP and
+     VLC</cite>,
+     University of Maryland, MD, 1999.
+<br> <a href="http://citeseer.nj.nec.com/cucerzan99language.html">http://citeseer.nj.nec.com/cucerzan99language.html</a>
+<li> <strong>[<a name="Mit99">Mit99</a>]</strong><br>
+     Tom M. Mitchell,
+     The Role of Unlabeled Data in Supervised Learning.
+     In <cite>Proceedings of the Sixth International Colloquium on
+     Cognitive Science</cite>, 
+     San Sebastian, Spain, 1999.
+<br> <a href="http://citeseer.nj.nec.com/mitchell99role.html">http://citeseer.nj.nec.com/mitchell99role.html</a>
+<li> <strong>[<a name="MMG99">MMG99</a>]</strong><br>
+     Andrei Mikheev, Marc Moens and Claire Grover,
+     Named Entity Recognition without Gazetteers,
+     In <cite>Proceedings of EACL'99</cite>,
+     Bergen, Norway, 1999, pp. 1-8.
+<br> <a href="http://www.ltg.ed.ac.uk/~mikheev/papers_my/eacl99.ps">http://www.ltg.ed.ac.uk/~mikheev/papers_my/eacl99.ps</a>
+<li> <strong>[<a name="Nor89">Nor89</a>]</strong><br>
+     Eric W. Noreen,
+     <cite>Computer-Intensive Methods for Testing Hypotheses</cite>
+     John Wiley & Sons,
+     1989.
+<li> <strong>[<a name="PD97">PD97</a>]</strong><br>
+     David D. Palmer and David S. Day,
+     A Statistical Profile of the Named Entity Task.
+     In <cite>Proceedings of Fifth ACL Conference for Applied Natural
+     Language Processing (ANLP-97),</cite>
+     Washington D.C., 1997
+<br> <a href="http://crow.ee.washington.edu/people/palmer/papers/anlp97.ps">http://crow.ee.washington.edu/people/palmer/papers/anlp97.ps</a>
+<li> <strong>[<a name="TKS02">TKS02</a>]</strong><br>
+     Erik F. Tjong Kim Sang,
+     Introduction to the CoNLL-2002 Shared Task: Language-Independent
+     Named Entity Recognition.
+     In: 
+     <cite>Proceedings of CoNLL-2002</cite>,
+     Taipei, Taiwan, 2002, pp. 155-158. 
+<br> <a href="http://www.cnts.ua.ac.be/conll2002/ps/15558tjo.ps">http://www.cnts.ua.ac.be/conll2002/ps/15558tjo.ps</a>
+</ul>
+
+<p><hr><address>
+Last update: December 05, 2005.
+<a href="mailto:erik.tjongkimsang@ua.ac.be">erik.tjongkimsang@ua.ac.be</a>,
+<a href="mailto:fien.demeulder@ua.ac.be">fien.demeulder@ua.ac.be</a>
+</address>
+<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 
+<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+<br> <br> <br>
+</body></html>
