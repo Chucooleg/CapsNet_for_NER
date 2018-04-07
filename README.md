@@ -1,5 +1,11 @@
 # CapsNet_for_NER
-Adapt Capsule Network for Name Entity Recognition Task
+Adapt Capsule Network for Name Entity Recognition Task  
+<hr>  
+
+## Status Documents  
+> [Current Tasks](https://docs.google.com/document/d/1TbGEcN8IR9v5qkPAqM5NALICvVrPGo8JeFY54jMUz9U/edit?usp=sharing)  
+> [Results](https://docs.google.com/spreadsheets/d/1SHwJX4CikI3AGv2WRGX5GajqSBvMe-tni-kfaU6De0g/edit?usp=sharing)  
+<hr>
 
 |Internal Link|About|
 |--|--|
