@@ -3,7 +3,7 @@ data/*
 code/data/*
 *.pyc
 .ipynb_checkpoints/
-__pycache__/
+code/__pycache__/
 result/
 
 
