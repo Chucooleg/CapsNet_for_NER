@@ -1,10 +1,12 @@
 
+.ipynb_checkpoints/
 data/*
 code/data/*
+code/__pycache__/*
+code/result/*
 *.pyc
-.ipynb_checkpoints/
-code/__pycache__/
-result/
-
-
+*.npy
+*.json
+*.h5
+*.csv
 
