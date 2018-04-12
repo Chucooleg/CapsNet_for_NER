@@ -2,6 +2,9 @@
 Adapt Capsule Network for Name Entity Recognition Task  
 <hr>  
 
+## setup GCP gpu for tensorflow and keras
+https://hackernoon.com/launch-a-gpu-backed-google-compute-engine-instance-and-setup-tensorflow-keras-and-jupyter-902369ed5272
+
 ## Status Documents  
 > [Current Tasks](https://docs.google.com/document/d/1TbGEcN8IR9v5qkPAqM5NALICvVrPGo8JeFY54jMUz9U/edit?usp=sharing)  
 > [Results](https://docs.google.com/spreadsheets/d/1SHwJX4CikI3AGv2WRGX5GajqSBvMe-tni-kfaU6De0g/edit?usp=sharing)  
