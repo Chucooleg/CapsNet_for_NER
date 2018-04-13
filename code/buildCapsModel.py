@@ -248,7 +248,7 @@ def fit_model( hyper_param, model, modelName, trainX_dict, devX_list_arrayS, tra
                       batch_size=hyper_param['batch_size'], 
                       epochs=hyper_param['epochs'], 
                       validation_data=[devX_list_arrayS, devY_list_arrayS], #! [devX, devX_pos_cat, devX_capitals_cat, (o)devY_cat], [devY_cat, (o)dev_decoderY]
-                      callbacks=[log, tb, checkpoint], 
+                      callbacks=[log, tb, checkpoint, es], 
                       verbose=1)
 
 
