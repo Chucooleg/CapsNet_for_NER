@@ -17,7 +17,9 @@ TRAIN_DATA_FILES = { 'trainX' : 'trainX.npy',
                      'trainX_capitals' : 'trainX_capitals.npy',
                      'devX_pos' : 'devX_pos.npy',
                      'devX_capitals' : 'devX_capitals.npy',
-                     'glove_embed' : 'glove_embed.npy'}
+                     'glove_embed' : 'glove_embed.npy',
+                     'train_decoderY' : 'train_deocoderY.npy',
+                     'dev_decoderY' : 'dev_decoderY.npy'}
 
 # timeit decorator
 def timeit(method):
@@ -36,7 +38,7 @@ def timeit(method):
 
 
 def saveProcessedData( trainX, trainX_capitals_cat, trainX_pos_cat, devX, devX_capitals_cat,
-                       devX_pos_cat, trainY_cat, devY_cat, embedding_matrix):
+                       devX_pos_cat, trainY_cat, devY_cat, embedding_matrix, train_decoderY, dev_decoderY):
     """
     Save all processed training data
     """
@@ -49,6 +51,8 @@ def saveProcessedData( trainX, trainX_capitals_cat, trainX_pos_cat, devX, devX_c
     np.save(TRAIN_DATA_FILES['trainY'], trainY_cat)
     np.save(TRAIN_DATA_FILES['devY'], devY_cat)
     np.save(TRAIN_DATA_FILES['glove_embed'], embedding_matrix)
+    np.save(TRAIN_DATA_FILES['train_decoderY'], train_decoderY)
+    np.save(TRAIN_DATA_FILES['dev_decoderY'], dev_decoderY)
 
 
 def loadProcessedData( ):
@@ -68,9 +72,11 @@ def loadProcessedData( ):
     trainY_cat = np.load(TRAIN_DATA_FILES['trainY'])
     devY_cat = np.load(TRAIN_DATA_FILES['devY'])
     embedding_matrix = np.load(TRAIN_DATA_FILES['glove_embed'])
+    train_decoderY = np.load(TRAIN_DATA_FILES['train_decoderY'])
+    dev_decoderY = np.load(TRAIN_DATA_FILES['dev_decoderY'])    
     
     return trainX, trainX_capitals_cat, trainX_pos_cat, devX, devX_capitals_cat, \
-           devX_pos_cat, trainY_cat, devY_cat, embedding_matrix
+           devX_pos_cat, trainY_cat, devY_cat, embedding_matrix, train_decoderY, dev_decoderY
 
 
 def save_model(model, name):
