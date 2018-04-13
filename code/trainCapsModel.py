@@ -43,7 +43,7 @@ def main():
         trainX_dict["x_capital"] = trainX_capitals_cat
         devX_list_arrayS += [devX_capitals_cat]
     
-    if hyper['use_decoder']:
+    if hypers['use_decoder']:
         trainX_dict["decoder_y_cat"] = trainY_cat
         devX_list_arrayS += [devY_cat]
         trainY_dict["train_decoder_output"] = train_decoderY
