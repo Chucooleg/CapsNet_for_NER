@@ -138,20 +138,6 @@ def draw_cnn_model(hyper_param, embedding_matrix=None ,verbose=True):
     return cnnmodel
 
 
-# margin loss
-def margin_loss( y_true, y_pred):
-    L = y_true * KB.square(KB.maximum(0., 0.9 - y_pred)) + 0.5 * (1 - y_true) * KB.square(KB.maximum(0., y_pred - 0.1))
-    return KB.mean(KB.sum(L, 1))
-
-# decoder loss work in progress
-def decoder_loss( decoder_y_true, decoder_y_pred):
-    # get cosine similarity from A3
-    dot_products = np.dot(decoder_y_true, decoder_y_pred)
-    l2norm_products = np.multiply(np.linalg.norm(decoder_y_true), np.linalg.norm(decoder_y_pred))
-    cos_sim = np.divide(dot_products, l2norm_products)
-    return -cos_sim
-
-
 # compile the model
 def compile_cnn_model(hyper_param, model): #!
     """
