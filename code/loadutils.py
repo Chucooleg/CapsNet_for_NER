@@ -21,6 +21,12 @@ TRAIN_DATA_FILES = { 'trainX' : 'trainX.npy',
                      'train_decoderY' : 'train_deocoderY.npy',
                      'dev_decoderY' : 'dev_decoderY.npy'}
 
+
+DEV_RESULT_FILES = { 'raw_y_pred' : 'raw_y_pred.npy',
+                     'raw_y_pred_decoder_embeddings' : 'raw_y_pred_decoder_embeddings.npy',
+                     'y_pred' : 'y_pred.npy'}
+
+
 # timeit decorator
 def timeit(method):
     def timed(*args, **kw):
@@ -36,6 +42,37 @@ def timeit(method):
         return result
     return timed
 
+
+def saveDevPredictionsData(modelName, raw_y_pred, raw_y_pred_decoder_embeddings, y_pred, modelsDir='dev_Predictions'):
+    """
+    Save major prediction data and scores
+    """
+    path = str(modelsDir) + "/" + modelName + "_"
+    np.save(path + DEV_RESULT_FILES['raw_y_pred'], raw_y_pred)
+    np.save(path + DEV_RESULT_FILES['raw_y_pred_decoder_embeddings'], raw_y_pred_decoder_embeddings)
+    np.save(path + DEV_RESULT_FILES['y_pred'], y_pred)
+    
+    
+def loadDevPredictionsData(modelName, modelsDir='dev_Predictions'):
+    """
+    Load major prediction data and scores
+    
+    Argument:
+        modelName : modelName given to model in training code. 
+        see testFeatures( testFunc, modelName="encoder_50e", hypers) in model_training_tmpl.ipynb
+        
+    Returns:
+        raw_y_pred : 1-hot dev set prediction of shape(?, number of ner classes)
+        raw_y_pred_decoder_embeddings : dev set decoder embedding prediction of shape (?, embed_dim)
+        y_pred : NER idx version of converted from raw_y_pred. of shape (?,). can apply vocabData.ner_vocab.ids_to_words()
+    """
+    path = str(modelsDir) + "/" + modelName + "_"
+    raw_y_pred = np.load(path + DEV_RESULT_FILES['raw_y_pred'])
+    raw_y_pred_decoder_embeddings = np.load(path + DEV_RESULT_FILES['raw_y_pred_decoder_embeddings'])
+    y_pred = np.load(path + DEV_RESULT_FILES['y_pred'])
+    
+    return raw_y_pred, raw_y_pred_decoder_embeddings, y_pred
+    
 
 def saveProcessedData( trainX, trainX_capitals_cat, trainX_pos_cat, devX, devX_capitals_cat,
                        devX_pos_cat, trainY_cat, devY_cat, embedding_matrix, train_decoderY, dev_decoderY):
