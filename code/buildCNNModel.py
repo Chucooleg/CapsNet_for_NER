@@ -1,13 +1,19 @@
 
-
+import tensorflow as tf
+import keras as K
 
 from keras import callbacks, optimizers
 from keras import backend as KB
 from keras.engine import Layer
-from keras.layers import Dense, Input, Embedding, Dropout, Reshape, Concatenate
+from keras.layers import Activation
+from keras.layers import LeakyReLU, Dense, Input, Embedding, Dropout, Reshape, Concatenate, MaxPooling1D, Flatten
 from keras.layers import Flatten, SpatialDropout1D, Conv1D
 from keras.models import Model
 from keras.utils import plot_model
+
+from keras.models import Sequential
+from keras.preprocessing import sequence
+from keras.layers import Add
 
 # capsule layers from Xifeng Guo 
 # https://github.com/XifengGuo/CapsNet-Keras
@@ -100,7 +106,7 @@ def draw_cnn_model(hyper_param, embedding_matrix=None ,verbose=True):
     ff2 = Dense(hyper_param['feed_forward_2'], activation='relu')(ff1_dropout)    
     ff2_dropout = Dropout(hyper_param['ff2_dropout'])(ff2)    
     
-    out_pred = Dense(hyper_param['ner_classes'], activation='softmax')(ff2)
+    out_pred = Dense(hyper_param['ner_classes'], activation='softmax', name='out_pred')(ff2) #!
     
              
     if verbose:
@@ -147,10 +153,9 @@ def decoder_loss( decoder_y_true, decoder_y_pred):
 
 
 # compile the model
-def compile_model( hyper_param, model):
+def compile_cnn_model(hyper_param, model): #!
     """
-    Input: keras.models.Model object, see draw_capsnet_model() output. 
-    This is a graph with all layers drawn and connected
+    Input: keras.models.Model object, see draw_capsnet_model() output. This is a graph with all layers drawn and connected
     
     do:
         compile with loss function and optimizer
@@ -164,18 +169,14 @@ def compile_model( hyper_param, model):
     elif hyper_param['optimizer'] == None:
         raise Exception("No optimizer specified")
 
-    if hyper_param.get('use_decoder') == True:
-        model_loss = margin_loss # work in progress
-    else:
-        model_loss = margin_loss
-    
     model.compile(optimizer=opt, #'adam',
-                  loss=model_loss,
+                  loss='categorical_crossentropy',
                   metrics=['accuracy'])
     
     return model
 
-def fit_model( hyper_param, model, modelName, trainX_dict, devX_list_arrayS, trainY_array, devY_array):
+
+def fit_model( hyper_param, model, modelName, trainX_dict, devX_list_arrayS, trainY_dict, devY_list_arrayS):
     #Saving weights and logging
     log = callbacks.CSVLogger(hyper_param['save_dir'] + '/{0}_historylog.csv'.format(modelName))
     tb = callbacks.TensorBoard(log_dir=hyper_param['save_dir'] + '/tensorboard-logs', \
@@ -196,15 +197,11 @@ def fit_model( hyper_param, model, modelName, trainX_dict, devX_list_arrayS, tra
 
     #loss = margin_loss
     
-    data = model.fit( x=trainX_dict, 
-                      y=trainY_array, 
+    data = model.fit( x=trainX_dict, # {'x':trainX, 'x_pos':trainX_pos_cat, 'x_capital':trainX_capitals_cat, (o)'decoder_y':trainY_cat}
+                      y=trainY_dict, #!{'out_pred':trainY_cat, (o)'decoder_output':train_decoderY}
                       batch_size=hyper_param['batch_size'], 
                       epochs=hyper_param['epochs'], 
-                      validation_data=[devX_list_arrayS, devY_array], 
-                      callbacks=[log, tb, checkpoint, es], 
+                      validation_data=[devX_list_arrayS, devY_list_arrayS], #! [devX, devX_pos_cat, devX_capitals_cat, (o)devY_cat], [devY_cat, (o)dev_decoderY]
+                      callbacks=[log, tb, checkpoint], 
                       verbose=1)
-
-
-
-
 
