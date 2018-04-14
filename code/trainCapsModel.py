@@ -18,7 +18,7 @@ def main():
     <model name> <hyper parameters file (JSON)> 
     """
     
-    print(f'args:\n{sys.argv}')
+    print('fargs:\n', sys.argv)
 
     if len(sys.argv) < 3:
         printUsage()
