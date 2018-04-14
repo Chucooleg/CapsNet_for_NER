@@ -5,9 +5,6 @@ import time
 # https://github.com/XifengGuo/CapsNet-Keras
 from capsulelayers import CapsuleLayer, PrimaryCap1D, Length, Mask
 from keras.models import model_from_json
-import keras.backend as K
-from keras.utils import CustomObjectScope
-from capsulelayers import CapsuleLayer, PrimaryCap1D, Length, Mask
 
 from common import vocabulary, utils
 
