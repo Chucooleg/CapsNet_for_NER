@@ -68,7 +68,7 @@ class EvalDev_Report(object):
     To load predictions, see *loadutils.loadDevPredictionsData()
     """
     
-    def __init__(self, y_true, raw_y_pred=None, y_pred=None):
+    def __init__(self, y_true, raw_y_pred=np.empty(0), y_pred=np.empty(0)):
         """
         Arguments:
             y_true : trainY/devY/testY. an array of shape(?,). Each value correspond to the ner tag for a word
@@ -76,9 +76,12 @@ class EvalDev_Report(object):
             this is a 2D matrix of shape (?, number of NER classes). Each row correspond to one 1-hot NER vector }
             y_pred : model prediction. same shape and format as y_true. if this is None then will be constructed from raw_y_pred 
             """
+        if (raw_y_pred.any()==False) and (y_pred.any()==False):
+            raise ValueError("raw_y_pred and y_pred are both empty arrays. at least one of them must be provided \nprovide raw_y_pred as array of shape (?, embed_dim) or y_pred as array of shape (?,)")
+        
         self.y_true = y_true
         self.raw_y_pred = raw_y_pred
-        self.y_pred = self.convert_raw_y_pred(self.raw_y_pred) if (y_pred==None) else y_pred
+        self.y_pred = self.convert_raw_y_pred(self.raw_y_pred) if (not y_pred.any()) else y_pred  
         
         self.gold_cts, self.pred_cts = self.count_ner_labels(self.y_true, self.y_pred)
         
@@ -90,6 +93,23 @@ class EvalDev_Report(object):
         self.missed_ner_idx = self.get_missed_ner_idx(self.y_true, self.y_pred)
         self.match_ner_idx, self.mismatch_ner_idx = self.get_matching_ner_idx(self.y_true, self.y_pred)
         self.gold_pred_idx_dict, self.gold_pred_ct_dict = self.get_gold_pred_idx_dict(self.y_true, self.y_pred)
+        
+        self.vocab = None  # connect to vocabData.vocab
+        self.posTags = None
+        self.nerTags = None
+        self.capitalTags = None
+        
+    def connect_to_training_vocab(self, dataClass):
+        """
+        connect to vocabData.vocab objects
+        
+        Argument:
+            dataClass : object constructed from loadutils.conll2003Data(). Typically it is `vocabData`
+        """
+        self.vocab = dataClass.vocab
+        self.posTags = dataClass.posTags
+        self.nerTags = dataClass.nerTags
+        self.capitalTags = dataClass.capitalTags
         
         
     def convert_raw_y_pred(self, raw_y_pred):
