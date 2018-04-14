@@ -1,6 +1,7 @@
 import numpy as np
 import collections
 from collections import Counter, defaultdict
+import loadutils
 
 def convert_raw_y_pred(raw_y_pred):
     """
@@ -49,6 +50,22 @@ def get_recall(y_true, y_pred):
     return recall
 
 
+def get_f1_by_modelName(modelName, y_true):
+    """
+    access f1 score of a model directly by modelName
+    
+    Arguments:
+        modelName : string, the modelName used while training in model_training_tmpl.ipynb
+        y_true : devY, loaded from conll2003Data.formatWindowedData(). see that documentation
+    
+    Returns:
+        float f1 score
+    """
+    _, _, y_pred = loadutils.loadDevPredictionsData(modelName)
+    
+    return get_f1(y_true, y_pred)
+    
+
 def get_f1(y_true, y_pred):
     precision = get_precision(y_true, y_pred)
     recall = get_recall(y_true, y_pred)
@@ -76,7 +93,7 @@ class EvalDev_Report(object):
             this is a 2D matrix of shape (?, number of NER classes). Each row correspond to one 1-hot NER vector }
             y_pred : model prediction. same shape and format as y_true. if this is None then will be constructed from raw_y_pred 
             """
-        if (raw_y_pred.any()==False) and (y_pred.any()==False):
+        if not raw_y_pred.any() and not y_pred.any():
             raise ValueError("raw_y_pred and y_pred are both empty arrays. at least one of them must be provided \nprovide raw_y_pred as array of shape (?, embed_dim) or y_pred as array of shape (?,)")
         
         self.y_true = y_true
@@ -99,13 +116,14 @@ class EvalDev_Report(object):
         self.nerTags = None
         self.capitalTags = None
         
-    def connect_to_training_vocab(self, dataClass):
+    def connect_to_dataClass(self, dataClass):
         """
         connect to vocabData.vocab objects
         
         Argument:
             dataClass : object constructed from loadutils.conll2003Data(). Typically it is `vocabData`
         """
+        self.dataClass = dataClass
         self.vocab = dataClass.vocab
         self.posTags = dataClass.posTags
         self.nerTags = dataClass.nerTags
@@ -276,6 +294,10 @@ class EvalDev_Report(object):
                 gold_pred_ct_dict[gold_idx][pred_idx] = match_ner_idx.shape[0]              
 
         return gold_pred_idx_dict, gold_pred_ct_dict   
+    
+    
+    
+    
     
     def calc_cross_entropy_per_row(y_true_row, y_pred_row):
         pass
