@@ -69,6 +69,11 @@ def main():
     print( "\nTraining Model:", modelName)
     caps.fit_model( hypers, model, modelName, trainX_dict, devX_list_arrayS, trainY_dict, devY_list_arrayS)
     
+    # save the last model in each epoch and its weights
+    with open('./result/'+ modelName + '_model_architecture.json', 'w') as f:
+            f.write(model.to_json())
+    model.save_weights('./result/' + modelName + '_weights_model.h5')
+    
     # making dev predictions from here downwards
     if hypers['use_decoder']:
         print ("making model prediction on dev set... \nusing model_eval because decoder is enabled.") 
