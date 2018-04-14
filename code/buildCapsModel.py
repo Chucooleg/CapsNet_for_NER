@@ -208,7 +208,12 @@ def compile_caps_model(hyper_param, model):
         raise Exception("No optimizer specified")
 
     if hyper_param.get('use_decoder') == True:
-        model_loss = [margin_loss, custom_cosine_proximity] # work in progress
+        if hyper_param['loss_function'] == 'custom_cosine':
+            decodeLoss = custom_cosine_proximity
+        else:
+            decodeLoss = hyper_param['loss_function']
+        
+        model_loss = [margin_loss, decodeLoss] # work in progress
         loss_wts = [1, hyper_param['lam_recon']]
     else:
         model_loss = margin_loss
