@@ -5,6 +5,9 @@ import time
 # https://github.com/XifengGuo/CapsNet-Keras
 from capsulelayers import CapsuleLayer, PrimaryCap1D, Length, Mask
 from keras.models import model_from_json
+import keras.backend as K
+from keras.utils import CustomObjectScope
+from capsulelayers import CapsuleLayer, PrimaryCap1D, Length, Mask
 
 from common import vocabulary, utils
 
@@ -124,12 +127,7 @@ def save_model(model, name):
     model.save_weights(weights)
 
 
-def retrieve_model(modelName, epoch, hypers, weights=True):
-    import keras.backend as K
-    from keras.utils import CustomObjectScope
-    from capsulelayers import CapsuleLayer, PrimaryCap1D, Length, Mask
-    from keras.models import load_model
-    from keras.models import model_from_json
+def retrieve_model(modelName, hypers, weights=True):
     print( 'Retrieving model: {0}'.format(modelName))
     architecture = hypers['save_dir'] + '/' + modelName + '_model_architecture.json'
     with open(architecture, 'r') as f:
@@ -138,7 +136,7 @@ def retrieve_model(modelName, epoch, hypers, weights=True):
             model_saved = model_from_json(f.read(), custom_objects={'CapsuleLayer': CapsuleLayer, 'Length': Length})
 
     if weights:
-        weights = hypers['save_dir'] + '/' + modelName + '_weights-' + epoch + '.h5'    
+        weights = hypers['save_dir'] + '/' + modelName + '_weights_model.h5'    
         model_saved.load_weights(weights)
     return model_saved
 
