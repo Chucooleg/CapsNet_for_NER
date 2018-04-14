@@ -140,17 +140,6 @@ def retrieve_model(modelName, hypers, weights=True):
         weights = hypers['save_dir'] + '/' + modelName + '_weights_model.h5'    
         model_saved.load_weights(weights)
     return model_saved
-    print( 'Retrieving model: {0}'.format(modelName))
-    architecture = hypers['save_dir'] + '/' + modelName + '_model_architecture.json'
-    with open(architecture, 'r') as f:
-        if len(f.readlines()) !=0:
-            f.seek(0)
-            model_saved = model_from_json(f.read(), custom_objects={'CapsuleLayer': CapsuleLayer, 'Length': Length})
-
-    if weights:
-        weights = hypers['save_dir'] + '/' + modelName + '_weights_model.h5'    
-        model_saved.load_weights(weights)
-    return model_saved
 
 
 class conll2003Data(object):
