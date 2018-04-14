@@ -52,10 +52,10 @@ def get_f1(y_true, y_pred):
     precision = get_precision(y_true, y_pred)
     recall = get_recall(y_true, y_pred)
     f1 = 2*(precision*recall)/(precision + recall)
-    return (precision, recall, f1)
+    return  f1
 
 # !!
-assert(get_f1(y_true=np.array([5,7,3,4]), y_pred=convert_raw_y_pred(np.array([[1,0,0,0,0],[0,0,1,0,0],[1,0,0,0,0],[0,1,0,0,0]]))) == (1/2,1/3,0.4))
+assert(get_f1(y_true=np.array([5,7,3,4]), y_pred=convert_raw_y_pred(np.array([[1,0,0,0,0],[0,0,1,0,0],[1,0,0,0,0],[0,1,0,0,0]]))) == (0.4))
 
 
 # ------------------------- IGNORE BELOW FOR NOW -------------------------

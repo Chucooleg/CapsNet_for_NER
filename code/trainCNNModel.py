@@ -57,6 +57,7 @@ def main():
 
     raw_y_pred = model.predict(devX_dict, verbose=1)    
     
+    y_true = convert_raw_y_pred(devY_cat)
     print ("prediction on dev set finished. raw 1-hot prediction has shape {}".format(raw_y_pred.shape))
     y_pred = convert_raw_y_pred(raw_y_pred)
     print ("prediction converted to class idx has shape {}".format(y_pred.shape))
