@@ -124,13 +124,21 @@ def save_model(model, name):
     model.save_weights(weights)
 
 
-def retrieve_model(name, weights=True):
-    print( 'Retrieving model: {0}'.format(name))
-    architecture = name+'_architecture.json' 
-    model_saved = model_from_json(open(architecture).read())
-    
+def retrieve_model(modelName, epoch, hypers, weights=True):
+    import keras.backend as K
+    from keras.utils import CustomObjectScope
+    from capsulelayers import CapsuleLayer, PrimaryCap1D, Length, Mask
+    from keras.models import load_model
+    from keras.models import model_from_json
+    print( 'Retrieving model: {0}'.format(modelName))
+    architecture = hypers['save_dir'] + '/' + modelName + '_model_architecture.json'
+    with open(architecture, 'r') as f:
+        if len(f.readlines()) !=0:
+            f.seek(0)
+            model_saved = model_from_json(f.read(), custom_objects={'CapsuleLayer': CapsuleLayer, 'Length': Length})
+
     if weights:
-        weights = name+'_weights.h5'    
+        weights = hypers['save_dir'] + '/' + modelName + '_weights-' + epoch + '.h5'    
         model_saved.load_weights(weights)
     return model_saved
 
