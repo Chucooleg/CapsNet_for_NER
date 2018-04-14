@@ -18,6 +18,8 @@ def main():
     <model name> <hyper parameters file (JSON)> 
     """
     
+    print(f'args:\n{sys.argv}')
+
     if len(sys.argv) < 3:
         printUsage()
         return -1
@@ -74,7 +76,9 @@ def main():
     else:
         print ("making model prediction on dev set... \nusing trained model as is because decoder is DISabled.")
         raw_y_pred = model.predict(devX_dict, verbose=1) 
-    
+        
+    y_true = convert_raw_y_pred(devY_cat)    
+    print ("y_true shape from devY_cat", y_true.shape)
     print ("prediction on dev set finished. raw 1-hot prediction has shape {}".format(raw_y_pred.shape))
     y_pred = convert_raw_y_pred(raw_y_pred)
     print ("prediction converted to class idx has shape {}".format(y_pred.shape))
@@ -85,7 +89,14 @@ def main():
     print ("precision on dev = {}".format(precision))
     print ("recall on dev = {}".format(recall))
     print ("f1 score on dev = {}".format(f1_score))
-           
+    
+    print ("debugging use")
+    print ("type y_pred", type(y_pred))
+    print ("type raw_y_pred", type(raw_y_pred))
+    print ("type raw_y_pred_decoder_embeddings", type(raw_y_pred_decoder_embeddings))
+    
+    #import pdb; pdb.set_trace()
+    
     # write out dev predictions
     modelsDir = 'dev_Predictions'
     print ("saving prediction data under directory: {}".format(modelsDir))
