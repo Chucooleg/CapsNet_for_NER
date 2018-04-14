@@ -239,7 +239,7 @@ def fit_model( hyper_param, model, modelName, trainX_dict, devX_list_arrayS, tra
     # conda install pydot
     # conda install -c anaconda graphviz
     # sometimes graphviz is a little squirrely, if so, use: pip install graphviz
-    plot_model( model, to_file=hyper_param['save_dir'] + '/{0}.png'.format(modelName), show_shapes=True)
+    # plot_model( model, to_file=hyper_param['save_dir'] + '/{0}.png'.format(modelName), show_shapes=True)
 
     #loss = margin_loss
     
