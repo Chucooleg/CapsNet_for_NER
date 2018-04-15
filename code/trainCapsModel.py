@@ -80,7 +80,8 @@ def main():
         raw_y_pred, raw_y_pred_decoder_embeddings = model_eval.predict(devX_dict, verbose=1) 
     else:
         print ("making model prediction on dev set... \nusing trained model as is because decoder is DISabled.")
-        raw_y_pred = model.predict(devX_dict, verbose=1) 
+        raw_y_pred = model.predict(devX_dict, verbose=1)
+        raw_y_pred_decoder_embeddings = np.empty(0)
         
     y_true = convert_raw_y_pred(devY_cat)    
     print ("y_true shape from devY_cat", y_true.shape)
@@ -105,7 +106,7 @@ def main():
     # write out dev predictions
     modelsDir = 'dev_Predictions'
     print ("saving prediction data under directory: {}".format(modelsDir))
-    saveDevPredictionsData(modelName, raw_y_pred, raw_y_pred_decoder_embeddings, y_pred, modelsDir)
+    saveDevPredictionsData(modelName=modelName, raw_y_pred=raw_y_pred, raw_y_pred_decoder_embeddings=raw_y_pred_decoder_embeddings, y_pred=y_pred, modelsDir=modelsDir)
     print ("please use loadutils.loadDevPredictionsData(modelName, modelsDir='dev_Predictions') to load :\n raw_y_pred, raw_y_pred_decoder_embeddings, y_pred")
     
 if __name__ == '__main__':
