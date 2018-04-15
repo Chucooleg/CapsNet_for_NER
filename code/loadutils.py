@@ -73,7 +73,7 @@ def loadDevPredictionsData(modelName, modelsDir='dev_Predictions'):
     
     if y_pred.dtype == '<U15':
         raw_y_pred_decoder_embeddings = np.empty(0)
-        y_pred = convert_raw_y_pred(raw_y_pred)
+        y_pred = np.argmax(raw_y_pred, axis=1) + 3
     
     return raw_y_pred, raw_y_pred_decoder_embeddings, y_pred
     
