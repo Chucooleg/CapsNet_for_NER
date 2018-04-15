@@ -378,7 +378,7 @@ class EvalDev_Report(object):
         pred_ner_class = [dataClass.nerTags.ids_to_words([tag]) for tag in y_pred[idx_list]]    
 
 
-        cen = len(word_windows[0])//2 + 1
+        cen = len(word_windows[0])//2
         for i in range(len(word_windows)):
             print ("\nID {}".format(idx_list[i]))
             print ("FEATURES:   \"{}\", {}, {}".format(word_windows[i][cen], pos_windows[i][cen], \
