@@ -2,6 +2,7 @@ import numpy as np
 import collections
 from collections import Counter, defaultdict
 import loadutils
+from keras.utils import to_categorical
 
 def convert_raw_y_pred(raw_y_pred):
     """
@@ -107,7 +108,7 @@ class EvalDev_Report(object):
     To load predictions, see *loadutils.loadDevPredictionsData()
     """
     
-    def __init__(self, modelName, y_true, raw_y_pred=np.empty(0), y_pred=np.empty(0)):
+    def __init__(self, modelName, y_true, raw_y_pred, y_pred=np.empty(0)):
         """
         Arguments:
             y_true : trainY/devY/testY. an array of shape(?,). Each value correspond to the ner tag for a word
@@ -115,8 +116,8 @@ class EvalDev_Report(object):
             this is a 2D matrix of shape (?, number of NER classes). Each row correspond to one 1-hot NER vector }
             y_pred : model prediction. same shape and format as y_true. if this is None then will be constructed from raw_y_pred 
             """
-        if not raw_y_pred.any() and not y_pred.any():
-            raise ValueError("raw_y_pred and y_pred are both empty arrays. at least one of them must be provided \nprovide raw_y_pred as array of shape (?, embed_dim) or y_pred as array of shape (?,)")
+        if not y_pred.any():
+            print ("since y_pred is not provided, converting 1-hot raw_y_pred of shape (?, number of NER classes)into categorical index y_pred array of shape(?,)")
         
         self.modelName = modelName
         self.y_true = y_true
@@ -138,6 +139,14 @@ class EvalDev_Report(object):
         self.posTags = None
         self.nerTags = None
         self.capitalTags = None
+        
+        self.devX = None
+        self.devX_pos = None
+        self.devX_capitals = None
+        self.devY = None
+        self.devY_cat = None
+        
+        self.CE_list = None  # array of KL divergence values
         
         
     def connect_to_dataClass(self, dataClass):
@@ -170,6 +179,10 @@ class EvalDev_Report(object):
         self.devX_pos = devData[1]
         self.devX_capitals = devData[2]
         self.devY = devData[3]
+        
+        num_classes = self.raw_y_pred.shape[1] + 3
+        self.devY_cat = to_categorical(self.devY.astype('float32'), num_classes=num_classes)
+        self.devY_cat = np.array(list(map( lambda i: np.array(i[3:], dtype=np.float), self.devY_cat)), dtype=np.float)
 
         
     def convert_raw_y_pred(self, raw_y_pred):
@@ -339,7 +352,7 @@ class EvalDev_Report(object):
     
 
     
-    def print_idxlist_to_textlists(self, idx_list, devData=None, y_pred=None, \
+    def print_idxlist_to_textlists(self, idx_list, worst=True, k=None, devData=None, y_pred=None, \
                                    print_window=True, dataClass=None, return_indices=False):
         """
         with array of indices, print the training window sentences 
@@ -354,6 +367,8 @@ class EvalDev_Report(object):
                         evaluation_helper.EvalDev_Report.match_ner_idx
                         evaluation_helper.EvalDev_Report.mismatch_ner_idx
                         evaluation_helper.EvalDev_Report.mismatch_ner_idx
+            worst :     True -- rank by worst examples. False -- rank by best examples
+            k :         int. to look at only k examples
             dataClass : loadutils.conll2003Data() object
             vocab_type: one of the followings: 
                         "words" for english words 
@@ -366,6 +381,15 @@ class EvalDev_Report(object):
             txt_list : same list as idx_list, except that all indices are replaced by text
         """   
         print ("indices counts =", idx_list.shape[0])
+        boo = "worst" if worst else "best"
+        print ("ranked by {} cross-entropy loss".format(boo))
+        
+        idx_list = [idx for (idx,ce) in self.rank_predictions(idx_selected=idx_list, worst=worst) ]
+        ce_list = [ce for (idx,ce) in self.rank_predictions(idx_selected=idx_list, worst=worst) ]
+        if k is not None:
+            print ("top {} results".format(k))
+            idx_list = idx_list[:k]
+            ce_list = ce_list[:k]            
         
         devData = (self.devX, self.devX_pos, self.devX_capitals, self.devY) if (devData is None) else devData
         y_pred = self.y_pred if (y_pred is None) else y_pred
@@ -381,6 +405,7 @@ class EvalDev_Report(object):
         cen = len(word_windows[0])//2
         for i in range(len(word_windows)):
             print ("\nID {}".format(idx_list[i]))
+            if worst: print ("KL divergence {}".format(ce_list[i]))
             print ("FEATURES:   \"{}\", {}, {}".format(word_windows[i][cen], pos_windows[i][cen], \
                                                  capital_windows[i][cen]))
             print ("Gold NER    {}".format(gold_ner_class[i]))
@@ -389,7 +414,7 @@ class EvalDev_Report(object):
             print ("PoS window  {}".format(pos_windows[i]))
             print ("Caps window {}".format(capital_windows[i]))
 
-        if return_list:
+        if return_indices:
             return idx_list    
 
         
@@ -405,20 +430,71 @@ class EvalDev_Report(object):
         # work here
         print ("\nGold NER label counts:")
         for ner in self.gold_cts.keys():
-            print ("{} : {} {}".format(self.gold_cts[ner], self.nerTags.ids_to_words([ner]), ner))
+            print ("{} : {} (tag{})".format(self.gold_cts[ner], self.nerTags.ids_to_words([ner]), ner))
         print ("\nPredicted NER label counts:")
         for ner in self.pred_cts.keys():
-            print ("{} : {} {}".format(self.pred_cts[ner], self.nerTags.ids_to_words([ner]), ner))            
+            print ("{} : {} (tag{})".format(self.pred_cts[ner], self.nerTags.ids_to_words([ner]), ner))            
 
-# get best and worst examples
+       
+    def print_gold_to_pred_counts(self, return_dict=False):
+        """
+        for each gold label, look at the distribution of predicted labels
+        """
+        for gold_label in self.gold_pred_ct_dict.keys():
+            print ("\nGold label \"{}\" (tag{}), prediction label counts:".format(self.nerTags.ids_to_words([gold_label]),\
+                                                                                  gold_label))
+            sum_ct = sum(self.gold_pred_ct_dict[gold_label].values())
+            for pred_label in self.gold_pred_ct_dict[gold_label].keys():
+                ct = self.gold_pred_ct_dict[gold_label][pred_label]
+                percent = round(float(ct)/sum_ct, 4) if (sum_ct!=0) else 0
+                print ("{} ({}%): \"{}\" (tag{})".format(ct, percent,\
+                                                         self.nerTags.ids_to_words([pred_label]), pred_label))
+                
+        if return_dict:
+            return self.gold_pred_ct_dict
             
-    def calc_cross_entropy_per_row(y_true_row, y_pred_row):
+            
+    def CE(self, p_true, p_model):
+        """
+        compute cross entropy between true and model label distributions. KL(P||Q) = CE(P,Q) - H(P)
+        because true distribution is 1-hot (H(P) = 0). this CE is also equivalent to KL divergence
+        
+        Arguments:
+            p_true : a single vector of length = number of classes. 1-hot from self.devY_cat in our case
+            p_model : same shape as p_true. continuous float values.
+        
+        Returns : float
+        """
+        return np.sum(-np.array(p_true)*np.log2(np.array(p_model)))  
+    
+
+    def extract_all_CE(self):
+        """
+        compute all cross-entropy values on dev set predictions
+        
+        Returns : an array of shape (?,). float values referring to cross-entropy per example
+        """
+        return np.array([self.CE(p_true, p_model) for (p_true, p_model) in list(zip(self.devY_cat, self.raw_y_pred))])
+
+
+    def rank_predictions(self, idx_selected=None, worst=True):        
+        """
+        rank the worst predictions by cross-entropy
+        
+        Arguments:
+            idx_selected : an optional array if only these indices are used in ranking
+            
+        Returns:
+            worst_list : an array of (idx, CE) tuples of the worst predictions
+        """
+        self.CE_list = self.extract_all_CE()
+        worst_list = sorted([(idx,CE) for (idx,CE) in enumerate(self.CE_list)], key=lambda x:x[1], reverse=worst)
+        if idx_selected is not None:
+            worst_list = [(idx, CE) for (idx, CE) in worst_list if idx in idx_selected]
+        
+        return worst_list
+       
+           
+    def print_whole_report(self, to_file=False):
         pass
     
-    def print_report():
-        pass
-    
-    # sample fro idx
-    # look up A0
-    def worst_by_cross_entropy(self):
-        pass
