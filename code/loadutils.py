@@ -7,7 +7,6 @@ from capsulelayers import CapsuleLayer, PrimaryCap1D, Length, Mask
 from keras.models import model_from_json
 
 from common import vocabulary, utils
-from evaluation_helper import convert_raw_y_pred 
 
 # a dict of all processed data filenames
 TRAIN_DATA_FILES = { 'trainX' : 'trainX.npy',
