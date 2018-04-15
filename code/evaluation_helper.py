@@ -50,6 +50,28 @@ def get_recall(y_true, y_pred):
     return recall
 
 
+def compare_models_by_f1(modelName_list, y_true, return_results=False):
+    """
+    rank and compare models by f1 score
+    print the ranked results
+    
+    Arguments:
+        modelName_list: a list/tuple of strings. each string is a modelName used while training in model_training_tmpl.ipynb
+        y_true : devY, loaded from conll2003Data.formatWindowedData(). see that documentation
+    """
+    models = defaultdict(int)
+    for modelName in modelName_list:
+        models[modelName] = get_f1_by_modelName(modelName, y_true)
+    
+    sorted_models = sorted(models.items(), key=lambda x:x[1], reverse=True) 
+    for (i,(mod, f1)) in enumerate(sorted_models):
+        print ("\nrank {}".format(i+1))
+        print ("modelName:",mod)
+        print ("f1=",f1)
+        
+    if return_results:
+        return sorted_models
+    
 def get_f1_by_modelName(modelName, y_true):
     """
     access f1 score of a model directly by modelName
@@ -64,7 +86,7 @@ def get_f1_by_modelName(modelName, y_true):
     _, _, y_pred = loadutils.loadDevPredictionsData(modelName)
     
     return get_f1(y_true, y_pred)
-    
+
 
 def get_f1(y_true, y_pred):
     precision = get_precision(y_true, y_pred)
