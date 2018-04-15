@@ -107,7 +107,7 @@ class EvalDev_Report(object):
     To load predictions, see *loadutils.loadDevPredictionsData()
     """
     
-    def __init__(self, y_true, raw_y_pred=np.empty(0), y_pred=np.empty(0)):
+    def __init__(self, modelName, y_true, raw_y_pred=np.empty(0), y_pred=np.empty(0)):
         """
         Arguments:
             y_true : trainY/devY/testY. an array of shape(?,). Each value correspond to the ner tag for a word
@@ -118,6 +118,7 @@ class EvalDev_Report(object):
         if not raw_y_pred.any() and not y_pred.any():
             raise ValueError("raw_y_pred and y_pred are both empty arrays. at least one of them must be provided \nprovide raw_y_pred as array of shape (?, embed_dim) or y_pred as array of shape (?,)")
         
+        self.modelName = modelName
         self.y_true = y_true
         self.raw_y_pred = raw_y_pred
         self.y_pred = self.convert_raw_y_pred(self.raw_y_pred) if (not y_pred.any()) else y_pred  
@@ -138,6 +139,7 @@ class EvalDev_Report(object):
         self.nerTags = None
         self.capitalTags = None
         
+        
     def connect_to_dataClass(self, dataClass):
         """
         connect to vocabData.vocab objects
@@ -150,7 +152,25 @@ class EvalDev_Report(object):
         self.posTags = dataClass.posTags
         self.nerTags = dataClass.nerTags
         self.capitalTags = dataClass.capitalTags
+ 
+
+    def connect_to_devData(self, devData):
+        """
+        connect to Dev data
         
+        Argument:
+            devData : (devX, devX_pos, devX_capitals, devY) loaded from loadutils.conll2003Data.formatWindowedData()
+                      Notebook Example (model_train_impl.ipynb)
+                      ```
+                      devSents = vocabData.readFile( DEV_FILE)
+                      (devX, devX_pos, devX_capitals, devY) = vocabData.formatWindowedData(devSents, windowLength=?)
+                      ```              
+        """
+        self.devX = devData[0]
+        self.devX_pos = devData[1]
+        self.devX_capitals = devData[2]
+        self.devY = devData[3]
+
         
     def convert_raw_y_pred(self, raw_y_pred):
         """
@@ -317,10 +337,81 @@ class EvalDev_Report(object):
 
         return gold_pred_idx_dict, gold_pred_ct_dict   
     
+
     
-    
-    
-    
+    def print_idxlist_to_textlists(self, idx_list, devData=None, y_pred=None, \
+                                   print_window=True, dataClass=None, return_indices=False):
+        """
+        with array of indices, print the training window sentences 
+        can be applied to 
+
+        Argument: 
+            y_pred :    y_pred : model prediction. shape (?, ). each value refer to a NER class
+            devData :   a list/tuple (devX, devX_pos, devX_capitals, devY) loaded from conll2003Data.formatWindowedData()
+            idx_list :  array of indices each indicating one training example row. For example pass in one of the followings:
+                        evaluation_helper.EvalDev_Report.hallucination_idx
+                        evaluation_helper.EvalDev_Report.missed_ner_idx
+                        evaluation_helper.EvalDev_Report.match_ner_idx
+                        evaluation_helper.EvalDev_Report.mismatch_ner_idx
+                        evaluation_helper.EvalDev_Report.mismatch_ner_idx
+            dataClass : loadutils.conll2003Data() object
+            vocab_type: one of the followings: 
+                        "words" for english words 
+                        "ner" for NER tags
+                        "pos" for PoS tags 
+                        "capitals" for capitalization tags
+
+        Returns:
+            (print out the in text format)
+            txt_list : same list as idx_list, except that all indices are replaced by text
+        """   
+        print ("indices counts =", idx_list.shape[0])
+        
+        devData = (self.devX, self.devX_pos, self.devX_capitals, self.devY) if (devData is None) else devData
+        y_pred = self.y_pred if (y_pred is None) else y_pred
+        dataClass = self.dataClass if (dataClass is None) else dataClass
+        
+        word_windows = list(map(dataClass.vocab.ids_to_words, devData[0][idx_list]))
+        pos_windows =  list(map(dataClass.posTags.ids_to_words, devData[1][idx_list]))
+        capital_windows = list(map(dataClass.capitalTags.ids_to_words, devData[2][idx_list])) 
+        gold_ner_class = [dataClass.nerTags.ids_to_words([tag]) for tag in devData[3][idx_list]]
+        pred_ner_class = [dataClass.nerTags.ids_to_words([tag]) for tag in y_pred[idx_list]]    
+
+
+        cen = len(word_windows[0])//2 + 1
+        for i in range(len(word_windows)):
+            print ("\nID {}".format(idx_list[i]))
+            print ("FEATURES:   \"{}\", {}, {}".format(word_windows[i][cen], pos_windows[i][cen], \
+                                                 capital_windows[i][cen]))
+            print ("Gold NER    {}".format(gold_ner_class[i]))
+            print ("Pred NER    {}".format(pred_ner_class[i]))
+            print ("Text window {}".format(word_windows[i]))
+            print ("PoS window  {}".format(pos_windows[i]))
+            print ("Caps window {}".format(capital_windows[i]))
+
+        if return_list:
+            return idx_list    
+
+        
+    def print_brief_summary(self):
+        """
+        print quick summary of precision, recall, f1, gold label and pred label counts
+        """
+        print ("Model     {}".format(self.modelName))
+        print ("Precision {}".format(self.precision))
+        print ("Recall    {}".format(self.recall))
+        print ("f1 score  {}".format(self.f1))
+        
+        # work here
+        print ("\nGold NER label counts:")
+        for ner in self.gold_cts.keys():
+            print ("{} : {} {}".format(self.gold_cts[ner], self.nerTags.ids_to_words([ner]), ner))
+        print ("\nPredicted NER label counts:")
+        for ner in self.pred_cts.keys():
+            print ("{} : {} {}".format(self.pred_cts[ner], self.nerTags.ids_to_words([ner]), ner))            
+
+# get best and worst examples
+            
     def calc_cross_entropy_per_row(y_true_row, y_pred_row):
         pass
     
