@@ -7,6 +7,7 @@ from capsulelayers import CapsuleLayer, PrimaryCap1D, Length, Mask
 from keras.models import model_from_json
 
 from common import vocabulary, utils
+from evaluation_helper import convert_raw_y_pred 
 
 # a dict of all processed data filenames
 TRAIN_DATA_FILES = { 'trainX' : 'trainX.npy',
@@ -70,6 +71,10 @@ def loadDevPredictionsData(modelName, modelsDir='dev_Predictions'):
     raw_y_pred = np.load(path + DEV_RESULT_FILES['raw_y_pred'])
     raw_y_pred_decoder_embeddings = np.load(path + DEV_RESULT_FILES['raw_y_pred_decoder_embeddings'])
     y_pred = np.load(path + DEV_RESULT_FILES['y_pred'])
+    
+    if y_pred.dtype == '<U15':
+        raw_y_pred_decoder_embeddings = np.empty(0)
+        y_pred = convert_raw_y_pred(raw_y_pred)
     
     return raw_y_pred, raw_y_pred_decoder_embeddings, y_pred
     
