@@ -71,7 +71,7 @@ def main():
     # write out dev predictions
     modelsDir = 'dev_Predictions'
     print ("saving prediction data under directory: {}".format(modelsDir))
-    saveDevPredictionsData(modelName, raw_y_pred, np.empty(0), y_pred, modelsDir)
+    saveDevPredictionsData(modelName=modelName, raw_y_pred=raw_y_pred, raw_y_pred_decoder_embeddings=np.empty(0), y_pred=y_pred, modelsDir=modelsDir)
     print ("please use loadutils.loadDevPredictionsData(modelName, modelsDir='dev_Predictions') to load :\n raw_y_pred, raw_y_pred_decoder_embeddings(empty array for CNN), y_pred")
     
 if __name__ == '__main__':
