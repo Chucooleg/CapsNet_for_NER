@@ -134,6 +134,7 @@ class EvalDev_Report(object):
         self.missed_ner_idx = self.get_missed_ner_idx(self.y_true, self.y_pred)
         self.match_ner_idx, self.mismatch_ner_idx = self.get_matching_ner_idx(self.y_true, self.y_pred)
         self.gold_pred_idx_dict, self.gold_pred_ct_dict = self.get_gold_pred_idx_dict(self.y_true, self.y_pred)
+        self.gold_idx_dict = self.get_gold_idx_dict(self.y_true, self.y_pred)
         
         self.vocab = None  # connect to vocabData.vocab
         self.posTags = None
@@ -351,6 +352,23 @@ class EvalDev_Report(object):
         return gold_pred_idx_dict, gold_pred_ct_dict   
     
 
+    def get_gold_idx_dict(self, y_true, y_pred):
+        """
+        for each gold label, retrieve idx
+        
+        Arguments:
+            y_true : trainY/devY/testY. an array of shape(?,). Each value correspond to the ner tag for a word
+            y_pred : model prediction. same shape and format as y_true              
+        
+        Returns:
+            gold_idx_dict : {gold3_idx:[idx, idx...], gold4_idx:[idx, idx...]}
+        """
+        gold_idx_dict = defaultdict(list)
+        for gold in self.gold_pred_idx_dict:
+            gold_idx_dict[gold] = np.hstack(self.gold_pred_idx_dict[gold].values())
+        
+        return gold_idx_dict
+    
     
     def print_idxlist_to_textlists(self, idx_list, worst=True, k=None, devData=None, y_pred=None, \
                                    print_window=True, dataClass=None, return_indices=False):
@@ -401,18 +419,20 @@ class EvalDev_Report(object):
         gold_ner_class = [dataClass.nerTags.ids_to_words([tag]) for tag in devData[3][idx_list]]
         pred_ner_class = [dataClass.nerTags.ids_to_words([tag]) for tag in y_pred[idx_list]]    
 
-
-        cen = len(word_windows[0])//2
-        for i in range(len(word_windows)):
-            print ("\nID {}".format(idx_list[i]))
-            if worst: print ("KL divergence {}".format(ce_list[i]))
-            print ("FEATURES:   \"{}\", {}, {}".format(word_windows[i][cen], pos_windows[i][cen], \
-                                                 capital_windows[i][cen]))
-            print ("Gold NER    {}".format(gold_ner_class[i]))
-            print ("Pred NER    {}".format(pred_ner_class[i]))
-            print ("Text window {}".format(word_windows[i]))
-            print ("PoS window  {}".format(pos_windows[i]))
-            print ("Caps window {}".format(capital_windows[i]))
+        if word_windows:
+            cen = len(word_windows[0])//2 
+            for i in range(len(word_windows)):
+                print ("\nID {}".format(idx_list[i]))
+                if worst: print ("KL divergence {}".format(ce_list[i]))
+                print ("FEATURES:   \"{}\", {}, {}".format(word_windows[i][cen], pos_windows[i][cen], \
+                                                     capital_windows[i][cen]))
+                print ("Gold NER    {}".format(gold_ner_class[i]))
+                print ("Pred NER    {}".format(pred_ner_class[i]))
+                print ("Text window {}".format(word_windows[i]))
+                print ("PoS window  {}".format(pos_windows[i]))
+                print ("Caps window {}".format(capital_windows[i]))
+        else:
+            print ("empty -- no predictions were made")
 
         if return_indices:
             return idx_list    
@@ -447,8 +467,7 @@ class EvalDev_Report(object):
             for pred_label in self.gold_pred_ct_dict[gold_label].keys():
                 ct = self.gold_pred_ct_dict[gold_label][pred_label]
                 percent = round(float(ct)/sum_ct, 4) if (sum_ct!=0) else 0
-                print ("{} ({}%): \"{}\" (tag{})".format(ct, percent,\
-                                                         self.nerTags.ids_to_words([pred_label]), pred_label))
+                print ("{} ({}%): \"{}\" (tag{})".format(ct, percent, self.nerTags.ids_to_words([pred_label]), pred_label))
                 
         if return_dict:
             return self.gold_pred_ct_dict
@@ -479,9 +498,10 @@ class EvalDev_Report(object):
 
     def rank_predictions(self, idx_selected=None, worst=True):        
         """
-        rank the worst predictions by cross-entropy
+        rank the predictions by cross-entropy
         
         Arguments:
+            worst : True -- rank by worst cross-entropy. False -- rank by best cross-entropy.
             idx_selected : an optional array if only these indices are used in ranking
             
         Returns:
@@ -493,7 +513,29 @@ class EvalDev_Report(object):
             worst_list = [(idx, CE) for (idx, CE) in worst_list if idx in idx_selected]
         
         return worst_list
-       
+
+    
+    def print_overall_rank(self, worst=True, k=None, print_window=True):
+        """
+        print ranked overall predictions
+        
+        Arguments :
+            worst : True -- rank by worst cross-entropy. False -- rank by best cross-entropy.
+            k : top k results
+        """
+        self.print_idxlist_to_textlists(idx_list=np.arange(self.devY.shape[0]), \
+                                        worst=worst, k=k, print_window=print_window,\
+                                       return_indices=False)
+        pass
+    
+    def print_rank_per_gold_label(self, worst=True, k=None, print_window=True):
+        
+        for gold_label in self.gold_idx_dict.keys():
+            print ("----------------------------\nLabel {} (tag{})".format(self.nerTags.ids_to_words([gold_label])[0], gold_label))
+            self.print_idxlist_to_textlists(idx_list=self.gold_idx_dict[gold_label], \
+                                        worst=worst, k=k, print_window=print_window,\
+                                       return_indices=False)
+                   
            
     def print_whole_report(self, to_file=False):
         pass
