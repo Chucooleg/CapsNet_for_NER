@@ -139,7 +139,7 @@ class EvalDev_Report(object):
         self.gold_pred_idx_dict, self.gold_pred_ct_dict = self.get_gold_pred_idx_dict(self.y_true, self.y_pred)
         self.gold_idx_dict = self.get_gold_idx_dict(self.y_true, self.y_pred)
         
-        self.vocab = None  # connect to vocabData.vocab
+        self.vocab = None
         self.posTags = None
         self.nerTags = None
         self.capitalTags = None
@@ -149,9 +149,11 @@ class EvalDev_Report(object):
         self.devX_capitals = None
         self.devY = None
         self.devY_cat = None
+        self.window_length = None
         
         self.CE_list = None  # array of KL divergence values
-        
+        self.decoder_loss = None
+        self.embedding_matrix = None
         
     def connect_to_dataClass(self, dataClass):
         """
@@ -183,11 +185,21 @@ class EvalDev_Report(object):
         self.devX_pos = devData[1]
         self.devX_capitals = devData[2]
         self.devY = devData[3]
+        self.window_length = self.devX.shape[1]
         
         num_classes = self.raw_y_pred.shape[1] + 3
         self.devY_cat = to_categorical(self.devY.astype('float32'), num_classes=num_classes)
         self.devY_cat = np.array(list(map( lambda i: np.array(i[3:], dtype=np.float), self.devY_cat)), dtype=np.float)
 
+        
+    def connect_to_embeddding_matrix(self, embedding_matrix=None):
+        """
+        connect to embedding matrix object, must be the same object loaded for model training 
+        """
+        if (embedding_matrix is None) or (embedding_matrix.ndim!=2):
+            raise ValueError("embedding matrix must be loaded")
+        self.embedding_matrix = embedding_matrix
+        
         
     def convert_raw_y_pred(self, raw_y_pred):
         """
@@ -414,11 +426,123 @@ class EvalDev_Report(object):
         
         return worst_list
 
+    
+    def __cosine_proximity_loss(self, y_true_decoder, y_pred_decoder):
+        """
+        compute cosine similarity loss for each example row
+        
+        Arguments:
+            y_true_decoder : shape(?, embed_dim), center window word looked up from GloVe embedding matrix
+            y_pred_decoder : shape(?, embed_dim), decoder reconstruction of center window word
+            
+        Returns:
+            cos_loss_list : cosine proximity loss per example row
+        """
+        dot_products = np.array([np.dot(y_true_decoder[i],y_pred_decoder[i]) for i in range(y_true_decoder.shape[0])])
+        l2norm_products = np.prod([np.linalg.norm(y_true_decoder, axis=1),np.linalg.norm(y_pred_decoder, axis=1)], axis=0)
+        cos_loss_list = -np.divide(dot_products, l2norm_products)
+        return cos_loss_list 
 
-    def decoder_loss():
-        pass
+
+    def get_decoder_loss(self):
+        """
+        if CapsNet model was trained with decoder, this function evaluates the decoder loss on dev set
+        
+        Arguments:
+            loss_func : private loss function. must be cosine proximity to make evaluation sense, especially for vector space plots
+        
+        Returns:
+             : 
+        """
+        if (not self.y_true_decoder.any()) or (not self.y_pred_decoder.any()):
+            raise ValueException("Must provide non empty decoder embeddings. Check if the CapsNet model was really trained with decoder reconstruction. Both y_true_decoder and y_pred_decoder must be provided as matrices of shape (?, embed_dim). This option is not available for CNN models in the w266 CapsNet for NER project.")
+        loss_list = self.__cosine_proximity_loss(self.y_true_decoder, self.y_pred_decoder)
+        ranked_loss_list = sorted([(idx, loss) for (idx,loss) in enumerate(loss_list)], key=lambda x:x[1], reverse=True)
+        return ranked_loss_list
+
+
+    def find_nn_cos(self, v, Wv, nnk=10):
+        """Find nearest neighbors of a given word, by cosine similarity.
+
+        Returns two parallel lists: indices of nearest neighbors, and 
+        their cosine similarities. Both lists are in descending order, 
+        and inclusive: so nns[0] should be the index of the input word, 
+        nns[1] should be the index of the first nearest neighbor, and so on.
+
+        You may find the following numpy functions useful:
+          np.linalg.norm : take the l2-norm of a vector or matrix
+          np.dot : dot product or matrix multiplication
+          np.argsort : get indices sorted by element value,
+            so np.argsort(numbers)[-5:] will return the top five elements
+
+        Args:
+          v: (d-dimensional vector) word vector of interest
+          Wv: (V x d matrix) word embeddings
+          k: (int) number of neighbors to return
+
+        Returns (nns, ds), where:
+          nns: (k-dimensional vector of int), row indices of nearest neighbors, 
+            which may include the given word.
+          similarities: (k-dimensional vector of float), cosine similarity of each 
+            neighbor in nns.
+        """
+        Wv = Wv[:self.dataClass.vocab.size,:]
+        dot_products = np.dot(Wv, v)
+        l2norm_products = np.multiply(np.linalg.norm(Wv, axis=1),np.linalg.norm(v))
+        cos_sim = np.divide(dot_products,l2norm_products)
+        
+        nns_idx = np.argsort(cos_sim)[-nnk:][::-1]
+        
+        similarities = np.take(cos_sim, nns_idx)
+        nns_words = self.dataClass.vocab.ids_to_words(nns_idx)
+
+        return nns_idx, nns_words, similarities
     
-    
+        
+    def print_eval_decoder_loss(self, k=None, nnk=10, print_embeddings=True, print_window=True):
+        """
+        print worst and best j 
+        """
+        self.decoder_loss = self.get_decoder_loss()
+        reconstruction_idx = [idx for (idx,loss) in self.decoder_loss]
+        reconstruction_loss = [loss for (idx,loss) in self.decoder_loss]
+        k = len(reconstruction_idx) if (k==None) else k
+        worst_idx = reconstruction_idx[:k]
+        worst_loss = reconstruction_loss[:k]
+        best_idx = reconstruction_idx[::-1][:k]
+        best_loss = reconstruction_loss[::-1][:k]
+        del(reconstruction_idx, reconstruction_loss)
+        
+        print ("\n-------------------------WORST RECONSTRUCTIONS-------------------------\n")
+        print ("displaying top {} results".format(k))
+        for i in range(k):
+            print ("\n\n\n\nID {}".format(worst_idx[i]))
+            print ("reconstruction cosine proximity loss = {}".format(worst_loss[i]))            
+            print ("reconstruction GOLD word \"{}\"".format(self.dataClass.vocab.ids_to_words([self.devX[worst_idx[i]][self.window_length//2]])))
+            _, closest_words, _ = self.find_nn_cos(v=self.y_pred_decoder[worst_idx[i]], Wv=self.embedding_matrix, nnk=nnk)
+            print ("reconstruction PRED word \"{}\"".format(closest_words))
+            if print_embeddings:
+                print ("\nreconstructed embedding: {}".format(self.y_pred_decoder[worst_idx[i]]))
+                print ("\ngold          embedding: {}".format(self.y_true_decoder[worst_idx[i]]))            
+            if print_window: 
+                print ("\nword_window: {}".format(self.dataClass.vocab.ids_to_words(self.devX[worst_idx[i]])))         
+
+        print ("\n-------------------------BEST RECONSTRUCTIONS--------------------------\n")
+        print ("displaying top {} results".format(k))
+        for i in range(k):
+            print ("ID {}".format(best_idx[i]))
+            print ("\n\n\n\nreconstruction cosine proximity loss = {}".format(best_loss[i]))            
+            print ("reconstruction GOLD word \"{}\"".format(self.dataClass.vocab.ids_to_words([self.devX[best_idx[i]][self.window_length//2]])))
+            _, closest_words, _ = self.find_nn_cos(v=self.y_pred_decoder[best_idx[i]], Wv=self.embedding_matrix, nnk=nnk)
+            print ("reconstruction PRED word \"{}\"".format(closest_words))
+            if print_embeddings:
+                print ("\nreconstructed embedding: {}".format(self.y_pred_decoder[best_idx[i]]))
+                print ("gold          embedding: {}".format(self.y_true_decoder[best_idx[i]]))
+            if print_window: 
+                print ("\nword_window: {}".format(self.dataClass.vocab.ids_to_words(self.devX[best_idx[i]])))                 
+                
+                
+                
     def print_brief_summary(self):
         """
         print quick summary of precision, recall, f1, gold label and pred label counts
@@ -543,9 +667,10 @@ class EvalDev_Report(object):
                                                      capital_windows[i][cen]))
                 print ("Gold NER    {}".format(gold_ner_class[i]))
                 print ("Pred NER    {}".format(pred_ner_class[i]))
-                print ("Text window {}".format(word_windows[i]))
-                print ("PoS window  {}".format(pos_windows[i]))
-                print ("Caps window {}".format(capital_windows[i]))
+                if print_window:
+                    print ("Text window {}".format(word_windows[i]))
+                    print ("PoS window  {}".format(pos_windows[i]))
+                    print ("Caps window {}".format(capital_windows[i]))
         else:
             print ("empty -- no predictions were made")
 
