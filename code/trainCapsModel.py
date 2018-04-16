@@ -71,8 +71,13 @@ def main():
     
     # save the last model in each epoch and its weights
     with open('./result/'+ modelName + '_model_architecture.json', 'w') as f:
-            f.write(model.to_json())
+        f.write(model.to_json())
     model.save_weights('./result/' + modelName + '_weights_model.h5')
+    
+    if hypers['use_decoder']:
+        with open('./result/'+ modelName + '_model_eval_architecture.json', 'w') as f:
+            f.write(model_eval.to_json())
+        model.save_weights('./result/' + modelName + '_weights_model_eval.h5')
     
     # making dev predictions from here downwards
     if hypers['use_decoder']:
