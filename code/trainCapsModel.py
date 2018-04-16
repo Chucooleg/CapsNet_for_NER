@@ -77,7 +77,7 @@ def main():
     if hypers['use_decoder']:
         with open('./result/'+ modelName + '_model_eval_architecture.json', 'w') as f:
             f.write(model_eval.to_json())
-        model.save_weights('./result/' + modelName + '_weights_model_eval.h5')
+        model_eval.save_weights('./result/' + modelName + '_weights_model_eval.h5')
     
     # making dev predictions from here downwards
     if hypers['use_decoder']:
