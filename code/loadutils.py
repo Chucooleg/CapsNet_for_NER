@@ -1,11 +1,11 @@
 import numpy as np
 import time
-
+from importlib import reload
+import glove_helper
 # capsule layers from Xifeng Guo 
 # https://github.com/XifengGuo/CapsNet-Keras
 from capsulelayers import CapsuleLayer, PrimaryCap1D, Length, Mask
 from keras.models import model_from_json
-
 from common import vocabulary, utils
 
 # a dict of all processed data filenames
@@ -144,6 +144,29 @@ def retrieve_model(modelName, hypers, weights=True):
         weights = hypers['save_dir'] + '/' + modelName + '_weights_model.h5'    
         model_saved.load_weights(weights)
     return model_saved
+
+
+def construct_embedding_matrix(embed_dim, vocab_size, vocabData):
+    """
+    construct embedding matrix from GloVe 6Bn word data
+    
+    reuse glove_helper code from w266 
+    
+    Returns: an embedding matrix directly plugged into keras.layers.Embedding(weights=[embedding_matrix])
+    """
+    reload(glove_helper)
+    hands = glove_helper.Hands(ndim=embed_dim)
+    embedding_matrix = np.zeros((vocab_size, embed_dim))
+    
+    for i in range(vocabData.vocab.size):
+        word = vocabData.vocab.ids_to_words([i])[0]
+        try:
+            embedding_vector = hands.get_vector(word)
+        except:
+            embedding_vector = hands.get_vector("<unk>")
+        embedding_matrix[i] = embedding_vector
+
+    return embedding_matrix
 
 
 class conll2003Data(object):
