@@ -17,7 +17,7 @@ from keras.layers import Add
 
 # capsule layers from Xifeng Guo 
 # https://github.com/XifengGuo/CapsNet-Keras
-from capsulelayers import CapsuleLayer, PrimaryCap1D, Length, Mask
+from capsulelayers import CapsuleLayer, PrimaryCap, PrimaryCap1D, Length, Mask
 
 
 
@@ -126,7 +126,7 @@ def draw_capsnet_model(hyper_param, embedding_matrix=None, verbose=True):
         train_decoder_dense2 = Dense(hyper_param['decoder_feed_forward_2'], activation='relu',\
                                      name='train_decoder_dense2')(train_decoder_dense1_dropout)
         train_decoder_dense2_dropout = Dropout(hyper_param['decoder_dropout'])(train_decoder_dense2)
-        train_decoder_output = Dense(hyper_param['embed_dim'], activation='softmax',\
+        train_decoder_output = Dense(hyper_param['embed_dim'], activation=None,\
                                      name='train_decoder_output')(train_decoder_dense2_dropout)
 
 
@@ -136,7 +136,7 @@ def draw_capsnet_model(hyper_param, embedding_matrix=None, verbose=True):
                                name='eval_decoder_dense1')(masked)
         eval_decoder_dense2 = Dense(hyper_param['decoder_feed_forward_2'], activation='relu',\
                                      name='eval_decoder_dense2')(eval_decoder_dense1)
-        eval_decoder_output = Dense(hyper_param['embed_dim'], activation='softmax',\
+        eval_decoder_output = Dense(hyper_param['embed_dim'], activation=None,\
                                      name='eval_decoder_output')(eval_decoder_dense2)
         
         
