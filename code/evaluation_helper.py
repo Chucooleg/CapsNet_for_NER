@@ -84,9 +84,11 @@ def get_f1_by_modelName(modelName, y_true):
     Returns:
         float f1 score
     """
+    print ("Model Name : {}".format(modelName))
     _, _, y_pred = loadutils.loadDevPredictionsData(modelName)
-    
-    return get_f1(y_true, y_pred)
+    f1 = get_f1(y_true, y_pred)
+    print ("F1 Score   : {}".format(f1))
+    return f1
 
 
 def get_f1(y_true, y_pred):
