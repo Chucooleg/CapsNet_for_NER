@@ -62,7 +62,7 @@ def compare_models_by_f1(modelName_list, y_true, return_results=False):
     """
     models = defaultdict(int)
     for modelName in modelName_list:
-        models[modelName] = get_f1_by_modelName(modelName, y_true)
+        models[modelName] = get_f1_by_modelName(modelName, y_true, print_out=False)
     
     sorted_models = sorted(models.items(), key=lambda x:x[1], reverse=True) 
     for (i,(mod, f1)) in enumerate(sorted_models):
@@ -73,7 +73,7 @@ def compare_models_by_f1(modelName_list, y_true, return_results=False):
     if return_results:
         return sorted_models
     
-def get_f1_by_modelName(modelName, y_true):
+def get_f1_by_modelName(modelName, y_true, print_out=True):
     """
     access f1 score of a model directly by modelName
     
@@ -84,10 +84,11 @@ def get_f1_by_modelName(modelName, y_true):
     Returns:
         float f1 score
     """
-    print ("Model Name : {}".format(modelName))
     _, _, y_pred = loadutils.loadDevPredictionsData(modelName)
     f1 = get_f1(y_true, y_pred)
-    print ("F1 Score   : {}".format(f1))
+    if print_out:
+        print ("Model Name : {}".format(modelName))    
+        print ("F1 Score   : {}".format(f1))
     return f1
 
 
