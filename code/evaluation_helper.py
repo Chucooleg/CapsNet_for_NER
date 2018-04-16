@@ -108,7 +108,8 @@ class EvalDev_Report(object):
     To load predictions, see *loadutils.loadDevPredictionsData()
     """
     
-    def __init__(self, modelName, y_true, raw_y_pred, y_pred=np.empty(0)):
+    def __init__(self, modelName, y_true, raw_y_pred, y_pred=np.empty(0), \
+                y_true_decoder=np.empty(0), y_pred_decoder=np.empty(0)):
         """
         Arguments:
             y_true : trainY/devY/testY. an array of shape(?,). Each value correspond to the ner tag for a word
@@ -122,7 +123,9 @@ class EvalDev_Report(object):
         self.modelName = modelName
         self.y_true = y_true
         self.raw_y_pred = raw_y_pred
-        self.y_pred = self.convert_raw_y_pred(self.raw_y_pred) if (not y_pred.any()) else y_pred  
+        self.y_pred = self.convert_raw_y_pred(self.raw_y_pred) if (not y_pred.any()) else y_pred
+        self.y_true_decoder=y_true_decoder
+        self.y_pred_decoder=y_pred_decoder
         
         self.gold_cts, self.pred_cts = self.count_ner_labels(self.y_true, self.y_pred)
         
@@ -367,8 +370,120 @@ class EvalDev_Report(object):
         for gold in self.gold_pred_idx_dict:
             gold_idx_dict[gold] = np.hstack(self.gold_pred_idx_dict[gold].values())
         
-        return gold_idx_dict
+        return gold_idx_dict    
+                     
+            
+    def CE(self, p_true, p_model):
+        """
+        compute cross entropy between true and model label distributions. KL(P||Q) = CE(P,Q) - H(P)
+        because true distribution is 1-hot (H(P) = 0). this CE is also equivalent to KL divergence
+        
+        Arguments:
+            p_true : a single vector of length = number of classes. 1-hot from self.devY_cat in our case
+            p_model : same shape as p_true. continuous float values.
+        
+        Returns : float
+        """
+        return np.sum(-np.array(p_true)*np.log2(np.array(p_model)))  
     
+
+    def extract_all_CE(self):
+        """
+        compute all cross-entropy values on dev set predictions
+        
+        Returns : an array of shape (?,). float values referring to cross-entropy per example
+        """
+        return np.array([self.CE(p_true, p_model) for (p_true, p_model) in list(zip(self.devY_cat, self.raw_y_pred))])
+
+
+    def rank_predictions(self, idx_selected=None, worst=True):        
+        """
+        rank the predictions by cross-entropy
+        
+        Arguments:
+            worst : True -- rank by worst cross-entropy. False -- rank by best cross-entropy.
+            idx_selected : an optional array if only these indices are used in ranking
+            
+        Returns:
+            worst_list : an array of (idx, CE) tuples of the worst predictions
+        """
+        self.CE_list = self.extract_all_CE()
+        worst_list = sorted([(idx,CE) for (idx,CE) in enumerate(self.CE_list)], key=lambda x:x[1], reverse=worst)
+        if idx_selected is not None:
+            worst_list = [(idx, CE) for (idx, CE) in worst_list if idx in idx_selected]
+        
+        return worst_list
+
+
+    def decoder_loss():
+        pass
+    
+    
+    def print_brief_summary(self):
+        """
+        print quick summary of precision, recall, f1, gold label and pred label counts
+        """
+        print ("Model     {}".format(self.modelName))
+        print ("Precision {}".format(self.precision))
+        print ("Recall    {}".format(self.recall))
+        print ("f1 score  {}".format(self.f1))
+        
+        # work here
+        print ("\nGold NER label counts:")
+        for ner in self.gold_cts.keys():
+            print ("{} : {} (tag{})".format(self.gold_cts[ner], self.nerTags.ids_to_words([ner]), ner))
+        print ("\nPredicted NER label counts:")
+        for ner in self.pred_cts.keys():
+            print ("{} : {} (tag{})".format(self.pred_cts[ner], self.nerTags.ids_to_words([ner]), ner))        
+    
+    
+    def print_gold_to_pred_counts(self, return_dict=False):
+        """
+        for each gold label, look at the distribution of predicted labels
+        """
+        for gold_label in self.gold_pred_ct_dict.keys():
+            print ("\nGold label \"{}\" (tag{}), prediction label counts:".format(self.nerTags.ids_to_words([gold_label]),\
+                                                                                  gold_label))
+            sum_ct = sum(self.gold_pred_ct_dict[gold_label].values())
+            for pred_label in self.gold_pred_ct_dict[gold_label].keys():
+                ct = self.gold_pred_ct_dict[gold_label][pred_label]
+                percent = round(float(ct)/sum_ct, 4) if (sum_ct!=0) else 0
+                print ("{} ({}%): \"{}\" (tag{})".format(ct, percent, self.nerTags.ids_to_words([pred_label]), pred_label))
+                
+        if return_dict:
+            return self.gold_pred_ct_dict    
+    
+    
+    def print_overall_rank(self, worst=True, k=None, print_window=True):
+        """
+        print ranked overall predictions
+        
+        Arguments :
+            worst : True -- rank by worst cross-entropy. False -- rank by best cross-entropy.
+            k : top k results
+        """
+        self.print_idxlist_to_textlists(idx_list=np.arange(self.devY.shape[0]), \
+                                        worst=worst, k=k, print_window=print_window,\
+                                       return_indices=False)
+        pass
+    
+    
+    def print_rank_per_gold_label(self, worst=True, k=None, print_window=True):
+        """
+        print ranked predictions per gold label
+        
+        Arguments :
+            worst : True -- rank by worst cross-entropy. False -- rank by best cross-entropy.
+            k : top k results
+        
+        """
+        for gold_label in self.gold_idx_dict.keys():
+            print ("----------------------------\nLabel {} (tag{})".format(self.nerTags.ids_to_words([gold_label])[0], gold_label))
+            self.print_idxlist_to_textlists(idx_list=self.gold_idx_dict[gold_label], \
+                                        worst=worst, k=k, print_window=print_window,\
+                                       return_indices=False)
+        pass
+
     
     def print_idxlist_to_textlists(self, idx_list, worst=True, k=None, devData=None, y_pred=None, \
                                    print_window=True, dataClass=None, return_indices=False):
@@ -423,7 +538,7 @@ class EvalDev_Report(object):
             cen = len(word_windows[0])//2 
             for i in range(len(word_windows)):
                 print ("\nID {}".format(idx_list[i]))
-                if worst: print ("KL divergence {}".format(ce_list[i]))
+                print ("KL divergence {}".format(ce_list[i]))
                 print ("FEATURES:   \"{}\", {}, {}".format(word_windows[i][cen], pos_windows[i][cen], \
                                                      capital_windows[i][cen]))
                 print ("Gold NER    {}".format(gold_ner_class[i]))
@@ -435,108 +550,45 @@ class EvalDev_Report(object):
             print ("empty -- no predictions were made")
 
         if return_indices:
-            return idx_list    
-
+            return idx_list
         
-    def print_brief_summary(self):
-        """
-        print quick summary of precision, recall, f1, gold label and pred label counts
-        """
-        print ("Model     {}".format(self.modelName))
-        print ("Precision {}".format(self.precision))
-        print ("Recall    {}".format(self.recall))
-        print ("f1 score  {}".format(self.f1))
+    # put decoder stuff here            
         
-        # work here
-        print ("\nGold NER label counts:")
-        for ner in self.gold_cts.keys():
-            print ("{} : {} (tag{})".format(self.gold_cts[ner], self.nerTags.ids_to_words([ner]), ner))
-        print ("\nPredicted NER label counts:")
-        for ner in self.pred_cts.keys():
-            print ("{} : {} (tag{})".format(self.pred_cts[ner], self.nerTags.ids_to_words([ner]), ner))            
-
-       
-    def print_gold_to_pred_counts(self, return_dict=False):
+    def print_whole_report(self, k=5, print_window=True,\
+                           gold_to_pred_counts=True, brief_summary=True, \
+                           worst_overall=True, worst_ner_mismatch=True, \
+                           worst_by_label=True, \
+                           worst_hallucinations=True, worst_missed_ner=True, \
+                           best_ner_match=True):
         """
-        for each gold label, look at the distribution of predicted labels
-        """
-        for gold_label in self.gold_pred_ct_dict.keys():
-            print ("\nGold label \"{}\" (tag{}), prediction label counts:".format(self.nerTags.ids_to_words([gold_label]),\
-                                                                                  gold_label))
-            sum_ct = sum(self.gold_pred_ct_dict[gold_label].values())
-            for pred_label in self.gold_pred_ct_dict[gold_label].keys():
-                ct = self.gold_pred_ct_dict[gold_label][pred_label]
-                percent = round(float(ct)/sum_ct, 4) if (sum_ct!=0) else 0
-                print ("{} ({}%): \"{}\" (tag{})".format(ct, percent, self.nerTags.ids_to_words([pred_label]), pred_label))
-                
-        if return_dict:
-            return self.gold_pred_ct_dict
-            
-            
-    def CE(self, p_true, p_model):
-        """
-        compute cross entropy between true and model label distributions. KL(P||Q) = CE(P,Q) - H(P)
-        because true distribution is 1-hot (H(P) = 0). this CE is also equivalent to KL divergence
+        print full report
         
         Arguments:
-            p_true : a single vector of length = number of classes. 1-hot from self.devY_cat in our case
-            p_model : same shape as p_true. continuous float values.
-        
-        Returns : float
+            write_to_file : True/False
+            file_dir : string. a local directory this report text file should be written and stored
         """
-        return np.sum(-np.array(p_true)*np.log2(np.array(p_model)))  
-    
-
-    def extract_all_CE(self):
-        """
-        compute all cross-entropy values on dev set predictions
-        
-        Returns : an array of shape (?,). float values referring to cross-entropy per example
-        """
-        return np.array([self.CE(p_true, p_model) for (p_true, p_model) in list(zip(self.devY_cat, self.raw_y_pred))])
-
-
-    def rank_predictions(self, idx_selected=None, worst=True):        
-        """
-        rank the predictions by cross-entropy
-        
-        Arguments:
-            worst : True -- rank by worst cross-entropy. False -- rank by best cross-entropy.
-            idx_selected : an optional array if only these indices are used in ranking
+        print ("\n-------------------------BRIEF SUMMARY-------------------------\n")
+        if brief_summary: self.print_brief_summary()
+        print ("\n----------------GOLD to PREDICTION LABELS COUNTS---------------\n")
+        if gold_to_pred_counts: self.print_gold_to_pred_counts(return_dict=False)
+        print ("\n-------------------------WORST OVERALL-------------------------\n")
+        if worst_overall: self.print_overall_rank(worst=True, k=k, print_window=print_window)
+        print ("\n-------------------WORST NER LABEL MISMATCH--------------------\n")
+        if worst_ner_mismatch: self.print_idxlist_to_textlists(idx_list=self.mismatch_ner_idx, k=k, print_window=print_window)
+        print ("\n----------------WORST NER PREDICTION BY LABEL------------------\n")
+        if worst_by_label: self.print_rank_per_gold_label(worst=True, k=k, print_window=print_window)
+        print ("\n-------------------------HALLUCINATIONS------------------------")
+        print ("model predicts a NER label, but gold label shows None\n")
+        if worst_hallucinations: self.print_idxlist_to_textlists(idx_list=self.hallucination_idx, k=k, print_window=print_window)
+        print ("\n----------------------MISSED NER LABELS------------------------")
+        print ("model predicts no NER label, but gold label shows a NER class\n")
+        if worst_missed_ner: self.print_idxlist_to_textlists(idx_list=self.missed_ner_idx, k=k, print_window=print_window)            
+        print ("\n-------------------BEST NER LABEL MATCH--------------------\n") 
+        if best_ner_match: self.print_idxlist_to_textlists(idx_list=self.match_ner_idx, k=k, worst=False, print_window=print_window)
             
-        Returns:
-            worst_list : an array of (idx, CE) tuples of the worst predictions
-        """
-        self.CE_list = self.extract_all_CE()
-        worst_list = sorted([(idx,CE) for (idx,CE) in enumerate(self.CE_list)], key=lambda x:x[1], reverse=worst)
-        if idx_selected is not None:
-            worst_list = [(idx, CE) for (idx, CE) in worst_list if idx in idx_selected]
-        
-        return worst_list
 
-    
-    def print_overall_rank(self, worst=True, k=None, print_window=True):
-        """
-        print ranked overall predictions
+            
+            
+            
         
-        Arguments :
-            worst : True -- rank by worst cross-entropy. False -- rank by best cross-entropy.
-            k : top k results
-        """
-        self.print_idxlist_to_textlists(idx_list=np.arange(self.devY.shape[0]), \
-                                        worst=worst, k=k, print_window=print_window,\
-                                       return_indices=False)
-        pass
-    
-    def print_rank_per_gold_label(self, worst=True, k=None, print_window=True):
-        
-        for gold_label in self.gold_idx_dict.keys():
-            print ("----------------------------\nLabel {} (tag{})".format(self.nerTags.ids_to_words([gold_label])[0], gold_label))
-            self.print_idxlist_to_textlists(idx_list=self.gold_idx_dict[gold_label], \
-                                        worst=worst, k=k, print_window=print_window,\
-                                       return_indices=False)
-                   
-           
-    def print_whole_report(self, to_file=False):
-        pass
     
