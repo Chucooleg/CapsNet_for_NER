@@ -4,6 +4,7 @@ import json
 import buildCNNModel as cnn
 from loadutils import retrieve_model, loadProcessedData, saveDevPredictionsData
 from evaluation_helper import convert_raw_y_pred, get_f1, get_precision, get_recall
+import numpy as np
 
 def printUsage():
     print("USAGE:\n\ntrain a CNN model")
