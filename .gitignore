@@ -8,6 +8,7 @@ code/result/*
 *.json
 *.h5
 *.csv
-
+*.npy
+!code/eval_labels/*
 Untitled*
 code/dev_Predictions/*
