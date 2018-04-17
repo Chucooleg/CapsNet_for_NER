@@ -5,7 +5,6 @@ code/data/*
 code/__pycache__/*
 code/result/*
 *.pyc
-*.npy
 *.json
 *.h5
 *.csv
