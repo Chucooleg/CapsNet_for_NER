@@ -56,6 +56,11 @@ def main():
     print( "Training Model:", modelName)
     cnn.fit_model( hypers, model, modelName, trainX_dict, devX_list_arrayS, trainY_dict, devY_list_arrayS)
 
+    # save the last model in each epoch and its weights
+    with open('./result/'+ modelName + '_model_architecture.json', 'w') as f:
+        f.write(model.to_json())
+    model.save_weights('./result/' + modelName + '_weights_model.h5')    
+    
     raw_y_pred = model.predict(devX_dict, verbose=1)    
     
     y_true = convert_raw_y_pred(devY_cat)
