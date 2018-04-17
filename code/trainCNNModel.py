@@ -53,7 +53,7 @@ def main():
     model = cnn.compile_cnn_model( hypers, model)
     
     print( "Training Model:", modelName)
-    caps.fit_model( hypers, model, modelName, trainX_dict, devX_list_arrayS, trainY_dict, devY_list_arrayS)
+    cnn.fit_model( hypers, model, modelName, trainX_dict, devX_list_arrayS, trainY_dict, devY_list_arrayS)
 
     raw_y_pred = model.predict(devX_dict, verbose=1)    
     
