@@ -146,6 +146,24 @@ def retrieve_model(modelName, hypers, weights=True):
     return model_saved
 
 
+def retrieve_decoder_model(modelName, hypers, weights=True):
+    from keras.models import model_from_json
+    import keras.backend as K
+    from keras.utils import CustomObjectScope
+    from capsulelayers import CapsuleLayer, PrimaryCap1D, Length, Mask
+    print( 'Retrieving model_eval: {0}'.format(modelName))
+    architecture = hypers['save_dir'] + '/' + modelName + '_model_eval_architecture.json'
+    with open(architecture, 'r') as f:
+        if len(f.readlines()) !=0:
+            f.seek(0)
+            model_eval_saved = model_from_json(f.read(), custom_objects={'CapsuleLayer': CapsuleLayer, 'Length': Length,
+                                                                            'Mask': Mask})
+    if weights:
+        weights = hypers['save_dir'] + '/' + modelName + '_weights_model_eval.h5'    
+        model_eval_saved.load_weights(weights)
+    return model_eval_saved
+
+
 def construct_embedding_matrix(embed_dim, vocab_size, vocabData):
     """
     construct embedding matrix from GloVe 6Bn word data
