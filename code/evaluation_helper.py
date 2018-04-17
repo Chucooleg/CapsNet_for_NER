@@ -458,7 +458,7 @@ class EvalDev_Report(object):
              : 
         """
         if (not self.y_true_decoder.any()) or (not self.y_pred_decoder.any()):
-            raise ValueException("Must provide non empty decoder embeddings. Check if the CapsNet model was really trained with decoder reconstruction. Both y_true_decoder and y_pred_decoder must be provided as matrices of shape (?, embed_dim). This option is not available for CNN models in the w266 CapsNet for NER project.")
+            raise ValueError("Must provide non empty decoder embeddings. Check if the CapsNet model was really trained with decoder reconstruction. Both y_true_decoder and y_pred_decoder must be provided as matrices of shape (?, embed_dim). This option is not available for CNN models in the w266 CapsNet for NER project.")
         loss_list = self.__cosine_proximity_loss(self.y_true_decoder, self.y_pred_decoder)
         ranked_loss_list = sorted([(idx, loss) for (idx,loss) in enumerate(loss_list)], key=lambda x:x[1], reverse=True)
         return ranked_loss_list

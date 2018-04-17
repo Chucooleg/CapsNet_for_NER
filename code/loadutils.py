@@ -68,7 +68,10 @@ def loadDevPredictionsData(modelName, modelsDir='dev_Predictions'):
     """
     path = str(modelsDir) + "/" + modelName + "_"
     raw_y_pred = np.load(path + DEV_RESULT_FILES['raw_y_pred'])
-    raw_y_pred_decoder_embeddings = np.load(path + DEV_RESULT_FILES['raw_y_pred_decoder_embeddings'])
+    try:
+        raw_y_pred_decoder_embeddings = np.load(path + DEV_RESULT_FILES['raw_y_pred_decoder_embeddings'])
+    except:
+        raw_y_pred_decoder_embeddings = np.empty(0)        
     y_pred = np.load(path + DEV_RESULT_FILES['y_pred'])
     
     if y_pred.dtype == '<U15':
