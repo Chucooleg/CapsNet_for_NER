@@ -1,6 +1,6 @@
 -------------------------WORST RECONSTRUCTIONS-------------------------
 
-displaying top 5 results
+displaying top 20 results
 
 
 
@@ -52,9 +52,159 @@ reconstruction PRED word "['pier', 'parkway', 'refurbished', 'fairmont', 'roosev
 
 word_window: ['said', 'iraqi', 'artillery', 'was', 'shelling', 'the', 'city', 'and', 'iraqi', 'tanks', 'had']
 
+
+
+
+ID 26159
+reconstruction cosine proximity loss = 0.46014335904000503
+reconstruction GOLD word "['<unk>']"
+reconstruction PRED word "['fairmont', 'tempelhof', 'pier', 'marina', 'bruny']"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', 'post-mortem', '<unk>', 'showed', 'they', 'were', 'all', 'caused']
+
+
+
+
+ID 41684
+reconstruction cosine proximity loss = 0.45767508760256415
+reconstruction GOLD word "['and']"
+reconstruction PRED word "['pier', 'parkway', 'fairmont', 'refurbished', 'roosevelt']"
+
+word_window: ['that', 'iraqi', 'forces', 'were', 'shelling', 'and', 'advancing', 'on', 'the', 'kurdish', 'town']
+
+
+
+
+ID 50727
+reconstruction cosine proximity loss = 0.4575197442621246
+reconstruction GOLD word "['tensions']"
+reconstruction PRED word "['pier', 'tallest', 'refurbished', 'pavilion', 'kocinski']"
+
+word_window: ['feared', 'it', 'would', 'fan', 'sectarian', 'tensions', 'in', 'british-ruled', 'northern', 'ireland', '.']
+
+
+
+
+ID 38850
+reconstruction cosine proximity loss = 0.4534370911133767
+reconstruction GOLD word "['<unk>']"
+reconstruction PRED word "['pier', 'tallest', 'tempelhof', 'pavilion', 'marina']"
+
+word_window: ['<unk>', 'to', 'be', 'a', 'vicious', '<unk>', 'shot', 'by', '<unk>', '<unk>', 'which']
+
+
+
+
+ID 26319
+reconstruction cosine proximity loss = 0.44557966842882124
+reconstruction GOLD word "['charges']"
+reconstruction PRED word "['fairmont', 'tempelhof', 'linford', 'pavilion', 'bruny']"
+
+word_window: ['half', 'have', 'been', 'for', 'drug-related', 'charges', '.', '</s>', '</s>', '</s>', '</s>']
+
+
+
+
+ID 48569
+reconstruction cosine proximity loss = 0.4312198432257213
+reconstruction GOLD word "['told']"
+reconstruction PRED word "['pier', 'marina', 'fairmont', 'parkway', 'pavilion']"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', 'eyewitnesses', 'told', 'boston', 'television', 'stations', 'they', 'saw']
+
+
+
+
+ID 26287
+reconstruction cosine proximity loss = 0.4281707324664514
+reconstruction GOLD word "['or']"
+reconstruction PRED word "['marina', 'tallest', 'pier', 'fairmont', 'tempelhof']"
+
+word_window: ['an', 'ounce', ')', 'of', 'morphine', 'or', 'DGDGDG', '<unk>', '(', 'DGDG', '<unk>']
+
+
+
+
+ID 49074
+reconstruction cosine proximity loss = 0.41983915435695546
+reconstruction GOLD word "['reports']"
+reconstruction PRED word "['pier', 'marina', 'tallest', 'pavilion', 'roosevelt']"
+
+word_window: ['<s>', '<s>', 'there', 'were', 'unconfirmed', 'reports', 'that', 'iran', 'had', 'sent', 'troops']
+
+
+
+
+ID 10738
+reconstruction cosine proximity loss = 0.4159806086960854
+reconstruction GOLD word "['its']"
+reconstruction PRED word "['pier', 'tallest', 'refurbished', 'kocinski', 'pavilion']"
+
+word_window: ['in', 'december', 'DGDGDGDG', 'to', 'quell', 'its', 'independence', 'bid', '.', '</s>', '</s>']
+
+
+
+
+ID 41914
+reconstruction cosine proximity loss = 0.4128005837678844
+reconstruction GOLD word "['exploded']"
+reconstruction PRED word "['parkway', 'fairmont', 'roosevelt', 'pier', 'refurbished']"
+
+word_window: ['killed', 'when', 'a', 'hand', 'grenade', 'exploded', 'in', 'a', 'restaurant', 'near', 'algiers']
+
+
+
+
+ID 47374
+reconstruction cosine proximity loss = 0.40668600468994437
+reconstruction GOLD word "['fire']"
+reconstruction PRED word "['fairmont', 'pier', 'madame', 'marina', 'sail']"
+
+word_window: ['residents', 'were', 'injured', 'by', 'hizbollah', 'fire', 'in', 'the', '<unk>', 'village', '...']
+
+
+
+
+ID 47281
+reconstruction cosine proximity loss = 0.4056823015892128
+reconstruction GOLD word "['guerrillas']"
+reconstruction PRED word "['fairmont', 'madame', 'marina', 'pier', 'kocinski']"
+
+word_window: ['agreement', 'between', 'israel', 'and', 'hizbollah', 'guerrillas', 'will', 'meet', 'in', 'south', 'lebanon']
+
+
+
+
+ID 14765
+reconstruction cosine proximity loss = 0.40443290144187677
+reconstruction GOLD word "['.']"
+reconstruction PRED word "['pier', 'refurbished', 'tallest', 'pavilion', 'fairmont']"
+
+word_window: ['a', '<unk>', 'of', 'militant', 'violence', '.', '</s>', '</s>', '</s>', '</s>', '</s>']
+
+
+
+
+ID 11921
+reconstruction cosine proximity loss = 0.4017277485282749
+reconstruction GOLD word "['still']"
+reconstruction PRED word "['parkway', 'roosevelt', 'pier', 'fairmont', 'refurbished']"
+
+word_window: ['rebels', ',', 'but', 'sporadic', 'gunfire', 'still', 'echoed', 'in', 'the', 'nearby', '<unk>']
+
+
+
+
+ID 1362
+reconstruction cosine proximity loss = 0.4010670661518152
+reconstruction GOLD word "['.']"
+reconstruction PRED word "['pier', 'fairmont', 'refurbished', 'sail', 'tallest']"
+
+word_window: ['locked', 'out', 'after', 'volgograd', 'violence', '.', '</s>', '</s>', '</s>', '</s>', '</s>']
+
 -------------------------BEST RECONSTRUCTIONS--------------------------
 
-displaying top 5 results
+displaying top 20 results
 ID 6310
 
 
@@ -103,3 +253,153 @@ ID 5025
 reconstruction cosine proximity loss = -0.39196253062353337
 reconstruction GOLD word "[')']"
 reconstruction PRED word "['sail', 'pier', 'marina', 'sailing', 'kocinski']"
+
+word_window: ['DG.', 'dionne', 'rose', '(', 'jamaica', ')', 'DGDG.DGDG', '</s>', '</s>', '</s>', '</s>']
+ID 5039
+
+
+
+
+reconstruction cosine proximity loss = -0.3916796940980055
+reconstruction GOLD word "[')']"
+reconstruction PRED word "['sail', 'marina', 'pier', 'kocinski', 'sailing']"
+
+word_window: ['DG.', 'gillian', 'russell', '(', 'jamaica', ')', 'DGDG.DGDG', '</s>', '</s>', '</s>', '</s>']
+ID 19590
+
+
+
+
+reconstruction cosine proximity loss = -0.39089410263159313
+reconstruction GOLD word "['<unk>']"
+reconstruction PRED word "['nuestra', 'madame', 'fairmont', 'metro', 'ilyushin']"
+
+word_window: ['france', 'headquarters', 'at', 'charles', 'de', '<unk>', 'airport', 'north', 'of', 'paris', 'against']
+ID 6094
+
+
+
+
+reconstruction cosine proximity loss = -0.39005933827715983
+reconstruction GOLD word "[')']"
+reconstruction PRED word "['sail', 'pier', 'marina', 'kocinski', 'sailing']"
+
+word_window: ['DG.', 'michael', 'green', '(', 'jamaica', ')', ',', 'osmond', 'ezinwa', '(', 'nigeria']
+ID 5652
+
+
+
+
+reconstruction cosine proximity loss = -0.38700860515797647
+reconstruction GOLD word "[')']"
+reconstruction PRED word "['sail', 'pier', 'marina', 'kocinski', 'sailing']"
+
+word_window: ['DG.', 'michael', 'green', '(', 'jamaica', ')', 'DGDG.DGDG', '</s>', '</s>', '</s>', '</s>']
+ID 4794
+
+
+
+
+reconstruction cosine proximity loss = -0.38151673377975737
+reconstruction GOLD word "["'s"]"
+reconstruction PRED word "['sail', 'kocinski', 'sailing', 'pier', 'parkway']"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', 'jamaica', "'s", 'michael', 'green', 'was', 'second', 'with']
+ID 5406
+
+
+
+
+reconstruction cosine proximity loss = -0.3805115366729165
+reconstruction GOLD word "[')']"
+reconstruction PRED word "['sail', 'pier', 'sailing', 'marina', 'kocinski']"
+
+word_window: ['DG.', 'merlene', 'ottey', '(', 'jamaica', ')', 'DGDG.DGDG', '</s>', '</s>', '</s>', '</s>']
+ID 24331
+
+
+
+
+reconstruction cosine proximity loss = -0.37667277923955056
+reconstruction GOLD word "['newsroom']"
+reconstruction PRED word "['chartered', 'victoria', 'queen', 'ship', 'selected']"
+
+word_window: ['<s>', '<s>', '--', 'air', 'cargo', 'newsroom', 'tel+44', 'DGDGDG', 'DGDGDG', 'DGDGDGDG', 'fax']
+ID 31461
+
+
+
+
+reconstruction cosine proximity loss = -0.3748185775502581
+reconstruction GOLD word "['of']"
+reconstruction PRED word "['chartered', 'victoria', 'travelled', 'canada', 'shipping']"
+
+word_window: ['<s>', '<s>', 'clyde', 'DG', 'queen', 'of', 'south', 'DG', '</s>', '</s>', '</s>']
+ID 26807
+
+
+
+
+reconstruction cosine proximity loss = -0.3746928679676491
+reconstruction GOLD word "['<unk>']"
+reconstruction PRED word "['nuestra', 'fairmont', 'madame', 'palma', 'senora']"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', 'la', '<unk>', ',', 'spain', 'DGDGDGDG-DGDG-DGDG', '</s>', '</s>']
+ID 30618
+
+
+
+
+reconstruction cosine proximity loss = -0.3728086822949605
+reconstruction GOLD word "['of']"
+reconstruction PRED word "['chartered', 'shipping', 'victoria', 'sailing', 'travelled']"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', 'queen', 'of', 'south', 'DG', 'DG', 'DG', 'DG']
+ID 30734
+
+
+
+
+reconstruction cosine proximity loss = -0.36832586194683614
+reconstruction GOLD word "["'s"]"
+reconstruction PRED word "['chartered', 'victoria', 'shipping', 'canada', 'ship']"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', 'queen', "'s", 'park', 'DG', 'DG', 'DG', 'DG']
+ID 37283
+
+
+
+
+reconstruction cosine proximity loss = -0.36475467418559027
+reconstruction GOLD word "['slam']"
+reconstruction PRED word "['refunds', 'ticket', 'registrations', 'auctioned', 'stakes']"
+
+word_window: ['ended', 'ivan', '<unk>', "'s", 'grand', 'slam', 'career', 'here', 'when', 'the', 'former']
+ID 31498
+
+
+
+
+reconstruction cosine proximity loss = -0.36112204486721355
+reconstruction GOLD word "["'s"]"
+reconstruction PRED word "['chartered', 'shipping', 'victoria', 'canada', 'travelled']"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', 'queen', "'s", 'park', 'DG', 'forfar', 'DG', '</s>']
+ID 20740
+
+
+
+
+reconstruction cosine proximity loss = -0.3588193307317005
+reconstruction GOLD word "['<unk>']"
+reconstruction PRED word "['wilhelmina', 'madame', 'preferred', 'modelled', 'queen']"
+
+word_window: ['<s>', '<s>', '<s>', 'company', 'name', '<unk>', '<unk>', 'inc', '</s>', '</s>', '</s>']
+ID 4969
+
+
+
+
+reconstruction cosine proximity loss = -0.3581066466609734
+reconstruction GOLD word "['prix']"
+reconstruction PRED word "['refunds', 'auctioned', 'ticket', 'registrations', 'auction']"
