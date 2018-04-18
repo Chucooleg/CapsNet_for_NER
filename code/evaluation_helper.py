@@ -293,7 +293,8 @@ class EvalDev_Report(object):
             y_true : trainY/devY/testY. an array of shape(?,). Each value correspond to the ner tag for a word
             y_pred : model prediction. same shape and format as y_true  
         
-        Returns: confusion matrix wrapped in a pandas DataFrame 
+        Returns: confusion matrix wrapped in a pandas DataFrame
+                 columns are predictions, rows are true labels
         """
         import tensorflow as tf
         import pandas as pd
