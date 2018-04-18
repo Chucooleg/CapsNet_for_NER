@@ -285,6 +285,34 @@ class EvalDev_Report(object):
         return f1 
     
     
+    def get_confusion_matrix(self, y_true, y_pred):
+        """
+        Returns confusion matrix for currently loaded data
+
+        Arguments:
+            y_true : trainY/devY/testY. an array of shape(?,). Each value correspond to the ner tag for a word
+            y_pred : model prediction. same shape and format as y_true  
+        
+        Returns: confusion matrix wrapped in a pandas DataFrame 
+        """
+        import tensorflow as tf
+        import pandas as pd
+        
+        assert( self.nerTags)
+        
+        # get ner tags, but not the <s>, </s.>, <unk> ones
+        tags = self.nerTags.ids_to_words( range( 3, len(self.nerTags.wordset)))
+        
+        cm = tf.confusion_matrix( y_true, y_pred)
+        sess = tf.Session()
+        with sess.as_default():
+            cm = sess.run(cm)
+
+        # drop the tags we don't use (<s>, etc.)
+        cm = cm[3:,3:]
+
+        return pd.DataFrame( cm, index=tags, columns=tags)
+    
     def get_ner_hallucination_idx(self, y_true, y_pred):
         """
         our model hallucinated that there's a NER label ("O")
