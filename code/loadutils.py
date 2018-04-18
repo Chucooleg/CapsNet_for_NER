@@ -130,7 +130,7 @@ def save_model(model, name):
     open(architecture, 'w').write(json_string)
     model.save_weights(weights)
 
-
+# uses path from hyper paramaters
 def retrieve_model(modelName, hypers, weights=True):
     from keras.models import model_from_json
     import keras.backend as K
@@ -148,7 +148,7 @@ def retrieve_model(modelName, hypers, weights=True):
         model_saved.load_weights(weights)
     return model_saved
 
-
+#decoder with hyper parameters
 def retrieve_decoder_model(modelName, hypers, weights=True):
     from keras.models import model_from_json
     import keras.backend as K
@@ -165,6 +165,24 @@ def retrieve_decoder_model(modelName, hypers, weights=True):
         weights = hypers['save_dir'] + '/' + modelName + '_weights_model_eval.h5'    
         model_eval_saved.load_weights(weights)
     return model_eval_saved
+
+# specify path
+def retrieve_model_path(modelName, path, weights=True):
+    from keras.models import model_from_json
+    import keras.backend as K
+    from keras.utils import CustomObjectScope
+    from capsulelayers import CapsuleLayer, PrimaryCap1D, Length, Mask
+    print( 'Retrieving model: {0}'.format(modelName))
+    architecture = path + '/' + modelName + '_model_architecture.json'
+    with open(architecture, 'r') as f:
+        if len(f.readlines()) !=0:
+            f.seek(0)
+            model_saved = model_from_json(f.read(), custom_objects={'CapsuleLayer': CapsuleLayer, 'Length': Length, 'Mask': Mask})
+
+    if weights:
+        weights = path + '/' + modelName + '_weights_model.h5'    
+        model_saved.load_weights(weights)
+    return model_saved
 
 
 def construct_embedding_matrix(embed_dim, vocab_size, vocabData):
