@@ -115,7 +115,7 @@ Gold label "['I-LOC']" (tag10), prediction label counts:
 
 indices counts = 51362
 ranked by worst cross-entropy loss
-top 2 results
+top 10 results
 
 ID 36436
 KL divergence 7.254745960235596
@@ -134,61 +134,6 @@ Pred NER    ['B-MISC']
 Text window ['family', 'is', 'waiting', ',', '"', 'north', 'korean', 'red', 'cross', 'president', 'li']
 PoS window  ['NN', 'VBZ', 'VBG', ',', '"', 'NNP', 'NNP', 'NNP', 'NNP', 'NN', 'NNP']
 Caps window ['lowercase', 'lowercase', 'lowercase', 'noinfo', 'noinfo', 'upperInitial', 'upperInitial', 'upperInitial', 'upperInitial', 'lowercase', 'upperInitial']
-
--------------------WORST NER LABEL MISMATCH--------------------
-
-indices counts = 480
-ranked by worst cross-entropy loss
-top 2 results
-
-ID 46025
-KL divergence 7.195424556732178
-FEATURES:   "north", NNP, upperInitial
-Gold NER    ['B-ORG']
-Pred NER    ['B-MISC']
-Text window ['family', 'is', 'waiting', ',', '"', 'north', 'korean', 'red', 'cross', 'president', 'li']
-PoS window  ['NN', 'VBZ', 'VBG', ',', '"', 'NNP', 'NNP', 'NNP', 'NNP', 'NN', 'NNP']
-Caps window ['lowercase', 'lowercase', 'lowercase', 'noinfo', 'noinfo', 'upperInitial', 'upperInitial', 'upperInitial', 'upperInitial', 'lowercase', 'upperInitial']
-
-ID 48508
-KL divergence 5.7999091148376465
-FEATURES:   "<unk>", NNP, upperInitial
-Gold NER    ['B-LOC']
-Pred NER    ['B-ORG']
-Text window ['<s>', '<s>', 'an', 'explosion', '<unk>', '<unk>', "'s", '<unk>', '<unk>', 'falls', '<unk>']
-PoS window  ['<s>', '<s>', 'DT', 'NN', 'VBD', 'NNP', 'POS', 'JJ', 'NNP', 'NNP', 'NNP']
-Caps window ['<s>', '<s>', 'upperInitial', 'lowercase', 'lowercase', 'upperInitial', 'noinfo', 'noinfo', 'upperInitial', 'upperInitial', 'upperInitial']
-
-----------------WORST NER PREDICTION BY LABEL------------------
-
-----------------------------
-Label O (tag3)
-indices counts = 42733
-ranked by worst cross-entropy loss
-top 2 results
-
-ID 32072
-KL divergence 4.47525691986084
-FEATURES:   "jr", NNP, upperInitial
-Gold NER    ['O']
-Pred NER    ['I-PER']
-Text window ['<s>', '<s>', 'DG.', 'al', '<unk>', 'jr', '(', 'u.s.', ')', ',', '<unk>']
-PoS window  ['<s>', '<s>', 'CD', 'NNP', 'NNP', 'NNP', '(', 'NNP', ')', ',', 'NNP']
-Caps window ['<s>', '<s>', 'noinfo', 'upperInitial', 'upperInitial', 'upperInitial', 'noinfo', 'noinfo', 'noinfo', 'noinfo', 'upperInitial']
-
-ID 35697
-KL divergence 3.9106359481811523
-FEATURES:   "ii", NNP, allCaps
-Gold NER    ['O']
-Pred NER    ['B-LOC']
-Text window ['<s>', '<s>', '<s>', 'world', 'group', 'ii', ',', 'first', 'round', '(', 'march']
-PoS window  ['<s>', '<s>', '<s>', 'NNP', 'NNP', 'NNP', ',', 'JJ', 'NN', '(', 'NNP']
-Caps window ['<s>', '<s>', '<s>', 'upperInitial', 'upperInitial', 'allCaps', 'noinfo', 'lowercase', 'lowercase', 'noinfo', 'upperInitial']
-----------------------------
-Label B-LOC (tag4)
-indices counts = 1837
-ranked by worst cross-entropy loss
-top 2 results
 
 ID 48267
 KL divergence 5.8164896965026855
@@ -207,104 +152,15 @@ Pred NER    ['B-ORG']
 Text window ['<s>', '<s>', 'an', 'explosion', '<unk>', '<unk>', "'s", '<unk>', '<unk>', 'falls', '<unk>']
 PoS window  ['<s>', '<s>', 'DT', 'NN', 'VBD', 'NNP', 'POS', 'JJ', 'NNP', 'NNP', 'NNP']
 Caps window ['<s>', '<s>', 'upperInitial', 'lowercase', 'lowercase', 'upperInitial', 'noinfo', 'noinfo', 'upperInitial', 'upperInitial', 'upperInitial']
-----------------------------
-Label B-PER (tag5)
-indices counts = 1842
-ranked by worst cross-entropy loss
-top 2 results
 
-ID 36436
-KL divergence 7.254745960235596
-FEATURES:   "(", (, noinfo
-Gold NER    ['B-PER']
-Pred NER    ['O']
-Text window ['long', 'time', 'and', 'he', 'saw', '(', 'tom', ')', '<unk>', 'and', '(']
-PoS window  ['JJ', 'NN', 'CC', 'PRP', 'VBD', '(', 'NNP', ')', 'NNP', 'CC', '(']
-Caps window ['lowercase', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'noinfo', 'upperInitial', 'noinfo', 'upperInitial', 'lowercase', 'noinfo']
-
-ID 25701
-KL divergence 5.195549488067627
+ID 24863
+KL divergence 5.739685535430908
 FEATURES:   "<unk>", NNP, upperInitial
-Gold NER    ['B-PER']
-Pred NER    ['I-ORG']
-Text window ['of', 'the', 'house', 'of', 'representatives', '<unk>', 'has', 'called', 'on', 'those', 'serving']
-PoS window  ['IN', 'DT', 'NNP', 'IN', 'NNPS', 'NNP', 'VBZ', 'VBN', 'IN', 'DT', 'NN']
-Caps window ['lowercase', 'lowercase', 'upperInitial', 'lowercase', 'upperInitial', 'upperInitial', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'lowercase']
-----------------------------
-Label B-ORG (tag6)
-indices counts = 1341
-ranked by worst cross-entropy loss
-
-top 2 results
-
-ID 46025
-KL divergence 7.195424556732178
-FEATURES:   "north", NNP, upperInitial
-Gold NER    ['B-ORG']
-Pred NER    ['B-MISC']
-Text window ['family', 'is', 'waiting', ',', '"', 'north', 'korean', 'red', 'cross', 'president', 'li']
-PoS window  ['NN', 'VBZ', 'VBG', ',', '"', 'NNP', 'NNP', 'NNP', 'NNP', 'NN', 'NNP']
-Caps window ['lowercase', 'lowercase', 'lowercase', 'noinfo', 'noinfo', 'upperInitial', 'upperInitial', 'upperInitial', 'upperInitial', 'lowercase', 'upperInitial']
-
-ID 754
-KL divergence 5.347967624664307
-FEATURES:   "british", JJ, upperInitial
-Gold NER    ['B-ORG']
-Pred NER    ['B-MISC']
-Text window ['county', 'sides', 'and', 'another', 'against', 'british', 'universities', ',', '</s>', '</s>', '</s>']
-PoS window  ['NN', 'NNS', 'CC', 'DT', 'IN', 'JJ', 'NNS', ',', '</s>', '</s>', '</s>']
-Caps window ['lowercase', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'upperInitial', 'upperInitial', 'noinfo', '</s>', '</s>', '</s>']
-----------------------------
-Label I-PER (tag7)
-indices counts = 1305
-ranked by worst cross-entropy loss
-top 2 results
-
-ID 36437
-KL divergence 5.558840274810791
-FEATURES:   "tom", NNP, upperInitial
-Gold NER    ['I-PER']
+Gold NER    ['B-LOC']
 Pred NER    ['B-PER']
-Text window ['time', 'and', 'he', 'saw', '(', 'tom', ')', '<unk>', 'and', '(', 'jerry']
-PoS window  ['NN', 'CC', 'PRP', 'VBD', '(', 'NNP', ')', 'NNP', 'CC', '(', 'NNP']
-Caps window ['lowercase', 'lowercase', 'lowercase', 'lowercase', 'noinfo', 'upperInitial', 'noinfo', 'upperInitial', 'lowercase', 'noinfo', 'upperInitial']
-
-ID 1522
-KL divergence 5.483065128326416
-FEATURES:   "<unk>", JJ, upperInitial
-Gold NER    ['I-PER']
-Pred NER    ['B-MISC']
-Text window ['"', 'hands', 'of', 'stone', '"', '<unk>', 'climbs', 'into', 'the', 'ring', 'on']
-PoS window  ['"', 'NNS', 'IN', 'NNP', '"', 'JJ', 'NNS', 'IN', 'DT', 'NN', 'IN']
-Caps window ['noinfo', 'upperInitial', 'lowercase', 'upperInitial', 'noinfo', 'upperInitial', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'lowercase']
-----------------------------
-Label I-ORG (tag8)
-indices counts = 728
-ranked by worst cross-entropy loss
-top 2 results
-
-ID 17750
-KL divergence 5.328080654144287
-FEATURES:   "'s", POS, noinfo
-Gold NER    ['I-ORG']
-Pred NER    ['O']
-Text window ['<s>', '<s>', '<s>', '<s>', '<unk>', "'s", 'deal', 'could', '<unk>', 'more', '<unk>']
-PoS window  ['<s>', '<s>', '<s>', '<s>', 'NNP', 'POS', 'NN', 'MD', 'VB', 'JJR', 'NNS']
-Caps window ['<s>', '<s>', '<s>', '<s>', 'upperInitial', 'noinfo', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'lowercase']
-
-ID 18167
-KL divergence 5.067084312438965
-FEATURES:   "'s", POS, noinfo
-Gold NER    ['I-ORG']
-Pred NER    ['O']
-Text window ['<s>', '"', 'i', 'think', '<unk>', "'s", 'was', '<unk>', 'itself', ',', 'and']
-PoS window  ['<s>', '"', 'PRP', 'VBP', 'NNP', 'POS', 'VBD', 'VBG', 'PRP', ',', 'CC']
-Caps window ['<s>', 'noinfo', 'allCaps', 'lowercase', 'upperInitial', 'noinfo', 'lowercase', 'lowercase', 'lowercase', 'noinfo', 'lowercase']
-----------------------------
-Label B-MISC (tag9)
-indices counts = 915
-ranked by worst cross-entropy loss
-top 2 results
+Text window ['<s>', '<s>', '<s>', '<s>', '<s>', '<unk>', 'is', 'a', 'norwegian', 'settlement', 'of']
+PoS window  ['<s>', '<s>', '<s>', '<s>', '<s>', 'NNP', 'VBZ', 'DT', 'JJ', 'NN', 'IN']
+Caps window ['<s>', '<s>', '<s>', '<s>', '<s>', 'upperInitial', 'lowercase', 'lowercase', 'upperInitial', 'lowercase', 'lowercase']
 
 ID 49150
 KL divergence 5.70570707321167
@@ -323,11 +179,806 @@ Pred NER    ['B-PER']
 Text window ['a', 'film', 'than', 'over', '"', 'michael', '<unk>', '"', ',', 'his', 'controversial']
 PoS window  ['DT', 'NN', 'IN', 'IN', '"', 'NNP', 'NNP', '"', ',', 'PRP$', 'JJ']
 Caps window ['lowercase', 'lowercase', 'lowercase', 'lowercase', 'noinfo', 'upperInitial', 'upperInitial', 'noinfo', 'noinfo', 'lowercase', 'lowercase']
+
+ID 17953
+KL divergence 5.644556999206543
+FEATURES:   ".", ., noinfo
+Gold NER    ['I-MISC']
+Pred NER    ['O']
+Text window ['a', '$', 'DG.DGDG', 'billion', '<unk>', '.', '</s>', '</s>', '</s>', '</s>', '</s>']
+PoS window  ['DT', '$', 'CD', 'CD', 'NN', '.', '</s>', '</s>', '</s>', '</s>', '</s>']
+Caps window ['lowercase', 'noinfo', 'noinfo', 'lowercase', 'noinfo', 'noinfo', '</s>', '</s>', '</s>', '</s>', '</s>']
+
+ID 44993
+KL divergence 5.564077854156494
+FEATURES:   "philippine", JJ, upperInitial
+Gold NER    ['B-LOC']
+Pred NER    ['O']
+Text window ['<s>', '<s>', '<s>', '<s>', '<s>', 'philippine', 'president', '<unk>', '<unk>', 'expressed', 'gratitude']
+PoS window  ['<s>', '<s>', '<s>', '<s>', '<s>', 'JJ', 'NN', 'NNP', 'NNP', 'VBD', 'NN']
+Caps window ['<s>', '<s>', '<s>', '<s>', '<s>', 'upperInitial', 'lowercase', 'upperInitial', 'upperInitial', 'lowercase', 'lowercase']
+
+ID 36437
+KL divergence 5.558840274810791
+FEATURES:   "tom", NNP, upperInitial
+Gold NER    ['I-PER']
+Pred NER    ['B-PER']
+Text window ['time', 'and', 'he', 'saw', '(', 'tom', ')', '<unk>', 'and', '(', 'jerry']
+PoS window  ['NN', 'CC', 'PRP', 'VBD', '(', 'NNP', ')', 'NNP', 'CC', '(', 'NNP']
+Caps window ['lowercase', 'lowercase', 'lowercase', 'lowercase', 'noinfo', 'upperInitial', 'noinfo', 'upperInitial', 'lowercase', 'noinfo', 'upperInitial']
+
+-------------------WORST NER LABEL MISMATCH--------------------
+
+indices counts = 480
+ranked by worst cross-entropy loss
+top 10 results
+
+ID 46025
+KL divergence 7.195424556732178
+FEATURES:   "north", NNP, upperInitial
+Gold NER    ['B-ORG']
+Pred NER    ['B-MISC']
+Text window ['family', 'is', 'waiting', ',', '"', 'north', 'korean', 'red', 'cross', 'president', 'li']
+PoS window  ['NN', 'VBZ', 'VBG', ',', '"', 'NNP', 'NNP', 'NNP', 'NNP', 'NN', 'NNP']
+Caps window ['lowercase', 'lowercase', 'lowercase', 'noinfo', 'noinfo', 'upperInitial', 'upperInitial', 'upperInitial', 'upperInitial', 'lowercase', 'upperInitial']
+
+ID 48508
+KL divergence 5.7999091148376465
+FEATURES:   "<unk>", NNP, upperInitial
+Gold NER    ['B-LOC']
+Pred NER    ['B-ORG']
+Text window ['<s>', '<s>', 'an', 'explosion', '<unk>', '<unk>', "'s", '<unk>', '<unk>', 'falls', '<unk>']
+PoS window  ['<s>', '<s>', 'DT', 'NN', 'VBD', 'NNP', 'POS', 'JJ', 'NNP', 'NNP', 'NNP']
+Caps window ['<s>', '<s>', 'upperInitial', 'lowercase', 'lowercase', 'upperInitial', 'noinfo', 'noinfo', 'upperInitial', 'upperInitial', 'upperInitial']
+
+ID 24863
+KL divergence 5.739685535430908
+FEATURES:   "<unk>", NNP, upperInitial
+Gold NER    ['B-LOC']
+Pred NER    ['B-PER']
+Text window ['<s>', '<s>', '<s>', '<s>', '<s>', '<unk>', 'is', 'a', 'norwegian', 'settlement', 'of']
+PoS window  ['<s>', '<s>', '<s>', '<s>', '<s>', 'NNP', 'VBZ', 'DT', 'JJ', 'NN', 'IN']
+Caps window ['<s>', '<s>', '<s>', '<s>', '<s>', 'upperInitial', 'lowercase', 'lowercase', 'upperInitial', 'lowercase', 'lowercase']
+
+ID 50647
+KL divergence 5.699979305267334
+FEATURES:   "michael", NNP, upperInitial
+Gold NER    ['B-MISC']
+Pred NER    ['B-PER']
+Text window ['a', 'film', 'than', 'over', '"', 'michael', '<unk>', '"', ',', 'his', 'controversial']
+PoS window  ['DT', 'NN', 'IN', 'IN', '"', 'NNP', 'NNP', '"', ',', 'PRP$', 'JJ']
+Caps window ['lowercase', 'lowercase', 'lowercase', 'lowercase', 'noinfo', 'upperInitial', 'upperInitial', 'noinfo', 'noinfo', 'lowercase', 'lowercase']
+
+ID 36437
+KL divergence 5.558840274810791
+FEATURES:   "tom", NNP, upperInitial
+Gold NER    ['I-PER']
+Pred NER    ['B-PER']
+Text window ['time', 'and', 'he', 'saw', '(', 'tom', ')', '<unk>', 'and', '(', 'jerry']
+PoS window  ['NN', 'CC', 'PRP', 'VBD', '(', 'NNP', ')', 'NNP', 'CC', '(', 'NNP']
+Caps window ['lowercase', 'lowercase', 'lowercase', 'lowercase', 'noinfo', 'upperInitial', 'noinfo', 'upperInitial', 'lowercase', 'noinfo', 'upperInitial']
+
+ID 48846
+KL divergence 5.543301582336426
+FEATURES:   "<unk>", NNP, upperInitial
+Gold NER    ['I-MISC']
+Pred NER    ['I-PER']
+Text window ['on', 'the', 'aircraft', 'carrier', 'carl', '<unk>', ',', 'were', 'already', 'in', 'the']
+PoS window  ['IN', 'DT', 'NN', 'NN', 'NNP', 'NNP', ',', 'VBD', 'RB', 'IN', 'DT']
+Caps window ['lowercase', 'lowercase', 'lowercase', 'lowercase', 'upperInitial', 'upperInitial', 'noinfo', 'lowercase', 'lowercase', 'lowercase', 'lowercase']
+
+ID 1522
+KL divergence 5.483065128326416
+FEATURES:   "<unk>", JJ, upperInitial
+Gold NER    ['I-PER']
+Pred NER    ['B-MISC']
+Text window ['"', 'hands', 'of', 'stone', '"', '<unk>', 'climbs', 'into', 'the', 'ring', 'on']
+PoS window  ['"', 'NNS', 'IN', 'NNP', '"', 'JJ', 'NNS', 'IN', 'DT', 'NN', 'IN']
+Caps window ['noinfo', 'upperInitial', 'lowercase', 'upperInitial', 'noinfo', 'upperInitial', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'lowercase']
+
+ID 40495
+KL divergence 5.41900634765625
+FEATURES:   "<unk>", NNP, upperInitial
+Gold NER    ['B-LOC']
+Pred NER    ['B-PER']
+Text window ['"', 'red', '<unk>', '"', 'seized', '<unk>', 'in', 'the', 'italian', 'war', 'of']
+PoS window  ['"', 'NNP', 'NNP', '"', 'VBD', 'NNP', 'IN', 'DT', 'JJ', 'NN', 'IN']
+Caps window ['noinfo', 'upperInitial', 'upperInitial', 'noinfo', 'lowercase', 'upperInitial', 'lowercase', 'lowercase', 'upperInitial', 'lowercase', 'lowercase']
+
+ID 754
+KL divergence 5.347967624664307
+FEATURES:   "british", JJ, upperInitial
+Gold NER    ['B-ORG']
+Pred NER    ['B-MISC']
+Text window ['county', 'sides', 'and', 'another', 'against', 'british', 'universities', ',', '</s>', '</s>', '</s>']
+PoS window  ['NN', 'NNS', 'CC', 'DT', 'IN', 'JJ', 'NNS', ',', '</s>', '</s>', '</s>']
+Caps window ['lowercase', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'upperInitial', 'upperInitial', 'noinfo', '</s>', '</s>', '</s>']
+
+ID 24305
+KL divergence 5.345739364624023
+FEATURES:   "el", NNP, upperInitial
+Gold NER    ['B-ORG']
+Pred NER    ['B-LOC']
+Text window ['said', 'the', 'latest', 'evidence', 'from', 'el', 'al', 'in', 'no', 'way', 'supported']
+PoS window  ['VBD', 'DT', 'JJS', 'NN', 'IN', 'NNP', 'NNP', 'IN', 'DT', 'NN', 'VBD']
+Caps window ['lowercase', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'upperInitial', 'upperInitial', 'lowercase', 'lowercase', 'lowercase', 'lowercase']
+
+----------------WORST NER PREDICTION BY LABEL------------------
+
+----------------------------
+Label O (tag3)
+indices counts = 42733
+ranked by worst cross-entropy loss
+
+top 10 results
+
+ID 32072
+KL divergence 4.47525691986084
+FEATURES:   "jr", NNP, upperInitial
+Gold NER    ['O']
+Pred NER    ['I-PER']
+Text window ['<s>', '<s>', 'DG.', 'al', '<unk>', 'jr', '(', 'u.s.', ')', ',', '<unk>']
+PoS window  ['<s>', '<s>', 'CD', 'NNP', 'NNP', 'NNP', '(', 'NNP', ')', ',', 'NNP']
+Caps window ['<s>', '<s>', 'noinfo', 'upperInitial', 'upperInitial', 'upperInitial', 'noinfo', 'noinfo', 'noinfo', 'noinfo', 'upperInitial']
+
+ID 35697
+KL divergence 3.9106359481811523
+FEATURES:   "ii", NNP, allCaps
+Gold NER    ['O']
+Pred NER    ['B-LOC']
+Text window ['<s>', '<s>', '<s>', 'world', 'group', 'ii', ',', 'first', 'round', '(', 'march']
+PoS window  ['<s>', '<s>', '<s>', 'NNP', 'NNP', 'NNP', ',', 'JJ', 'NN', '(', 'NNP']
+Caps window ['<s>', '<s>', '<s>', 'upperInitial', 'upperInitial', 'allCaps', 'noinfo', 'lowercase', 'lowercase', 'noinfo', 'upperInitial']
+
+ID 30162
+KL divergence 3.780775308609009
+FEATURES:   "county", NNP, upperInitial
+Gold NER    ['O']
+Pred NER    ['I-ORG']
+Text window ['<s>', '<s>', '<unk>', 'DGDGDG', 'stirling', 'county', 'DGDG', '</s>', '</s>', '</s>', '</s>']
+PoS window  ['<s>', '<s>', 'VB', 'CD', 'NNP', 'NNP', 'CD', '</s>', '</s>', '</s>', '</s>']
+Caps window ['<s>', '<s>', 'upperInitial', 'noinfo', 'upperInitial', 'upperInitial', 'noinfo', '</s>', '</s>', '</s>', '</s>']
+
+ID 34293
+KL divergence 3.696566581726074
+FEATURES:   "jansher", NNP, upperInitial
+Gold NER    ['O']
+Pred NER    ['B-PER']
+Text window ['for', 'it', '--', 'that', "'s", 'jansher', '.', '"', '</s>', '</s>', '</s>']
+PoS window  ['IN', 'PRP', ':', 'DT', 'VBZ', 'NNP', '.', '"', '</s>', '</s>', '</s>']
+Caps window ['lowercase', 'lowercase', 'noinfo', 'lowercase', 'noinfo', 'upperInitial', 'noinfo', 'noinfo', '</s>', '</s>', '</s>']
+
+ID 40616
+KL divergence 3.6612863540649414
+FEATURES:   "<unk>", NNP, upperInitial
+Gold NER    ['O']
+Pred NER    ['B-PER']
+Text window ['arabia', '"', 'and', ',', 'as', '<unk>', '<unk>', ',', 'in', '"', 'anne']
+PoS window  ['NNP', '"', 'CC', ',', 'IN', 'NNP', 'NNP', ',', 'IN', '"', 'NNP']
+Caps window ['upperInitial', 'noinfo', 'lowercase', 'noinfo', 'lowercase', 'upperInitial', 'upperInitial', 'noinfo', 'lowercase', 'noinfo', 'upperInitial']
+
+ID 9299
+KL divergence 3.601565361022949
+FEATURES:   "bunds", NNP, upperInitial
+Gold NER    ['O']
+Pred NER    ['B-MISC']
+Text window ['<s>', '<s>', '<s>', 'germany', '-', 'bunds', 'extended', 'losses', ',', '<unk>', 'with']
+PoS window  ['<s>', '<s>', '<s>', 'JJ', ':', 'NNP', 'VBD', 'NNS', ',', 'VBG', 'IN']
+Caps window ['<s>', '<s>', '<s>', 'allCaps', 'noinfo', 'upperInitial', 'lowercase', 'lowercase', 'noinfo', 'lowercase', 'lowercase']
+
+ID 13169
+KL divergence 3.5474436283111572
+FEATURES:   "<unk>", NNP, mixedCaps
+Gold NER    ['O']
+Pred NER    ['I-ORG']
+Text window ['<unk>', 'said', 'he', 'regarded', 'cofinec', '<unk>', '--', 'which', 'are', 'trading', 'below']
+PoS window  ['NNP', 'VBD', 'PRP', 'VBD', 'NNP', 'NNP', ':', 'WDT', 'VBP', 'VBG', 'IN']
+Caps window ['upperInitial', 'lowercase', 'lowercase', 'lowercase', 'upperInitial', 'mixedCaps', 'noinfo', 'lowercase', 'lowercase', 'lowercase', 'lowercase']
+
+ID 28093
+KL divergence 3.3571155071258545
+FEATURES:   "pakistan", SYM, lowercase
+Gold NER    ['O']
+Pred NER    ['B-LOC']
+Text window ['<s>', '<s>', '<s>', '<s>', '<s>', 'pakistan', '</s>', '</s>', '</s>', '</s>', '</s>']
+PoS window  ['<s>', '<s>', '<s>', '<s>', '<s>', 'SYM', '</s>', '</s>', '</s>', '</s>', '</s>']
+Caps window ['<s>', '<s>', '<s>', '<s>', '<s>', 'lowercase', '</s>', '</s>', '</s>', '</s>', '</s>']
+
+ID 16787
+KL divergence 3.323184013366699
+FEATURES:   "northeastern", NNP, upperInitial
+Gold NER    ['O']
+Pred NER    ['B-LOC']
+Text window ['opened', 'into', 'DGDG', 'northern', 'and', 'northeastern', 'states', 'from', 'november', 'through', 'february']
+PoS window  ['VBN', 'IN', 'CD', 'NNP', 'CC', 'NNP', 'VBZ', 'IN', 'NNP', 'IN', 'NNP']
+Caps window ['lowercase', 'lowercase', 'noinfo', 'upperInitial', 'lowercase', 'upperInitial', 'lowercase', 'lowercase', 'upperInitial', 'lowercase', 'upperInitial']
+
+ID 9358
+KL divergence 3.1910171508789062
+FEATURES:   "<unk>", NNS, upperInitial
+Gold NER    ['O']
+Pred NER    ['B-PER']
+Text window ['<s>', '<s>', '<s>', 'britain', '-', '<unk>', 'struggled', 'off', 'the', 'day', "'s"]
+PoS window  ['<s>', '<s>', '<s>', 'NNP', ':', 'NNS', 'VBD', 'IN', 'DT', 'NN', 'POS']
+Caps window ['<s>', '<s>', '<s>', 'allCaps', 'noinfo', 'upperInitial', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'noinfo']
+----------------------------
+Label B-LOC (tag4)
+indices counts = 1837
+ranked by worst cross-entropy loss
+top 10 results
+
+ID 48267
+KL divergence 5.8164896965026855
+FEATURES:   "DGDG", CD, noinfo
+Gold NER    ['B-LOC']
+Pred NER    ['O']
+Text window ['coast', ',', '<unk>', 'DGDG', 'and', 'DGDG', 'in', 'the', 'midwest', 'and', '<unk>']
+PoS window  ['NNP', ',', 'NNP', 'CD', 'CC', 'CD', 'IN', 'DT', 'NNP', 'CC', 'NNP']
+Caps window ['upperInitial', 'noinfo', 'upperInitial', 'noinfo', 'lowercase', 'noinfo', 'lowercase', 'lowercase', 'upperInitial', 'lowercase', 'upperInitial']
+
+ID 48508
+KL divergence 5.7999091148376465
+FEATURES:   "<unk>", NNP, upperInitial
+Gold NER    ['B-LOC']
+Pred NER    ['B-ORG']
+Text window ['<s>', '<s>', 'an', 'explosion', '<unk>', '<unk>', "'s", '<unk>', '<unk>', 'falls', '<unk>']
+PoS window  ['<s>', '<s>', 'DT', 'NN', 'VBD', 'NNP', 'POS', 'JJ', 'NNP', 'NNP', 'NNP']
+Caps window ['<s>', '<s>', 'upperInitial', 'lowercase', 'lowercase', 'upperInitial', 'noinfo', 'noinfo', 'upperInitial', 'upperInitial', 'upperInitial']
+
+ID 24863
+KL divergence 5.739685535430908
+FEATURES:   "<unk>", NNP, upperInitial
+Gold NER    ['B-LOC']
+Pred NER    ['B-PER']
+Text window ['<s>', '<s>', '<s>', '<s>', '<s>', '<unk>', 'is', 'a', 'norwegian', 'settlement', 'of']
+PoS window  ['<s>', '<s>', '<s>', '<s>', '<s>', 'NNP', 'VBZ', 'DT', 'JJ', 'NN', 'IN']
+Caps window ['<s>', '<s>', '<s>', '<s>', '<s>', 'upperInitial', 'lowercase', 'lowercase', 'upperInitial', 'lowercase', 'lowercase']
+
+ID 44993
+KL divergence 5.564077854156494
+FEATURES:   "philippine", JJ, upperInitial
+Gold NER    ['B-LOC']
+Pred NER    ['O']
+Text window ['<s>', '<s>', '<s>', '<s>', '<s>', 'philippine', 'president', '<unk>', '<unk>', 'expressed', 'gratitude']
+PoS window  ['<s>', '<s>', '<s>', '<s>', '<s>', 'JJ', 'NN', 'NNP', 'NNP', 'VBD', 'NN']
+Caps window ['<s>', '<s>', '<s>', '<s>', '<s>', 'upperInitial', 'lowercase', 'upperInitial', 'upperInitial', 'lowercase', 'lowercase']
+
+ID 40495
+KL divergence 5.41900634765625
+FEATURES:   "<unk>", NNP, upperInitial
+Gold NER    ['B-LOC']
+Pred NER    ['B-PER']
+Text window ['"', 'red', '<unk>', '"', 'seized', '<unk>', 'in', 'the', 'italian', 'war', 'of']
+PoS window  ['"', 'NNP', 'NNP', '"', 'VBD', 'NNP', 'IN', 'DT', 'JJ', 'NN', 'IN']
+Caps window ['noinfo', 'upperInitial', 'upperInitial', 'noinfo', 'lowercase', 'upperInitial', 'lowercase', 'lowercase', 'upperInitial', 'lowercase', 'lowercase']
+
+ID 11336
+KL divergence 5.22137451171875
+FEATURES:   "<unk>", NNP, upperInitial
+Gold NER    ['B-LOC']
+Pred NER    ['B-PER']
+Text window ['<s>', 'belgrade', "'s", 'main', 'airport', '<unk>', 'beograd', 'will', 'be', 'closed', 'to']
+PoS window  ['<s>', 'NNP', 'POS', 'JJ', 'NN', 'NNP', 'NNP', 'MD', 'VB', 'VBN', 'TO']
+Caps window ['<s>', 'upperInitial', 'noinfo', 'lowercase', 'lowercase', 'upperInitial', 'upperInitial', 'lowercase', 'lowercase', 'lowercase', 'lowercase']
+
+ID 21517
+KL divergence 5.20845365524292
+FEATURES:   "al-aqsa", NN, noinfo
+Gold NER    ['B-LOC']
+Pred NER    ['O']
+Text window ['it', 'is', 'our', 'duty', 'towards', 'al-aqsa', 'to', 'come', 'and', 'pray', ',']
+PoS window  ['PRP', 'VBZ', 'PRP$', 'NN', 'IN', 'NN', 'TO', 'VB', 'CC', 'VB', ',']
+Caps window ['upperInitial', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'noinfo', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'noinfo']
+
+ID 24807
+KL divergence 5.0736212730407715
+FEATURES:   "<unk>", NNP, upperInitial
+Gold NER    ['B-LOC']
+Pred NER    ['B-PER']
+Text window ['on', 'the', '<unk>', ',', '"', '<unk>', ',', 'DGDG', ',', 'told', 'reuters']
+PoS window  ['IN', 'DT', 'NN', ',', '"', 'NNP', ',', 'CD', ',', 'VBD', 'NNP']
+Caps window ['lowercase', 'lowercase', 'lowercase', 'noinfo', 'noinfo', 'upperInitial', 'noinfo', 'noinfo', 'noinfo', 'lowercase', 'upperInitial']
+
+ID 11972
+KL divergence 5.029697895050049
+FEATURES:   "<unk>", NNP, upperInitial
+Gold NER    ['B-LOC']
+Pred NER    ['B-PER']
+Text window ['he', 'said', 'his', 'troops', 'took', '<unk>', 'without', 'casualties', 'on', 'august', 'DGDG']
+PoS window  ['PRP', 'VBD', 'PRP$', 'NNS', 'VBD', 'NNP', 'IN', 'NNS', 'IN', 'NNP', 'CD']
+Caps window ['upperInitial', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'upperInitial', 'lowercase', 'lowercase', 'lowercase', 'upperInitial', 'noinfo']
+
+ID 40384
+KL divergence 4.764895439147949
+FEATURES:   "<unk>", NNP, upperInitial
+Gold NER    ['B-LOC']
+Pred NER    ['B-PER']
+Text window ['to', 'france', 'and', 'got', 'back', '<unk>', ',', '<unk>', 'and', 'freiburg', '.']
+PoS window  ['TO', 'NNP', 'CC', 'VBD', 'RB', 'NNP', ',', 'NNP', 'CC', 'NNP', '.']
+Caps window ['lowercase', 'upperInitial', 'lowercase', 'lowercase', 'lowercase', 'upperInitial', 'noinfo', 'upperInitial', 'lowercase', 'upperInitial', 'noinfo']
+----------------------------
+Label B-PER (tag5)
+indices counts = 1842
+ranked by worst cross-entropy loss
+
+top 10 results
+
+ID 36436
+KL divergence 7.254745960235596
+FEATURES:   "(", (, noinfo
+Gold NER    ['B-PER']
+Pred NER    ['O']
+Text window ['long', 'time', 'and', 'he', 'saw', '(', 'tom', ')', '<unk>', 'and', '(']
+PoS window  ['JJ', 'NN', 'CC', 'PRP', 'VBD', '(', 'NNP', ')', 'NNP', 'CC', '(']
+Caps window ['lowercase', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'noinfo', 'upperInitial', 'noinfo', 'upperInitial', 'lowercase', 'noinfo']
+
+ID 25701
+KL divergence 5.195549488067627
+FEATURES:   "<unk>", NNP, upperInitial
+Gold NER    ['B-PER']
+Pred NER    ['I-ORG']
+Text window ['of', 'the', 'house', 'of', 'representatives', '<unk>', 'has', 'called', 'on', 'those', 'serving']
+PoS window  ['IN', 'DT', 'NNP', 'IN', 'NNPS', 'NNP', 'VBZ', 'VBN', 'IN', 'DT', 'NN']
+Caps window ['lowercase', 'lowercase', 'upperInitial', 'lowercase', 'upperInitial', 'upperInitial', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'lowercase']
+
+ID 44096
+KL divergence 4.516140937805176
+FEATURES:   "<unk>", NNP, upperInitial
+Gold NER    ['B-PER']
+Pred NER    ['B-ORG']
+Text window ['under', 'the', '<unk>', 'government', 'of', '<unk>', '<unk>', '.', '</s>', '</s>', '</s>']
+PoS window  ['IN', 'DT', 'JJ', 'NN', 'IN', 'NNP', 'NNP', '.', '</s>', '</s>', '</s>']
+Caps window ['lowercase', 'lowercase', 'noinfo', 'lowercase', 'lowercase', 'upperInitial', 'upperInitial', 'noinfo', '</s>', '</s>', '</s>']
+
+ID 50938
+KL divergence 4.493254661560059
+FEATURES:   "jordan", NNP, upperInitial
+Gold NER    ['B-PER']
+Pred NER    ['B-LOC']
+Text window ['plays', 'the', 'lead', 'role', 'in', 'jordan', "'s", 'film', '.', '</s>', '</s>']
+PoS window  ['VBZ', 'DT', 'NN', 'NN', 'IN', 'NNP', 'POS', 'NN', '.', '</s>', '</s>']
+Caps window ['lowercase', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'upperInitial', 'noinfo', 'lowercase', 'noinfo', '</s>', '</s>']
+
+ID 40617
+KL divergence 4.405569553375244
+FEATURES:   "<unk>", NNP, upperInitial
+Gold NER    ['B-PER']
+Pred NER    ['I-PER']
+Text window ['"', 'and', ',', 'as', '<unk>', '<unk>', ',', 'in', '"', 'anne', 'of']
+PoS window  ['"', 'CC', ',', 'IN', 'NNP', 'NNP', ',', 'IN', '"', 'NNP', 'IN']
+Caps window ['noinfo', 'lowercase', 'noinfo', 'lowercase', 'upperInitial', 'upperInitial', 'noinfo', 'lowercase', 'noinfo', 'upperInitial', 'lowercase']
+
+ID 38512
+KL divergence 4.395295143127441
+FEATURES:   "german", JJ, upperInitial
+Gold NER    ['B-PER']
+Pred NER    ['B-MISC']
+Text window ['46th', ')', ',', 'DG', '-', 'german', 'villa', '(', 'DGDG', '-', 'gomez']
+PoS window  ['JJ', ')', ',', 'CD', ':', 'JJ', 'NNP', '(', 'CD', ':', 'NNP']
+Caps window ['noinfo', 'noinfo', 'noinfo', 'noinfo', 'noinfo', 'upperInitial', 'upperInitial', 'noinfo', 'noinfo', 'noinfo', 'upperInitial']
+
+ID 44289
+KL divergence 4.070094108581543
+FEATURES:   "santiago", NNP, allCaps
+Gold NER    ['B-PER']
+Pred NER    ['B-LOC']
+Text window ['<s>', '<s>', '<s>', '<s>', '<s>', 'santiago', 'DGDGDGDG-DGDG-DGDG', '</s>', '</s>', '</s>', '</s>']
+PoS window  ['<s>', '<s>', '<s>', '<s>', '<s>', 'NNP', 'NNP', '</s>', '</s>', '</s>', '</s>']
+Caps window ['<s>', '<s>', '<s>', '<s>', '<s>', 'allCaps', 'noinfo', '</s>', '</s>', '</s>', '</s>']
+
+ID 40185
+KL divergence 3.9754457473754883
+FEATURES:   "iron", NNP, upperInitial
+Gold NER    ['B-PER']
+Pred NER    ['B-MISC']
+Text window ['<unk>', ',', 'dubbed', 'the', '"', 'iron', 'lady', '"', 'for', 'her', 'driven']
+PoS window  ['NNP', ',', 'VBD', 'DT', '"', 'NNP', 'NNP', '"', 'IN', 'PRP$', 'JJ']
+Caps window ['upperInitial', 'noinfo', 'lowercase', 'lowercase', 'noinfo', 'upperInitial', 'upperInitial', 'noinfo', 'lowercase', 'lowercase', 'lowercase']
+
+ID 36441
+KL divergence 3.901641845703125
+FEATURES:   "(", (, noinfo
+Gold NER    ['B-PER']
+Pred NER    ['O']
+Text window ['(', 'tom', ')', '<unk>', 'and', '(', 'jerry', ')', '<unk>', 'when', 'they']
+PoS window  ['(', 'NNP', ')', 'NNP', 'CC', '(', 'NNP', ')', 'NNP', 'WRB', 'PRP']
+Caps window ['noinfo', 'upperInitial', 'noinfo', 'upperInitial', 'lowercase', 'noinfo', 'upperInitial', 'noinfo', 'upperInitial', 'lowercase', 'lowercase']
+
+ID 15582
+KL divergence 3.8283448219299316
+FEATURES:   "<unk>", NNPS, upperInitial
+Gold NER    ['B-PER']
+Pred NER    ['B-ORG']
+Text window ['scandal', 'that', 'would', 'damage', 'the', '<unk>', '.', '</s>', '</s>', '</s>', '</s>']
+PoS window  ['NN', 'WDT', 'MD', 'VB', 'DT', 'NNPS', '.', '</s>', '</s>', '</s>', '</s>']
+Caps window ['lowercase', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'upperInitial', 'noinfo', '</s>', '</s>', '</s>', '</s>']
+----------------------------
+Label B-ORG (tag6)
+indices counts = 1341
+ranked by worst cross-entropy loss
+top 10 results
+
+ID 46025
+KL divergence 7.195424556732178
+FEATURES:   "north", NNP, upperInitial
+Gold NER    ['B-ORG']
+Pred NER    ['B-MISC']
+Text window ['family', 'is', 'waiting', ',', '"', 'north', 'korean', 'red', 'cross', 'president', 'li']
+PoS window  ['NN', 'VBZ', 'VBG', ',', '"', 'NNP', 'NNP', 'NNP', 'NNP', 'NN', 'NNP']
+Caps window ['lowercase', 'lowercase', 'lowercase', 'noinfo', 'noinfo', 'upperInitial', 'upperInitial', 'upperInitial', 'upperInitial', 'lowercase', 'upperInitial']
+
+ID 754
+KL divergence 5.347967624664307
+FEATURES:   "british", JJ, upperInitial
+Gold NER    ['B-ORG']
+Pred NER    ['B-MISC']
+Text window ['county', 'sides', 'and', 'another', 'against', 'british', 'universities', ',', '</s>', '</s>', '</s>']
+PoS window  ['NN', 'NNS', 'CC', 'DT', 'IN', 'JJ', 'NNS', ',', '</s>', '</s>', '</s>']
+Caps window ['lowercase', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'upperInitial', 'upperInitial', 'noinfo', '</s>', '</s>', '</s>']
+
+ID 24305
+KL divergence 5.345739364624023
+FEATURES:   "el", NNP, upperInitial
+Gold NER    ['B-ORG']
+Pred NER    ['B-LOC']
+Text window ['said', 'the', 'latest', 'evidence', 'from', 'el', 'al', 'in', 'no', 'way', 'supported']
+PoS window  ['VBD', 'DT', 'JJS', 'NN', 'IN', 'NNP', 'NNP', 'IN', 'DT', 'NN', 'VBD']
+Caps window ['lowercase', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'upperInitial', 'upperInitial', 'lowercase', 'lowercase', 'lowercase', 'lowercase']
+
+ID 32054
+KL divergence 5.196920871734619
+FEATURES:   "<unk>", VB, upperInitial
+Gold NER    ['B-ORG']
+Pred NER    ['B-PER']
+Text window ['<unk>', '(', 'u.s.', ')', ',', '<unk>', 'honda', ',', 'DGDG.DGDGDG', '</s>', '</s>']
+PoS window  ['NNP', '(', 'NNP', ')', ',', 'VB', 'NNP', ',', 'CD', '</s>', '</s>']
+Caps window ['upperInitial', 'noinfo', 'noinfo', 'noinfo', 'noinfo', 'upperInitial', 'upperInitial', 'noinfo', 'noinfo', '</s>', '</s>']
+
+ID 19508
+KL divergence 5.167893886566162
+FEATURES:   "air", NNP, upperInitial
+Gold NER    ['B-ORG']
+Pred NER    ['O']
+Text window ['was', 'deported', 'on', 'a', 'scheduled', 'air', 'france', 'flight', 'to', 'conakry', 'after']
+PoS window  ['VBD', 'VBN', 'IN', 'DT', 'VBN', 'NNP', 'NNP', 'NN', 'TO', 'JJ', 'IN']
+Caps window ['lowercase', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'upperInitial', 'upperInitial', 'lowercase', 'lowercase', 'upperInitial', 'lowercase']
+
+ID 32088
+KL divergence 5.045822620391846
+FEATURES:   "<unk>", NNP, upperInitial
+Gold NER    ['B-ORG']
+Pred NER    ['B-PER']
+Text window ['ribeiro', '(', 'brazil', ')', ',', '<unk>', 'honda', ',', 'DGDG.DGDGDG', '</s>', '</s>']
+PoS window  ['NNP', '(', 'NNP', ')', ',', 'NNP', 'NNP', ',', 'CD', '</s>', '</s>']
+Caps window ['upperInitial', 'noinfo', 'upperInitial', 'noinfo', 'noinfo', 'upperInitial', 'upperInitial', 'noinfo', 'noinfo', '</s>', '</s>']
+
+ID 32295
+KL divergence 4.928252696990967
+FEATURES:   "all", DT, upperInitial
+Gold NER    ['B-ORG']
+Pred NER    ['B-MISC']
+Text window ['defeat', 'and', 'an', 'historic', 'first', 'all', 'black', 'series', 'triumph', 'on', 'south']
+PoS window  ['VB', 'CC', 'DT', 'JJ', 'JJ', 'DT', 'NNP', 'NN', 'NN', 'IN', 'JJ']
+Caps window ['lowercase', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'upperInitial', 'upperInitial', 'lowercase', 'lowercase', 'lowercase', 'upperInitial']
+
+ID 32112
+KL divergence 4.873622417449951
+FEATURES:   "<unk>", VB, upperInitial
+Gold NER    ['B-ORG']
+Pred NER    ['B-PER']
+Text window ['<unk>', '(', 'brazil', ')', ',', '<unk>', 'honda', ',', 'DGDG.DGDGDG', '</s>', '</s>']
+PoS window  ['NNP', '(', 'NNP', ')', ',', 'VB', 'NNP', ',', 'CD', '</s>', '</s>']
+Caps window ['upperInitial', 'noinfo', 'upperInitial', 'noinfo', 'noinfo', 'upperInitial', 'upperInitial', 'noinfo', 'noinfo', '</s>', '</s>']
+
+ID 24168
+KL divergence 4.718067646026611
+FEATURES:   "el", NNP, upperInitial
+Gold NER    ['B-ORG']
+Pred NER    ['B-LOC']
+Text window ['say', 'no', 'reason', 'to', 'reopen', 'el', 'al', '<unk>', 'enquiry', '.', '</s>']
+PoS window  ['VBP', 'DT', 'NN', 'TO', 'VB', 'NNP', 'NNP', 'VBD', 'RB', '.', '</s>']
+Caps window ['lowercase', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'upperInitial', 'upperInitial', 'lowercase', 'lowercase', 'noinfo', '</s>']
+
+ID 32002
+KL divergence 4.662354469299316
+FEATURES:   "<unk>", VB, upperInitial
+Gold NER    ['B-ORG']
+Pred NER    ['B-PER']
+Text window ['<unk>', '(', 'italy', ')', ',', '<unk>', 'honda', ',', 'DGDG.DGDGDG', '(', 'DGDGDG.DGDGDG']
+PoS window  ['NNP', '(', 'NNP', ')', ',', 'VB', 'NNP', ',', 'CD', '(', 'CD']
+Caps window ['upperInitial', 'noinfo', 'upperInitial', 'noinfo', 'noinfo', 'upperInitial', 'upperInitial', 'noinfo', 'noinfo', 'noinfo', 'noinfo']
+----------------------------
+Label I-PER (tag7)
+indices counts = 1305
+ranked by worst cross-entropy loss
+
+top 10 results
+
+ID 36437
+KL divergence 5.558840274810791
+FEATURES:   "tom", NNP, upperInitial
+Gold NER    ['I-PER']
+Pred NER    ['B-PER']
+Text window ['time', 'and', 'he', 'saw', '(', 'tom', ')', '<unk>', 'and', '(', 'jerry']
+PoS window  ['NN', 'CC', 'PRP', 'VBD', '(', 'NNP', ')', 'NNP', 'CC', '(', 'NNP']
+Caps window ['lowercase', 'lowercase', 'lowercase', 'lowercase', 'noinfo', 'upperInitial', 'noinfo', 'upperInitial', 'lowercase', 'noinfo', 'upperInitial']
+
+ID 1522
+KL divergence 5.483065128326416
+FEATURES:   "<unk>", JJ, upperInitial
+Gold NER    ['I-PER']
+Pred NER    ['B-MISC']
+Text window ['"', 'hands', 'of', 'stone', '"', '<unk>', 'climbs', 'into', 'the', 'ring', 'on']
+PoS window  ['"', 'NNS', 'IN', 'NNP', '"', 'JJ', 'NNS', 'IN', 'DT', 'NN', 'IN']
+Caps window ['noinfo', 'upperInitial', 'lowercase', 'upperInitial', 'noinfo', 'upperInitial', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'lowercase']
+
+ID 1739
+KL divergence 5.034894943237305
+FEATURES:   "<unk>", NN, upperInitial
+Gold NER    ['I-PER']
+Pred NER    ['O']
+Text window ["'s", 'hector', '"', '<unk>', '"', '<unk>', '.', '</s>', '</s>', '</s>', '</s>']
+PoS window  ['POS', 'NNP', '"', 'NNP', '"', 'NN', '.', '</s>', '</s>', '</s>', '</s>']
+Caps window ['noinfo', 'upperInitial', 'noinfo', 'upperInitial', 'noinfo', 'upperInitial', 'noinfo', '</s>', '</s>', '</s>', '</s>']
+
+ID 45732
+KL divergence 4.729703903198242
+FEATURES:   "<unk>", NNP, upperInitial
+Gold NER    ['I-PER']
+Pred NER    ['B-LOC']
+Text window ['weeks', 'after', 'james', 'leander', '(', '<unk>', ')', '<unk>', ',', 'a', 'close']
+PoS window  ['NNS', 'IN', 'NNP', 'NNP', '(', 'NNP', ')', 'NNP', ',', 'DT', 'JJ']
+Caps window ['lowercase', 'lowercase', 'upperInitial', 'upperInitial', 'noinfo', 'upperInitial', 'noinfo', 'upperInitial', 'noinfo', 'lowercase', 'lowercase']
+
+ID 40275
+KL divergence 4.4520649909973145
+FEATURES:   "i", PRP, allCaps
+Gold NER    ['I-PER']
+Pred NER    ['O']
+Text window ['<s>', 'DGDGDGDG', '-', 'queen', 'elizabeth', 'i', 'born', '.', '</s>', '</s>', '</s>']
+PoS window  ['<s>', 'CD', ':', 'NNP', 'NNP', 'PRP', 'VBN', '.', '</s>', '</s>', '</s>']
+Caps window ['<s>', 'noinfo', 'noinfo', 'upperInitial', 'upperInitial', 'allCaps', 'lowercase', 'noinfo', '</s>', '</s>', '</s>']
+
+ID 1518
+KL divergence 4.149600028991699
+FEATURES:   "hands", NNS, upperInitial
+Gold NER    ['I-PER']
+Pred NER    ['O']
+Text window ['<unk>', '<unk>', 'legend', 'roberto', '"', 'hands', 'of', 'stone', '"', '<unk>', 'climbs']
+PoS window  ['JJ', 'NN', 'NN', 'NNP', '"', 'NNS', 'IN', 'NNP', '"', 'JJ', 'NNS']
+Caps window ['upperInitial', 'lowercase', 'lowercase', 'upperInitial', 'noinfo', 'upperInitial', 'lowercase', 'upperInitial', 'noinfo', 'upperInitial', 'lowercase']
+
+ID 40818
+KL divergence 4.028955936431885
+FEATURES:   "<unk>", NNP, noinfo
+Gold NER    ['I-PER']
+Pred NER    ['O']
+Text window ['<unk>', 'alan', 'john', '<unk>', '(', '<unk>', ')', 'taylor', 'died', '.', '</s>']
+PoS window  ['NN', 'NNP', 'NNP', 'NNP', '(', 'NNP', ')', 'NNP', 'VBD', '.', '</s>']
+Caps window ['lowercase', 'upperInitial', 'upperInitial', 'upperInitial', 'noinfo', 'noinfo', 'noinfo', 'upperInitial', 'lowercase', 'noinfo', '</s>']
+
+ID 1517
+KL divergence 3.4846184253692627
+FEATURES:   """, ", noinfo
+Gold NER    ['I-PER']
+Pred NER    ['O']
+Text window ['<s>', '<unk>', '<unk>', 'legend', 'roberto', '"', 'hands', 'of', 'stone', '"', '<unk>']
+PoS window  ['<s>', 'JJ', 'NN', 'NN', 'NNP', '"', 'NNS', 'IN', 'NNP', '"', 'JJ']
+Caps window ['<s>', 'upperInitial', 'lowercase', 'lowercase', 'upperInitial', 'noinfo', 'upperInitial', 'lowercase', 'upperInitial', 'noinfo', 'upperInitial']
+
+ID 40817
+KL divergence 3.469578504562378
+FEATURES:   "(", (, noinfo
+Gold NER    ['I-PER']
+Pred NER    ['O']
+Text window ['british', '<unk>', 'alan', 'john', '<unk>', '(', '<unk>', ')', 'taylor', 'died', '.']
+PoS window  ['JJ', 'NN', 'NNP', 'NNP', 'NNP', '(', 'NNP', ')', 'NNP', 'VBD', '.']
+Caps window ['upperInitial', 'lowercase', 'upperInitial', 'upperInitial', 'upperInitial', 'noinfo', 'noinfo', 'noinfo', 'upperInitial', 'lowercase', 'noinfo']
+
+ID 40660
+KL divergence 3.3629066944122314
+FEATURES:   "i", PRP, allCaps
+Gold NER    ['I-PER']
+Pred NER    ['O']
+Text window ['DGDGDGDG', '-', 'belgian', 'king', '<unk>', 'i', 'born', '.', '</s>', '</s>', '</s>']
+PoS window  ['CD', ':', 'JJ', 'NNP', 'NNP', 'PRP', 'VBN', '.', '</s>', '</s>', '</s>']
+Caps window ['noinfo', 'noinfo', 'upperInitial', 'upperInitial', 'upperInitial', 'allCaps', 'lowercase', 'noinfo', '</s>', '</s>', '</s>']
+----------------------------
+Label I-ORG (tag8)
+indices counts = 728
+ranked by worst cross-entropy loss
+top 10 results
+
+ID 17750
+KL divergence 5.328080654144287
+FEATURES:   "'s", POS, noinfo
+Gold NER    ['I-ORG']
+Pred NER    ['O']
+Text window ['<s>', '<s>', '<s>', '<s>', '<unk>', "'s", 'deal', 'could', '<unk>', 'more', '<unk>']
+PoS window  ['<s>', '<s>', '<s>', '<s>', 'NNP', 'POS', 'NN', 'MD', 'VB', 'JJR', 'NNS']
+Caps window ['<s>', '<s>', '<s>', '<s>', 'upperInitial', 'noinfo', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'lowercase']
+
+ID 18167
+KL divergence 5.067084312438965
+FEATURES:   "'s", POS, noinfo
+Gold NER    ['I-ORG']
+Pred NER    ['O']
+Text window ['<s>', '"', 'i', 'think', '<unk>', "'s", 'was', '<unk>', 'itself', ',', 'and']
+PoS window  ['<s>', '"', 'PRP', 'VBP', 'NNP', 'POS', 'VBD', 'VBG', 'PRP', ',', 'CC']
+Caps window ['<s>', 'noinfo', 'allCaps', 'lowercase', 'upperInitial', 'noinfo', 'lowercase', 'lowercase', 'lowercase', 'noinfo', 'lowercase']
+
+ID 32078
+KL divergence 4.972652435302734
+FEATURES:   "<unk>", NNP, noinfo
+Gold NER    ['I-ORG']
+Pred NER    ['I-PER']
+Text window ['(', 'u.s.', ')', ',', '<unk>', '<unk>', ',', 'DGDG.DGDGDG', '</s>', '</s>', '</s>']
+PoS window  ['(', 'NNP', ')', ',', 'NNP', 'NNP', ',', 'CD', '</s>', '</s>', '</s>']
+Caps window ['noinfo', 'noinfo', 'noinfo', 'noinfo', 'upperInitial', 'noinfo', 'noinfo', 'noinfo', '</s>', '</s>', '</s>']
+
+ID 32033
+KL divergence 4.971229076385498
+FEATURES:   "<unk>", NNP, noinfo
+Gold NER    ['I-ORG']
+Pred NER    ['I-PER']
+Text window ['(', 'u.s.', ')', ',', '<unk>', '<unk>', ',', 'DGDG.DGDGDG', '</s>', '</s>', '</s>']
+PoS window  ['(', 'NNP', ')', ',', 'VB', 'NNP', ',', 'CD', '</s>', '</s>', '</s>']
+Caps window ['noinfo', 'noinfo', 'noinfo', 'noinfo', 'upperInitial', 'noinfo', 'noinfo', 'noinfo', '</s>', '</s>', '</s>']
+
+ID 32044
+KL divergence 4.971229076385498
+FEATURES:   "<unk>", NNP, noinfo
+Gold NER    ['I-ORG']
+Pred NER    ['I-PER']
+Text window ['(', 'u.s.', ')', ',', '<unk>', '<unk>', ',', 'DGDG.DGDGDG', '</s>', '</s>', '</s>']
+PoS window  ['(', 'NNP', ')', ',', 'VB', 'NNP', ',', 'CD', '</s>', '</s>', '</s>']
+Caps window ['noinfo', 'noinfo', 'noinfo', 'noinfo', 'upperInitial', 'noinfo', 'noinfo', 'noinfo', '</s>', '</s>', '</s>']
+
+ID 18071
+KL divergence 4.96559476852417
+FEATURES:   "'s", POS, noinfo
+Gold NER    ['I-ORG']
+Pred NER    ['O']
+Text window ['<s>', '<s>', '<s>', '<s>', '<unk>', "'s", 'was', 'the', 'prize', 'in', 'missouri']
+PoS window  ['<s>', '<s>', '<s>', '<s>', 'NNP', 'POS', 'VBD', 'DT', 'NN', 'IN', 'NNP']
+Caps window ['<s>', '<s>', '<s>', '<s>', 'upperInitial', 'noinfo', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'upperInitial']
+
+ID 32066
+KL divergence 4.909568786621094
+FEATURES:   "<unk>", NNP, noinfo
+Gold NER    ['I-ORG']
+Pred NER    ['I-PER']
+Text window ['(', 'canada', ')', ',', '<unk>', '<unk>', ',', 'DGDG.DGDGDG', '</s>', '</s>', '</s>']
+PoS window  ['(', 'NNP', ')', ',', 'NNP', 'NNP', ',', 'CD', '</s>', '</s>', '</s>']
+Caps window ['noinfo', 'upperInitial', 'noinfo', 'noinfo', 'upperInitial', 'noinfo', 'noinfo', 'noinfo', '</s>', '</s>', '</s>']
+
+ID 8902
+KL divergence 4.8340325355529785
+FEATURES:   "controls", NNP, upperInitial
+Gold NER    ['I-ORG']
+Pred NER    ['I-PER']
+Text window ['<s>', '<s>', '<unk>', ',', 'johnson', 'controls', 'and', '<unk>', 'have', 'been', 'working']
+PoS window  ['<s>', '<s>', 'NNP', ',', 'NNP', 'NNP', 'CC', 'NNP', 'VBP', 'VBN', 'VBG']
+Caps window ['<s>', '<s>', 'upperInitial', 'noinfo', 'upperInitial', 'upperInitial', 'lowercase', 'upperInitial', 'lowercase', 'lowercase', 'lowercase']
+
+ID 51299
+KL divergence 4.8009843826293945
+FEATURES:   "<unk>", NNP, upperInitial
+Gold NER    ['I-ORG']
+Pred NER    ['O']
+Text window ['chips', 'like', '<unk>', ',', 'bangladesh', '<unk>', ',', '<unk>', 'cement', 'and', 'atlas']
+PoS window  ['NNS', 'IN', 'NNP', ',', 'NNP', 'NNP', ',', 'NNP', 'NNP', 'CC', 'NNP']
+Caps window ['lowercase', 'lowercase', 'allCaps', 'noinfo', 'upperInitial', 'upperInitial', 'noinfo', 'upperInitial', 'upperInitial', 'lowercase', 'upperInitial']
+
+ID 22715
+KL divergence 4.6751909255981445
+FEATURES:   ".", ., noinfo
+Gold NER    ['I-ORG']
+Pred NER    ['O']
+Text window ['david', '<unk>', ',', 'salomon', '<unk>', '.', "'", '</s>', '</s>', '</s>', '</s>']
+PoS window  ['NNP', 'NNP', ',', 'NNP', 'NNP', '.', "''", '</s>', '</s>', '</s>', '</s>']
+Caps window ['upperInitial', 'upperInitial', 'noinfo', 'upperInitial', 'upperInitial', 'noinfo', 'noinfo', '</s>', '</s>', '</s>', '</s>']
+----------------------------
+Label B-MISC (tag9)
+indices counts = 915
+ranked by worst cross-entropy loss
+
+top 10 results
+
+ID 49150
+KL divergence 5.70570707321167
+FEATURES:   "<unk>", NN, noinfo
+Gold NER    ['B-MISC']
+Pred NER    ['O']
+Text window ['force', 'of', 'DGDG', 'to', 'DGDG', '<unk>', 'and', '<unk>', 'fighter', 'planes', 'and']
+PoS window  ['NN', 'IN', 'CD', 'TO', 'CD', 'NN', 'CC', 'NNP', 'NN', 'NNS', 'CC']
+Caps window ['lowercase', 'lowercase', 'noinfo', 'lowercase', 'noinfo', 'noinfo', 'lowercase', 'noinfo', 'lowercase', 'lowercase', 'lowercase']
+
+ID 50647
+KL divergence 5.699979305267334
+FEATURES:   "michael", NNP, upperInitial
+Gold NER    ['B-MISC']
+Pred NER    ['B-PER']
+Text window ['a', 'film', 'than', 'over', '"', 'michael', '<unk>', '"', ',', 'his', 'controversial']
+PoS window  ['DT', 'NN', 'IN', 'IN', '"', 'NNP', 'NNP', '"', ',', 'PRP$', 'JJ']
+Caps window ['lowercase', 'lowercase', 'lowercase', 'lowercase', 'noinfo', 'upperInitial', 'upperInitial', 'noinfo', 'noinfo', 'lowercase', 'lowercase']
+
+ID 17952
+KL divergence 5.543441295623779
+FEATURES:   "<unk>", NN, noinfo
+Gold NER    ['B-MISC']
+Pred NER    ['O']
+Text window ['is', 'a', '$', 'DG.DGDG', 'billion', '<unk>', '.', '</s>', '</s>', '</s>', '</s>']
+PoS window  ['VBZ', 'DT', '$', 'CD', 'CD', 'NN', '.', '</s>', '</s>', '</s>', '</s>']
+Caps window ['lowercase', 'lowercase', 'noinfo', 'noinfo', 'lowercase', 'noinfo', 'noinfo', '</s>', '</s>', '</s>', '</s>']
+
+ID 40229
+KL divergence 5.374528408050537
+FEATURES:   "my", PRP$, upperInitial
+Gold NER    ['B-MISC']
+Pred NER    ['O']
+Text window [',', 'admitted', 'in', 'her', '<unk>', 'my', 'turn', 'that', 'she', 'regularly', 'consulted']
+PoS window  [',', 'VBN', 'IN', 'PRP$', 'NN', 'PRP$', 'VB', 'IN', 'PRP', 'RB', 'VBD']
+Caps window ['noinfo', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'upperInitial', 'upperInitial', 'lowercase', 'lowercase', 'lowercase', 'lowercase']
+
+ID 43457
+KL divergence 5.290989875793457
+FEATURES:   "<unk>", JJ, upperInitial
+Gold NER    ['B-MISC']
+Pred NER    ['O']
+Text window ['<s>', '<s>', '<s>', '<s>', 'only', '<unk>', '(', 'islamic', 'law', ')', 'can']
+PoS window  ['<s>', '<s>', '<s>', '<s>', 'RB', 'JJ', '(', 'NNP', 'NN', ')', 'MD']
+Caps window ['<s>', '<s>', '<s>', '<s>', 'upperInitial', 'upperInitial', 'noinfo', 'upperInitial', 'lowercase', 'noinfo', 'lowercase']
+
+ID 43588
+KL divergence 5.174681186676025
+FEATURES:   "division", NN, lowercase
+Gold NER    ['B-MISC']
+Pred NER    ['O']
+Text window ['<s>', '<s>', '<s>', '"', 'this', 'division', 'would', 'guarantee', 'a', '<unk>', 'of']
+PoS window  ['<s>', '<s>', '<s>', '"', 'DT', 'NN', 'MD', 'VB', 'DT', 'NN', 'IN']
+Caps window ['<s>', '<s>', '<s>', 'noinfo', 'upperInitial', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'lowercase']
+
+ID 3816
+KL divergence 5.000572681427002
+FEATURES:   "pro", FW, upperInitial
+Gold NER    ['B-MISC']
+Pred NER    ['O']
+Text window ['<s>', '<s>', '<s>', 'a', '<unk>', 'pro', 'bowl', 'selection', ',', 'cunningham', 'rushed']
+PoS window  ['<s>', '<s>', '<s>', 'DT', 'JJ', 'FW', 'NNP', 'NN', ',', 'NNP', 'VBD']
+Caps window ['<s>', '<s>', '<s>', 'allCaps', 'noinfo', 'upperInitial', 'upperInitial', 'lowercase', 'noinfo', 'upperInitial', 'lowercase']
+
+ID 41196
+KL divergence 4.9970927238464355
+FEATURES:   "<unk>", NNS, upperInitial
+Gold NER    ['B-MISC']
+Pred NER    ['B-PER']
+Text window ['on', 'the', 'issue', ',', 'asking', '<unk>', 'if', 'they', 'wanted', 'a', 'separate']
+PoS window  ['IN', 'DT', 'NN', ',', 'VBG', 'NNS', 'IN', 'PRP', 'VBD', 'DT', 'JJ']
+Caps window ['lowercase', 'lowercase', 'lowercase', 'noinfo', 'lowercase', 'upperInitial', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'lowercase']
+
+ID 51138
+KL divergence 4.961843967437744
+FEATURES:   "michael", NNP, upperInitial
+Gold NER    ['B-MISC']
+Pred NER    ['B-PER']
+Text window ['than', 'i', 'have', 'over', "'", 'michael', '<unk>', "'", ',', 'but', 'i']
+PoS window  ['IN', 'PRP', 'VBP', 'IN', "''", 'NNP', 'NNP', "''", ',', 'CC', 'PRP']
+Caps window ['lowercase', 'allCaps', 'lowercase', 'lowercase', 'noinfo', 'upperInitial', 'upperInitial', 'noinfo', 'noinfo', 'lowercase', 'allCaps']
+
+ID 49244
+KL divergence 4.9548773765563965
+FEATURES:   "carl", NNP, upperInitial
+Gold NER    ['B-MISC']
+Pred NER    ['B-PER']
+Text window ['<s>', '<s>', '<s>', '<s>', 'the', 'carl', '<unk>', 'leads', 'a', 'battle', 'group']
+PoS window  ['<s>', '<s>', '<s>', '<s>', 'DT', 'NNP', 'NNP', 'VBZ', 'DT', 'NN', 'NN']
+Caps window ['<s>', '<s>', '<s>', '<s>', 'upperInitial', 'upperInitial', 'upperInitial', 'lowercase', 'lowercase', 'lowercase', 'lowercase']
 ----------------------------
 Label I-LOC (tag10)
 indices counts = 253
 ranked by worst cross-entropy loss
-top 2 results
+top 10 results
 
 ID 18792
 KL divergence 5.171449661254883
@@ -347,12 +998,85 @@ Text window ['in', 'the', 'midwest', 'and', '<unk>', 'DG', 'in', 'california', '
 PoS window  ['IN', 'DT', 'NNP', 'CC', 'NNP', 'CD', 'IN', 'NNP', '.', '</s>', '</s>']
 Caps window ['lowercase', 'lowercase', 'upperInitial', 'lowercase', 'upperInitial', 'noinfo', 'lowercase', 'upperInitial', 'noinfo', '</s>', '</s>']
 
+ID 24174
+KL divergence 4.832225799560547
+FEATURES:   "<unk>", NNP, allCaps
+Gold NER    ['I-LOC']
+Pred NER    ['B-LOC']
+Text window ['<s>', '<s>', '<s>', '<s>', 'the', '<unk>', 'DGDGDGDG-DGDG-DGDG', '</s>', '</s>', '</s>', '</s>']
+PoS window  ['<s>', '<s>', '<s>', '<s>', 'DT', 'NNP', 'CD', '</s>', '</s>', '</s>', '</s>']
+Caps window ['<s>', '<s>', '<s>', '<s>', 'allCaps', 'allCaps', 'noinfo', '</s>', '</s>', '</s>', '</s>']
+
+ID 39549
+KL divergence 4.205312252044678
+FEATURES:   "netherlands", NNP, upperInitial
+Gold NER    ['I-LOC']
+Pred NER    ['B-LOC']
+Text window ['<s>', '<s>', '<s>', '<s>', 'the', 'netherlands', 'drew', 'DG-DG', 'with', '</s>', '</s>']
+PoS window  ['<s>', '<s>', '<s>', '<s>', 'DT', 'NNP', 'VBD', 'RB', 'IN', '</s>', '</s>']
+Caps window ['<s>', '<s>', '<s>', '<s>', 'upperInitial', 'upperInitial', 'lowercase', 'noinfo', 'lowercase', '</s>', '</s>']
+
+ID 48258
+KL divergence 3.9542834758758545
+FEATURES:   "DGDG", NNP, noinfo
+Gold NER    ['I-LOC']
+Pred NER    ['O']
+Text window ['day', 'weekend', ',', 'including', '<unk>', 'DGDG', 'on', 'the', 'east', 'coast', ',']
+PoS window  ['NNP', 'NN', ',', 'VBG', 'NNP', 'NNP', 'IN', 'DT', 'NNP', 'NNP', ',']
+Caps window ['upperInitial', 'lowercase', 'noinfo', 'lowercase', 'upperInitial', 'noinfo', 'lowercase', 'lowercase', 'upperInitial', 'upperInitial', 'noinfo']
+
+ID 4005
+KL divergence 3.9480903148651123
+FEATURES:   "course", NNP, upperInitial
+Gold NER    ['I-LOC']
+Pred NER    ['O']
+Text window ['<unk>', 'brown', '<unk>', 'park', 'golf', 'course', 'after', 'the', 'first', 'round', '</s>']
+PoS window  ['JJ', 'NNP', 'NNP', 'NNP', 'NNP', 'NNP', 'IN', 'DT', 'JJ', 'NN', '</s>']
+Caps window ['noinfo', 'upperInitial', 'upperInitial', 'upperInitial', 'upperInitial', 'upperInitial', 'lowercase', 'lowercase', 'lowercase', 'lowercase', '</s>']
+
+ID 48265
+KL divergence 3.9032363891601562
+FEATURES:   "DGDG", CD, noinfo
+Gold NER    ['I-LOC']
+Pred NER    ['O']
+Text window ['the', 'east', 'coast', ',', '<unk>', 'DGDG', 'and', 'DGDG', 'in', 'the', 'midwest']
+PoS window  ['DT', 'NNP', 'NNP', ',', 'NNP', 'CD', 'CC', 'CD', 'IN', 'DT', 'NNP']
+Caps window ['lowercase', 'upperInitial', 'upperInitial', 'noinfo', 'upperInitial', 'noinfo', 'lowercase', 'noinfo', 'lowercase', 'lowercase', 'upperInitial']
+
+ID 26807
+KL divergence 3.8551552295684814
+FEATURES:   "<unk>", NNP, allCaps
+Gold NER    ['I-LOC']
+Pred NER    ['I-PER']
+Text window ['<s>', '<s>', '<s>', '<s>', 'la', '<unk>', ',', 'spain', 'DGDGDGDG-DGDG-DGDG', '</s>', '</s>']
+PoS window  ['<s>', '<s>', '<s>', '<s>', 'NNP', 'NNP', ',', 'NNP', 'NNP', '</s>', '</s>']
+Caps window ['<s>', '<s>', '<s>', '<s>', 'allCaps', 'allCaps', 'noinfo', 'upperInitial', 'noinfo', '</s>', '</s>']
+
+ID 11337
+KL divergence 3.7279467582702637
+FEATURES:   "beograd", NNP, upperInitial
+Gold NER    ['I-LOC']
+Pred NER    ['I-PER']
+Text window ['belgrade', "'s", 'main', 'airport', '<unk>', 'beograd', 'will', 'be', 'closed', 'to', 'traffic']
+PoS window  ['NNP', 'POS', 'JJ', 'NN', 'NNP', 'NNP', 'MD', 'VB', 'VBN', 'TO', 'VB']
+Caps window ['upperInitial', 'noinfo', 'lowercase', 'lowercase', 'upperInitial', 'upperInitial', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'lowercase']
+
+ID 35772
+KL divergence 3.517124652862549
+FEATURES:   "salvador", NNP, upperInitial
+Gold NER    ['I-LOC']
+Pred NER    ['I-ORG']
+Text window ['<s>', '<s>', '<s>', '<s>', 'el', 'salvador', '-', 'luis', '<unk>', '(', '61st']
+PoS window  ['<s>', '<s>', '<s>', '<s>', 'NNP', 'NNP', ':', 'NNP', 'NNP', '(', 'CD']
+Caps window ['<s>', '<s>', '<s>', '<s>', 'upperInitial', 'upperInitial', 'noinfo', 'upperInitial', 'upperInitial', 'noinfo', 'noinfo']
+
 -------------------------HALLUCINATIONS------------------------
 model predicts a NER label, but gold label shows None
 
 indices counts = 120
 ranked by worst cross-entropy loss
-top 2 results
+
+top 10 results
 
 ID 32072
 KL divergence 4.47525691986084
@@ -372,12 +1096,84 @@ Text window ['families', 'split', 'by', 'the', 'korean', 'war', '.', '</s>', '</
 PoS window  ['NNS', 'VBN', 'IN', 'DT', 'NNP', 'NNP', '.', '</s>', '</s>', '</s>', '</s>']
 Caps window ['lowercase', 'lowercase', 'lowercase', 'lowercase', 'upperInitial', 'upperInitial', 'noinfo', '</s>', '</s>', '</s>', '</s>']
 
+ID 6414
+KL divergence 3.9361867904663086
+FEATURES:   "prix", JJ, lowercase
+Gold NER    ['O']
+Pred NER    ['I-MISC']
+Text window ['two', 'days', 'after', 'the', 'grand', 'prix', 'final', 'in', 'milan', '.', '</s>']
+PoS window  ['CD', 'NNS', 'IN', 'DT', 'JJ', 'JJ', 'JJ', 'IN', 'NNP', '.', '</s>']
+Caps window ['lowercase', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'upperInitial', 'noinfo', '</s>']
+
+ID 35697
+KL divergence 3.9106359481811523
+FEATURES:   "ii", NNP, allCaps
+Gold NER    ['O']
+Pred NER    ['B-LOC']
+Text window ['<s>', '<s>', '<s>', 'world', 'group', 'ii', ',', 'first', 'round', '(', 'march']
+PoS window  ['<s>', '<s>', '<s>', 'NNP', 'NNP', 'NNP', ',', 'JJ', 'NN', '(', 'NNP']
+Caps window ['<s>', '<s>', '<s>', 'upperInitial', 'upperInitial', 'allCaps', 'noinfo', 'lowercase', 'lowercase', 'noinfo', 'upperInitial']
+
+ID 30162
+KL divergence 3.780775308609009
+FEATURES:   "county", NNP, upperInitial
+Gold NER    ['O']
+Pred NER    ['I-ORG']
+Text window ['<s>', '<s>', '<unk>', 'DGDGDG', 'stirling', 'county', 'DGDG', '</s>', '</s>', '</s>', '</s>']
+PoS window  ['<s>', '<s>', 'VB', 'CD', 'NNP', 'NNP', 'CD', '</s>', '</s>', '</s>', '</s>']
+Caps window ['<s>', '<s>', 'upperInitial', 'noinfo', 'upperInitial', 'upperInitial', 'noinfo', '</s>', '</s>', '</s>', '</s>']
+
+ID 34293
+KL divergence 3.696566581726074
+FEATURES:   "jansher", NNP, upperInitial
+Gold NER    ['O']
+Pred NER    ['B-PER']
+Text window ['for', 'it', '--', 'that', "'s", 'jansher', '.', '"', '</s>', '</s>', '</s>']
+PoS window  ['IN', 'PRP', ':', 'DT', 'VBZ', 'NNP', '.', '"', '</s>', '</s>', '</s>']
+Caps window ['lowercase', 'lowercase', 'noinfo', 'lowercase', 'noinfo', 'upperInitial', 'noinfo', 'noinfo', '</s>', '</s>', '</s>']
+
+ID 40616
+KL divergence 3.6612863540649414
+FEATURES:   "<unk>", NNP, upperInitial
+Gold NER    ['O']
+Pred NER    ['B-PER']
+Text window ['arabia', '"', 'and', ',', 'as', '<unk>', '<unk>', ',', 'in', '"', 'anne']
+PoS window  ['NNP', '"', 'CC', ',', 'IN', 'NNP', 'NNP', ',', 'IN', '"', 'NNP']
+Caps window ['upperInitial', 'noinfo', 'lowercase', 'noinfo', 'lowercase', 'upperInitial', 'upperInitial', 'noinfo', 'lowercase', 'noinfo', 'upperInitial']
+
+ID 9299
+KL divergence 3.601565361022949
+FEATURES:   "bunds", NNP, upperInitial
+Gold NER    ['O']
+Pred NER    ['B-MISC']
+Text window ['<s>', '<s>', '<s>', 'germany', '-', 'bunds', 'extended', 'losses', ',', '<unk>', 'with']
+PoS window  ['<s>', '<s>', '<s>', 'JJ', ':', 'NNP', 'VBD', 'NNS', ',', 'VBG', 'IN']
+Caps window ['<s>', '<s>', '<s>', 'allCaps', 'noinfo', 'upperInitial', 'lowercase', 'lowercase', 'noinfo', 'lowercase', 'lowercase']
+
+ID 13169
+KL divergence 3.5474436283111572
+FEATURES:   "<unk>", NNP, mixedCaps
+Gold NER    ['O']
+Pred NER    ['I-ORG']
+Text window ['<unk>', 'said', 'he', 'regarded', 'cofinec', '<unk>', '--', 'which', 'are', 'trading', 'below']
+PoS window  ['NNP', 'VBD', 'PRP', 'VBD', 'NNP', 'NNP', ':', 'WDT', 'VBP', 'VBG', 'IN']
+Caps window ['upperInitial', 'lowercase', 'lowercase', 'lowercase', 'upperInitial', 'mixedCaps', 'noinfo', 'lowercase', 'lowercase', 'lowercase', 'lowercase']
+
+ID 28093
+KL divergence 3.3571155071258545
+FEATURES:   "pakistan", SYM, lowercase
+Gold NER    ['O']
+Pred NER    ['B-LOC']
+Text window ['<s>', '<s>', '<s>', '<s>', '<s>', 'pakistan', '</s>', '</s>', '</s>', '</s>', '</s>']
+PoS window  ['<s>', '<s>', '<s>', '<s>', '<s>', 'SYM', '</s>', '</s>', '</s>', '</s>', '</s>']
+Caps window ['<s>', '<s>', '<s>', '<s>', '<s>', 'lowercase', '</s>', '</s>', '</s>', '</s>', '</s>']
+
 ----------------------MISSED NER LABELS------------------------
 model predicts no NER label, but gold label shows a NER class
 
 indices counts = 259
 ranked by worst cross-entropy loss
-top 2 results
+top 10 results
 
 ID 36436
 KL divergence 7.254745960235596
@@ -397,11 +1193,84 @@ Text window ['coast', ',', '<unk>', 'DGDG', 'and', 'DGDG', 'in', 'the', 'midwest
 PoS window  ['NNP', ',', 'NNP', 'CD', 'CC', 'CD', 'IN', 'DT', 'NNP', 'CC', 'NNP']
 Caps window ['upperInitial', 'noinfo', 'upperInitial', 'noinfo', 'lowercase', 'noinfo', 'lowercase', 'lowercase', 'upperInitial', 'lowercase', 'upperInitial']
 
+ID 49150
+KL divergence 5.70570707321167
+FEATURES:   "<unk>", NN, noinfo
+Gold NER    ['B-MISC']
+Pred NER    ['O']
+Text window ['force', 'of', 'DGDG', 'to', 'DGDG', '<unk>', 'and', '<unk>', 'fighter', 'planes', 'and']
+PoS window  ['NN', 'IN', 'CD', 'TO', 'CD', 'NN', 'CC', 'NNP', 'NN', 'NNS', 'CC']
+Caps window ['lowercase', 'lowercase', 'noinfo', 'lowercase', 'noinfo', 'noinfo', 'lowercase', 'noinfo', 'lowercase', 'lowercase', 'lowercase']
+
+ID 17953
+KL divergence 5.644556999206543
+FEATURES:   ".", ., noinfo
+Gold NER    ['I-MISC']
+Pred NER    ['O']
+Text window ['a', '$', 'DG.DGDG', 'billion', '<unk>', '.', '</s>', '</s>', '</s>', '</s>', '</s>']
+PoS window  ['DT', '$', 'CD', 'CD', 'NN', '.', '</s>', '</s>', '</s>', '</s>', '</s>']
+Caps window ['lowercase', 'noinfo', 'noinfo', 'lowercase', 'noinfo', 'noinfo', '</s>', '</s>', '</s>', '</s>', '</s>']
+
+ID 44993
+KL divergence 5.564077854156494
+FEATURES:   "philippine", JJ, upperInitial
+Gold NER    ['B-LOC']
+Pred NER    ['O']
+Text window ['<s>', '<s>', '<s>', '<s>', '<s>', 'philippine', 'president', '<unk>', '<unk>', 'expressed', 'gratitude']
+PoS window  ['<s>', '<s>', '<s>', '<s>', '<s>', 'JJ', 'NN', 'NNP', 'NNP', 'VBD', 'NN']
+Caps window ['<s>', '<s>', '<s>', '<s>', '<s>', 'upperInitial', 'lowercase', 'upperInitial', 'upperInitial', 'lowercase', 'lowercase']
+
+ID 17952
+KL divergence 5.543441295623779
+FEATURES:   "<unk>", NN, noinfo
+Gold NER    ['B-MISC']
+Pred NER    ['O']
+Text window ['is', 'a', '$', 'DG.DGDG', 'billion', '<unk>', '.', '</s>', '</s>', '</s>', '</s>']
+PoS window  ['VBZ', 'DT', '$', 'CD', 'CD', 'NN', '.', '</s>', '</s>', '</s>', '</s>']
+Caps window ['lowercase', 'lowercase', 'noinfo', 'noinfo', 'lowercase', 'noinfo', 'noinfo', '</s>', '</s>', '</s>', '</s>']
+
+ID 40229
+KL divergence 5.374528408050537
+FEATURES:   "my", PRP$, upperInitial
+Gold NER    ['B-MISC']
+Pred NER    ['O']
+Text window [',', 'admitted', 'in', 'her', '<unk>', 'my', 'turn', 'that', 'she', 'regularly', 'consulted']
+PoS window  [',', 'VBN', 'IN', 'PRP$', 'NN', 'PRP$', 'VB', 'IN', 'PRP', 'RB', 'VBD']
+Caps window ['noinfo', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'upperInitial', 'upperInitial', 'lowercase', 'lowercase', 'lowercase', 'lowercase']
+
+ID 17750
+KL divergence 5.328080654144287
+FEATURES:   "'s", POS, noinfo
+Gold NER    ['I-ORG']
+Pred NER    ['O']
+Text window ['<s>', '<s>', '<s>', '<s>', '<unk>', "'s", 'deal', 'could', '<unk>', 'more', '<unk>']
+PoS window  ['<s>', '<s>', '<s>', '<s>', 'NNP', 'POS', 'NN', 'MD', 'VB', 'JJR', 'NNS']
+Caps window ['<s>', '<s>', '<s>', '<s>', 'upperInitial', 'noinfo', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'lowercase']
+
+ID 43457
+KL divergence 5.290989875793457
+FEATURES:   "<unk>", JJ, upperInitial
+Gold NER    ['B-MISC']
+Pred NER    ['O']
+Text window ['<s>', '<s>', '<s>', '<s>', 'only', '<unk>', '(', 'islamic', 'law', ')', 'can']
+PoS window  ['<s>', '<s>', '<s>', '<s>', 'RB', 'JJ', '(', 'NNP', 'NN', ')', 'MD']
+Caps window ['<s>', '<s>', '<s>', '<s>', 'upperInitial', 'upperInitial', 'noinfo', 'upperInitial', 'lowercase', 'noinfo', 'lowercase']
+
+ID 21517
+KL divergence 5.20845365524292
+FEATURES:   "al-aqsa", NN, noinfo
+Gold NER    ['B-LOC']
+Pred NER    ['O']
+Text window ['it', 'is', 'our', 'duty', 'towards', 'al-aqsa', 'to', 'come', 'and', 'pray', ',']
+PoS window  ['PRP', 'VBZ', 'PRP$', 'NN', 'IN', 'NN', 'TO', 'VB', 'CC', 'VB', ',']
+Caps window ['upperInitial', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'noinfo', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'noinfo']
+
 -------------------BEST NER LABEL MATCH--------------------
 
 indices counts = 7864
 ranked by best cross-entropy loss
-top 2 results
+
+top 10 results
 
 ID 9701
 KL divergence 0.04839058592915535
@@ -420,3 +1289,76 @@ Pred NER    ['B-MISC']
 Text window ['DGDGDGDG', 'fell', 'c$', 'DG.DGDG', 'to', 'c$', 'DGDG.DGDG', 'to', 'yield', 'DG.DGDGDG', 'percent']
 PoS window  ['CD', 'VBD', '$', 'CD', 'TO', '$', 'CD', 'TO', 'VB', 'CD', 'NN']
 Caps window ['noinfo', 'lowercase', 'noinfo', 'noinfo', 'lowercase', 'noinfo', 'noinfo', 'lowercase', 'lowercase', 'noinfo', 'lowercase']
+
+ID 20358
+KL divergence 0.05011942610144615
+FEATURES:   "c$", $, noinfo
+Gold NER    ['B-MISC']
+Pred NER    ['B-MISC']
+Text window ['DGDGDGDG', 'fell', 'c$', 'DG.DGDG', 'to', 'c$', 'DGDGDG.DGDG', 'to', 'yield', 'DG.DGDGDG', 'percent']
+PoS window  ['CD', 'VBD', '$', 'CD', 'TO', '$', 'CD', 'TO', 'VB', 'CD', 'NN']
+Caps window ['noinfo', 'lowercase', 'noinfo', 'noinfo', 'lowercase', 'noinfo', 'noinfo', 'lowercase', 'lowercase', 'noinfo', 'lowercase']
+
+ID 1238
+KL divergence 0.05039847269654274
+FEATURES:   "euro", NNP, upperInitial
+Gold NER    ['B-MISC']
+Pred NER    ['B-MISC']
+Text window ['<s>', '<s>', '<s>', 'shearer', "'s", 'euro', 'DGDG', 'striking', 'partner', '<unk>', '<unk>']
+PoS window  ['<s>', '<s>', '<s>', 'NNP', 'POS', 'NNP', 'CD', 'JJ', 'NN', 'NNP', 'NNP']
+Caps window ['<s>', '<s>', '<s>', 'upperInitial', 'noinfo', 'upperInitial', 'noinfo', 'lowercase', 'lowercase', 'upperInitial', 'upperInitial']
+
+ID 46987
+KL divergence 0.050630997866392136
+FEATURES:   "iraqi", JJ, upperInitial
+Gold NER    ['B-MISC']
+Pred NER    ['B-MISC']
+Text window ['<s>', '<s>', '<s>', '<s>', '<s>', 'iraqi', 'kurds', 'say', 'iranian', 'troops', 'enter']
+PoS window  ['<s>', '<s>', '<s>', '<s>', '<s>', 'JJ', 'NNPS', 'VBP', 'JJ', 'NNS', 'VBP']
+Caps window ['<s>', '<s>', '<s>', '<s>', '<s>', 'upperInitial', 'upperInitial', 'lowercase', 'upperInitial', 'lowercase', 'lowercase']
+
+ID 47333
+KL divergence 0.050741177052259445
+FEATURES:   "gmt", NNP, allCaps
+Gold NER    ['B-MISC']
+Pred NER    ['B-MISC']
+Text window ['at', 'DGDG', 'a.m.', '(', 'DGDGDGDG', 'gmt', ')', 'in', '<unk>', ',', 'the']
+PoS window  ['IN', 'CD', 'NN', '(', 'CD', 'NNP', ')', 'IN', 'NNP', ',', 'DT']
+Caps window ['lowercase', 'noinfo', 'noinfo', 'noinfo', 'noinfo', 'allCaps', 'noinfo', 'lowercase', 'upperInitial', 'noinfo', 'lowercase']
+
+ID 47246
+KL divergence 0.05140150710940361
+FEATURES:   "u.s.-led", JJ, noinfo
+Gold NER    ['B-MISC']
+Pred NER    ['B-MISC']
+Text window ['<s>', '<s>', '<s>', '<s>', '<s>', 'u.s.-led', 'allied', 'planes', 'based', 'in', 'turkey']
+PoS window  ['<s>', '<s>', '<s>', '<s>', '<s>', 'JJ', 'VBN', 'NNS', 'VBN', 'IN', 'NNP']
+Caps window ['<s>', '<s>', '<s>', '<s>', '<s>', 'noinfo', 'lowercase', 'lowercase', 'lowercase', 'lowercase', 'upperInitial']
+
+ID 7676
+KL divergence 0.05155327171087265
+FEATURES:   "industries", NNPS, upperInitial
+Gold NER    ['I-ORG']
+Pred NER    ['I-ORG']
+Text window ['<s>', '<s>', '<s>', 'jones', 'medical', 'industries', 'inc', 'said', 'friday', 'it', 'completed']
+PoS window  ['<s>', '<s>', '<s>', 'NNP', 'NNP', 'NNPS', 'NNP', 'VBD', 'NNP', 'PRP', 'VBD']
+Caps window ['<s>', '<s>', '<s>', 'upperInitial', 'upperInitial', 'upperInitial', 'upperInitial', 'lowercase', 'upperInitial', 'lowercase', 'lowercase']
+
+ID 2346
+KL divergence 0.05200598016381264
+FEATURES:   "czech", NNP, upperInitial
+Gold NER    ['B-LOC']
+Pred NER    ['B-LOC']
+Text window [')', 'beat', 'helena', 'sukova', '(', 'czech', 'republic', ')', 'DG-DG', 'DG-DG', '</s>']
+PoS window  [')', 'VB', 'NNP', 'NNP', '(', 'NNP', 'NNP', ')', 'CD', 'CD', '</s>']
+Caps window ['noinfo', 'lowercase', 'upperInitial', 'upperInitial', 'noinfo', 'upperInitial', 'upperInitial', 'noinfo', 'noinfo', 'noinfo', '</s>']
+
+ID 20588
+KL divergence 0.05209290608763695
+FEATURES:   "c$", $, noinfo
+Gold NER    ['B-MISC']
+Pred NER    ['B-MISC']
+Text window ['DG.DG', 'percent', 'of', 'DGDGDGDG', 'fell', 'c$', 'DG.DGDG', 'to', 'c$', 'DGDG.DGDG', 'to']
+PoS window  ['CD', 'NN', 'IN', 'CD', 'VBD', '$', 'CD', 'TO', '$', 'CD', 'TO']
+Caps window ['noinfo', 'lowercase', 'lowercase', 'noinfo', 'lowercase', 'noinfo', 'noinfo', 'lowercase', 'noinfo', 'noinfo', 'lowercase']
+
