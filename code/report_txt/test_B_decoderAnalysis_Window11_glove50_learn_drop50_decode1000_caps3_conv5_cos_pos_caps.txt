@@ -1,0 +1,505 @@
+-------------------------WORST RECONSTRUCTIONS-------------------------
+
+displaying top 25 results
+
+
+
+
+ID 37703
+reconstruction cosine proximity loss = 0.9027259501646318
+reconstruction GOLD word "['<unk>']"
+reconstruction PRED word "['.', 'also', ',', 'as', 'for']"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', 'DG.', '<unk>', '<unk>', '(', 'russia', ')', 'DGDGDG']
+
+
+
+
+ID 43629
+reconstruction cosine proximity loss = 0.8994462363049313
+reconstruction GOLD word "['for']"
+reconstruction PRED word "[',', '.', 'as', 'also', 'one']"
+
+word_window: ['declared', ',', 'victoria', 'reached', 'DGDGDG', 'for', 'three', 'at', 'close', 'of', 'play']
+
+
+
+
+ID 38856
+reconstruction cosine proximity loss = 0.899233805398554
+reconstruction GOLD word "['results']"
+reconstruction PRED word "['.', ',', 'as', 'also', 'and']"
+
+word_window: ['<s>', '<s>', '<unk>', 'cup', '<unk>', 'results', '.', '</s>', '</s>', '</s>', '</s>']
+
+
+
+
+ID 3224
+reconstruction cosine proximity loss = 0.8987811254526117
+reconstruction GOLD word "['soccer']"
+reconstruction PRED word "['.', ',', 'as', 'also', 'and']"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', '<s>', 'soccer', '-', 'brazilian', 'championship', 'results', '.']
+
+
+
+
+ID 1907
+reconstruction cosine proximity loss = 0.8982157135658108
+reconstruction GOLD word "['leeds']"
+reconstruction PRED word "[',', '.', 'as', 'also', 'one']"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', '<s>', 'leeds', "'", 'england', 'under-21', 'striker', 'lee']
+
+
+
+
+ID 33133
+reconstruction cosine proximity loss = 0.8981229771716134
+reconstruction GOLD word "['its']"
+reconstruction PRED word "[',', '.', 'as', 'also', 'and']"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', '<s>', 'its', 'previous', 'close', 'on', 'thursday', 'was']
+
+
+
+
+ID 39345
+reconstruction cosine proximity loss = 0.8979015886273939
+reconstruction GOLD word "['results']"
+reconstruction PRED word "['.', 'as', 'also', ',', 'and']"
+
+word_window: ['<s>', 'freestyle', '<unk>', 'cup', '<unk>', 'results', '.', '</s>', '</s>', '</s>', '</s>']
+
+
+
+
+ID 4941
+reconstruction cosine proximity loss = 0.8953740860809413
+reconstruction GOLD word "['atlantic']"
+reconstruction PRED word "['.', ',', 'also', 'as', 'on']"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', '<s>', 'atlantic', 'division', '</s>', '</s>', '</s>', '</s>']
+
+
+
+
+ID 37042
+reconstruction cosine proximity loss = 0.8950295055112444
+reconstruction GOLD word "['<unk>']"
+reconstruction PRED word "[',', '.', 'also', 'as', "'s"]"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', 'DGDG.', '<unk>', '<unk>', '(', 'italy', ')', 'DG:DGDG.DGDG']
+
+
+
+
+ID 13884
+reconstruction cosine proximity loss = 0.8945929923105553
+reconstruction GOLD word "['DGDG.DGDG']"
+reconstruction PRED word "[',', '.', 'as', 'also', 'and']"
+
+word_window: ['<s>', '<s>', '<s>', 'dec', 'DG', 'DGDG.DGDG', '</s>', '</s>', '</s>', '</s>', '</s>']
+
+
+
+
+ID 42594
+reconstruction cosine proximity loss = 0.8943730025371701
+reconstruction GOLD word "['soccer']"
+reconstruction PRED word "[',', '.', 'as', 'also', 'and']"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', '<s>', 'soccer', '-', 'scottish', 'league', 'and', 'cup']
+
+
+
+
+ID 20953
+reconstruction cosine proximity loss = 0.8939786651800646
+reconstruction GOLD word "['the']"
+reconstruction PRED word "[',', '.', 'as', 'also', 'one']"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', '<s>', 'the', 'bishop', 'will', 'jointly', 'receive', 'the']
+
+
+
+
+ID 40762
+reconstruction cosine proximity loss = 0.8938429151143726
+reconstruction GOLD word "['DGDG']"
+reconstruction PRED word "[',', '.', 'as', 'also', 'while']"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', '<unk>', 'DGDG', 'london', 'irish', 'DGDG', '</s>', '</s>']
+
+
+
+
+ID 31533
+reconstruction cosine proximity loss = 0.8936071935534773
+reconstruction GOLD word "['but']"
+reconstruction PRED word "[',', '.', 'also', 'as', 'and']"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', '<s>', 'but', 'the', 'internet', ',', 'a', 'global']
+
+
+
+
+ID 40892
+reconstruction cosine proximity loss = 0.8934898875330308
+reconstruction GOLD word "[')']"
+reconstruction PRED word "[',', '.', 'as', 'also', 'and']"
+
+word_window: ['celtic', 'DG', '(', '<unk>', 'DGDG', ')', '.', '</s>', '</s>', '</s>', '</s>']
+
+
+
+
+ID 135
+reconstruction cosine proximity loss = 0.893344533399468
+reconstruction GOLD word "['the']"
+reconstruction PRED word "[',', '.', 'as', 'also', 'and']"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', '<s>', 'the', 'former', 'soviet', 'republic', 'was', 'playing']
+
+
+
+
+ID 37643
+reconstruction cosine proximity loss = 0.8931166021725744
+reconstruction GOLD word "['overall']"
+reconstruction PRED word "[',', '.', 'as', 'also', 'and']"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', '<s>', 'overall', 'women', "'s", 'world', 'cup', 'standings']
+
+
+
+
+ID 38265
+reconstruction cosine proximity loss = 0.8929472966654397
+reconstruction GOLD word "['<unk>']"
+reconstruction PRED word "[',', '.', 'also', 'as', 'and']"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', 'DG.', '<unk>', '<unk>', '(', 'norway', ')', '<unk>']
+
+
+
+
+ID 42644
+reconstruction cosine proximity loss = 0.8926804196360038
+reconstruction GOLD word "['greenock']"
+reconstruction PRED word "['.', ',', 'as', 'also', 'for']"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', '<s>', 'greenock', 'morton', 'DG', 'st', 'johnstone', 'DG']
+
+
+
+
+ID 42685
+reconstruction cosine proximity loss = 0.8923590218588534
+reconstruction GOLD word "['ross']"
+reconstruction PRED word "['.', ',', 'also', 'as', 'on']"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', '<s>', 'ross', 'county', 'DG', 'montrose', 'DG', '</s>']
+
+
+
+
+ID 41435
+reconstruction cosine proximity loss = 0.8921097470292559
+reconstruction GOLD word "['greenock']"
+reconstruction PRED word "['.', ',', 'also', 'as', 'in']"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', '<s>', 'greenock', 'morton', 'DGDG', 'DG', 'DG', 'DG']
+
+
+
+
+ID 25256
+reconstruction cosine proximity loss = 0.891880063365909
+reconstruction GOLD word "['yr']"
+reconstruction PRED word "['.', 'the', 'as', 'in', 'also']"
+
+word_window: ['<s>', '<s>', '<unk>', '<unk>', '<unk>', 'yr', 'ago', '<unk>', '<unk>', '<unk>', 'yr']
+
+
+
+
+ID 28003
+reconstruction cosine proximity loss = 0.8918694480949934
+reconstruction GOLD word "['india']"
+reconstruction PRED word "[',', '.', 'as', 'also', 'one']"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', '<s>', 'india', "'s", 'crude', 'petroleum', 'output', 'fell']
+
+
+
+
+ID 3856
+reconstruction cosine proximity loss = 0.8916022048321086
+reconstruction GOLD word "['result']"
+reconstruction PRED word "[',', '.', 'as', 'also', 'and']"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', '<s>', 'result', ':', 'australia', 'won', 'by', 'five']
+
+
+
+
+ID 16302
+reconstruction cosine proximity loss = 0.8913547884369141
+reconstruction GOLD word "['where']"
+reconstruction PRED word "['.', ',', 'also', 'as', 'and']"
+
+word_window: ['<unk>', 'summit', 'in', '<unk>', '<unk>', 'where', 'an', 'african', 'successor', 'to', 'secretary-general']
+
+-------------------------BEST RECONSTRUCTIONS--------------------------
+
+displaying top 25 results
+ID 13814
+
+
+
+
+reconstruction cosine proximity loss = -0.9999529670587749
+reconstruction GOLD word "['DGDG.DGDG']"
+reconstruction PRED word "['<s>', 'kiksis', 'torshina', 'ovchinnikova', 'kibitok']"
+
+word_window: ['<s>', 'feb', 'DGDG', 'DGDG.DGDG', 'DGDG.DGDG', 'DGDG.DGDG', '<unk>', '</s>', '</s>', '</s>', '</s>']
+ID 42074
+
+
+
+
+reconstruction cosine proximity loss = -0.999952124669274
+reconstruction GOLD word "['DG']"
+reconstruction PRED word "['<s>', 'kiksis', 'torshina', 'ovchinnikova', 'kibitok']"
+
+word_window: ['<s>', '<s>', 'luton', 'DGDG', 'DGDG', 'DG', 'DG', 'DGDG', 'DGDG', 'DGDG', '</s>']
+ID 42715
+
+
+
+
+reconstruction cosine proximity loss = -0.9999516824356293
+reconstruction GOLD word "['postponed']"
+reconstruction PRED word "['<s>', 'krejner', 'kibitok', 'reperforated', 'buiatti']"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', '<s>', 'postponed', ':', 'albion', 'v', 'forfar', ',']
+ID 41866
+
+
+
+
+reconstruction cosine proximity loss = -0.9999506500401716
+reconstruction GOLD word "['DG']"
+reconstruction PRED word "['<s>', 'escuredo', 'knoroz', 'torshina', 'ovchinnikova']"
+
+word_window: ['<s>', '<s>', 'barnsley', 'DGDG', 'DGDG', 'DG', 'DG', 'DGDG', 'DGDG', 'DGDG', '</s>']
+ID 44820
+
+
+
+
+reconstruction cosine proximity loss = -0.9999503793436495
+reconstruction GOLD word "['.DGDGDG']"
+reconstruction PRED word "['<s>', 'escuredo', 'i`m', 'knoroz', 'torshina']"
+
+word_window: ['<s>', 'san', 'antonio', 'DG', 'DGDG', '.DGDGDG', 'DGDG', 'DG/DG', '</s>', '</s>', '</s>']
+ID 6144
+
+
+
+
+reconstruction cosine proximity loss = -0.9999497892189199
+reconstruction GOLD word "['sunday']"
+reconstruction PRED word "['<s>', 'escuredo', 'ridgeon', 'firsy', 'knoroz']"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', '<s>', 'sunday', ',', 'december', 'DG', '</s>', '</s>']
+ID 28795
+
+
+
+
+reconstruction cosine proximity loss = -0.9999497632061641
+reconstruction GOLD word "[',']"
+reconstruction PRED word "['<s>', 'escuredo', 'i`m', 'knoroz', 'torshina']"
+
+word_window: ['speculation', 'about', 'his', 'political', '<unk>', ',', 'the', 'spokesman', 'said', ':', '"']
+ID 17254
+
+
+
+
+reconstruction cosine proximity loss = -0.999949491838606
+reconstruction GOLD word "[',']"
+reconstruction PRED word "['<s>', 'krejner', 'mid-norway', 'buiatti', 'matusevitch']"
+
+word_window: ['of', 'the', 'local', 'police', '<unk>', ',', '"', 'the', 'spokesman', 'said', '.']
+ID 7733
+
+
+
+
+reconstruction cosine proximity loss = -0.9999490731383155
+reconstruction GOLD word "['DGDG-DG']"
+reconstruction PRED word "['<s>', 'escuredo', 'ridgeon', 'firsy', 'lb-11']"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', '<s>', 'DGDG-DG', 'barcelona', 'real', 'madrid', '</s>', '</s>']
+ID 45239
+
+
+
+
+reconstruction cosine proximity loss = -0.9999485589595061
+reconstruction GOLD word "['DGDG']"
+reconstruction PRED word "['<s>', 'krejner', 'ovchinnikova', 'kibitok', 'january-april']"
+
+word_window: ['<unk>', 'DG', 'DGDG', 'DG', 'DGDG', 'DGDG', 'DGDG', '</s>', '</s>', '</s>', '</s>']
+ID 7997
+
+
+
+
+reconstruction cosine proximity loss = -0.999947939799882
+reconstruction GOLD word "['DGDG']"
+reconstruction PRED word "['<s>', 'krejner', 'ovchinnikova', 'kibitok', 'january-april']"
+
+word_window: ['DGDG', 'DG', 'DG', 'DG', 'DGDG', 'DGDG', 'DGDG', '</s>', '</s>', '</s>', '</s>']
+ID 4939
+
+
+
+
+reconstruction cosine proximity loss = -0.9999479388201639
+reconstruction GOLD word "['DGDG']"
+reconstruction PRED word "['<s>', 'kiksis', 'ovchinnikova', 'kibitok', 'reperforated']"
+
+word_window: ['ottawa', 'DG', 'DGDG', 'DG', 'DGDG', 'DGDG', 'DGDG', '</s>', '</s>', '</s>', '</s>']
+ID 25365
+
+
+
+
+reconstruction cosine proximity loss = -0.99994793793647
+reconstruction GOLD word "['(']"
+reconstruction PRED word "['<s>', 'eiden', 'matusevitch', 'kostantin', 'kreissig']"
+
+word_window: ['<s>', '<s>', '<s>', '<s>', '<s>', '(', 'chicago', 'newsdesk', 'DGDGDG', 'DGDGDG', 'DGDGDGDG']
+ID 6784
+
+
+
+
+reconstruction cosine proximity loss = -0.9999478215268071
+reconstruction GOLD word "['DGDG']"
+reconstruction PRED word "['<s>', 'krejner', 'kibitok', 'oljeselskap', 'buiatti']"
+
+word_window: ['DGDG', 'DG', 'DG', 'DG', 'DGDG', 'DGDG', 'DGDG', '</s>', '</s>', '</s>', '</s>']
+ID 7075
+
+
+
+
+reconstruction cosine proximity loss = -0.9999476658404043
+reconstruction GOLD word "['DGDG']"
+reconstruction PRED word "['<s>', 'eiden', 'buiatti', 'matusevitch', 'kostantin']"
+
+word_window: ['DGDG', 'DG', 'DG', 'DG', 'DGDG', 'DGDG', 'DGDG', '</s>', '</s>', '</s>', '</s>']
+ID 4954
+
+
+
+
+reconstruction cosine proximity loss = -0.9999473921966829
+reconstruction GOLD word "['DGDG']"
+reconstruction PRED word "['<s>', 'krejner', 'kibitok', 'oljeselskap', 'buiatti']"
+
+word_window: ['florida', 'DGDG', 'DG', 'DG', 'DGDG', 'DGDG', 'DGDG', '</s>', '</s>', '</s>', '</s>']
+ID 41626
+
+
+
+
+reconstruction cosine proximity loss = -0.9999471484027745
+reconstruction GOLD word "['DG']"
+reconstruction PRED word "['<s>', 'sitanyi', '323-mile', '517-km', 'hansma']"
+
+word_window: ['<s>', '<s>', 'arbroath', 'DGDG', 'DG', 'DG', 'DG', 'DGDG', 'DGDG', 'DGDG', '</s>']
+ID 25605
+
+
+
+
+reconstruction cosine proximity loss = -0.9999468523604765
+reconstruction GOLD word "[',']"
+reconstruction PRED word "['<s>', 'kiksis', 'ovchinnikova', 'kibitok', 'reperforated']"
+
+word_window: ['slipped', 'into', 'the', '$', '<unk>', ',', 'down', 'almost', 'DGDG', 'cents', '.']
+ID 45110
+
+
+
+
+reconstruction cosine proximity loss = -0.9999466915413262
+reconstruction GOLD word "['DGDG']"
+reconstruction PRED word "['<s>', 'krejner', 'kibitok', 'oljeselskap', 'buiatti']"
+
+word_window: ['washington', 'DGDG', 'DGDG', 'DG', 'DGDG', 'DGDG', 'DGDG', '</s>', '</s>', '</s>', '</s>']
+ID 45230
+
+
+
+
+reconstruction cosine proximity loss = -0.9999463272043329
+reconstruction GOLD word "['DG']"
+reconstruction PRED word "['<s>', 'escuredo', 'ridgeon', 'firsy', 'lb-11']"
+
+word_window: ['<s>', 'san', 'jose', 'DGDG', 'DGDG', 'DG', 'DGDG', 'DGDG', 'DGDG', '</s>', '</s>']
+ID 42101
+
+
+
+
+reconstruction cosine proximity loss = -0.9999462098704132
+reconstruction GOLD word "['DGDG']"
+reconstruction PRED word "['<s>', 'krejner', 'kibitok', 'oljeselskap', 'buiatti']"
+
+word_window: ['DGDG', 'DGDG', 'DG', 'DG', 'DGDG', 'DGDG', 'DGDG', '</s>', '</s>', '</s>', '</s>']
+ID 7000
+
+
+
+
+reconstruction cosine proximity loss = -0.9999462087559395
+reconstruction GOLD word "['DG']"
+reconstruction PRED word "['<s>', 'escuredo', 'ridgeon', 'knoroz', 'torshina']"
+
+word_window: ['<s>', 'paris', 'saint-germain', 'DGDG', 'DGDG', 'DG', 'DG', 'DGDG', 'DGDG', 'DGDG', '</s>']
+ID 5075
+
+
+
+
+reconstruction cosine proximity loss = -0.9999459093664466
+reconstruction GOLD word "['DGDG']"
+reconstruction PRED word "['<s>', 'krejner', 'kibitok', 'oljeselskap', 'buiatti']"
+
+word_window: ['vancouver', 'DGDG', 'DGDG', 'DG', 'DGDG', 'DGDG', 'DGDG', '</s>', '</s>', '</s>', '</s>']
+ID 7641
+
+
+
+
+reconstruction cosine proximity loss = -0.9999458752594204
+reconstruction GOLD word "['real']"
+reconstruction PRED word "['<s>', 'rebel-dominated', 'fifth-', 'fellow-american', 'shabazov']"
+
+word_window: ['<s>', 'to', 'win', ':', 'DG-DG', 'real', 'madrid', ';', 'DG-DG', 'barcelona', '</s>']
+ID 4101
+
+
+
+
+reconstruction cosine proximity loss = -0.9999458649301202
+reconstruction GOLD word "['the']"
+reconstruction PRED word "['<s>', 'kiksis', 'ovchinnikova', 'kibitok', 'reperforated']"
