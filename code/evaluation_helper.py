@@ -139,8 +139,6 @@ class EvalDev_Report(object):
         self.hallucination_idx = self.get_ner_hallucination_idx(self.y_true, self.y_pred)
         self.missed_ner_idx = self.get_missed_ner_idx(self.y_true, self.y_pred)
         self.match_ner_idx, self.mismatch_ner_idx = self.get_matching_ner_idx(self.y_true, self.y_pred)
-        self.gold_pred_idx_dict, self.gold_pred_ct_dict = self.get_gold_pred_idx_dict(self.y_true, self.y_pred)
-        self.gold_idx_dict = self.get_gold_idx_dict(self.y_true, self.y_pred)
         
         self.vocab = None
         self.posTags = None
@@ -158,6 +156,7 @@ class EvalDev_Report(object):
         self.decoder_loss = None
         self.embedding_matrix = None
         
+        
     def connect_to_dataClass(self, dataClass):
         """
         connect to vocabData.vocab objects
@@ -170,7 +169,9 @@ class EvalDev_Report(object):
         self.posTags = dataClass.posTags
         self.nerTags = dataClass.nerTags
         self.capitalTags = dataClass.capitalTags
- 
+        self.gold_pred_idx_dict, self.gold_pred_ct_dict = self.get_gold_pred_idx_dict(self.y_true, self.y_pred)
+        self.gold_idx_dict = self.get_gold_idx_dict(self.y_true, self.y_pred)
+             
 
     def connect_to_devData(self, devData):
         """
@@ -388,9 +389,9 @@ class EvalDev_Report(object):
         gold_pred_idx_dict = defaultdict(lambda: defaultdict(list))
         gold_pred_ct_dict = defaultdict(lambda: defaultdict(int)) 
 
-        for gold_idx in range(3,11):
+        for gold_idx in range(3,self.nerTags.size):
             gold_filter = (y_true == gold_idx).astype("int") # 1/0 all rows with that gold_idx
-            for pred_idx in range(3,11):
+            for pred_idx in range(3,self.nerTags.size):
                 pred_filter = (y_pred == pred_idx).astype("int") # 1/0 all rows with that ner_idx
                 match_ner_idx = np.nonzero(np.all([gold_filter, pred_filter],axis=0).astype("int"))[0]
                 gold_pred_idx_dict[gold_idx][pred_idx] = match_ner_idx  
