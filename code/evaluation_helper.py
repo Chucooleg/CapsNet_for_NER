@@ -493,7 +493,8 @@ class EvalDev_Report(object):
         ranked_loss_list = sorted([(idx, loss) for (idx,loss) in enumerate(loss_list)], key=lambda x:x[1], reverse=True)
         return ranked_loss_list
 
-
+    
+# check
     def find_nn_cos(self, v, Wv, nnk=10):
         """Find nearest neighbors of a given word, by cosine similarity.
 
@@ -619,7 +620,7 @@ class EvalDev_Report(object):
             worst : True -- rank by worst cross-entropy. False -- rank by best cross-entropy.
             k : top k results
         """
-        self.print_idxlist_to_textlists(idx_list=np.arange(self.devY.shape[0]), \
+        self.print_idxlist_to_textlists(idx_list=np.arange(self.y_true.shape[0]), \
                                         worst=worst, k=k, print_window=print_window,\
                                        return_indices=False)
         pass
@@ -681,7 +682,7 @@ class EvalDev_Report(object):
             idx_list = idx_list[:k]
             ce_list = ce_list[:k]            
         
-        devData = (self.devX, self.devX_pos, self.devX_capitals, self.devY) if (devData is None) else devData
+        devData = (self.devX, self.devX_pos, self.devX_capitals, self.y_true) if (devData is None) else devData
         y_pred = self.y_pred if (y_pred is None) else y_pred
         dataClass = self.dataClass if (dataClass is None) else dataClass
         
