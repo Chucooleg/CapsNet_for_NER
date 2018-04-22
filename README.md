@@ -48,6 +48,7 @@ https://hackernoon.com/launch-a-gpu-backed-google-compute-engine-instance-and-se
 |evaluation_helper.py| helper functions for model evaluation|
 |Examine_History.ipynb| code to plot and investigate model training history and dev results|
 |error_analysis_demo.ipynb| notebook to generate a madel evaluation report |
+|glove_helper.py| helper code for loading Glove embeddings|
 |loadutils.py| helper functions for loading and storing models and the data set|
 |model_testing.ipynb| demo code for best model and baseline test set performance |
 |model_training_tmpl.ipynb| notebook to orchestrate and run model training sessions |
