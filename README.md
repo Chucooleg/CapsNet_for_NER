@@ -55,13 +55,11 @@ https://hackernoon.com/launch-a-gpu-backed-google-compute-engine-instance-and-se
 |model_training_tmpl.ipynb| notebook to orchestrate and run model training sessions |
 |trainCapsModel.py| interface code to train a capsnet model|
 |trainCNNModel.py| interface code to train a CNN model|
-
-### /common
-> Helper code for building a vocabulary
+|/common | helper code for building and manipulating a vocabulary | 
 
 ### /data
 > CoNLL-2003 data set
 
 
 ### /models
-> final models and their training history
+> Final models and their training history
