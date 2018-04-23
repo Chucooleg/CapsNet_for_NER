@@ -74,7 +74,7 @@ CapsNet named entity recognition **f1 scores** on ConLL-2003. The results can be
 > CoNLL-2003 data set
 
 
-### /models
+### /code/result
 > Final models and their training history
 
 ## setup GCP gpu for tensorflow and keras
