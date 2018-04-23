@@ -22,7 +22,45 @@ cd capsnet-ner
 ```
 jupyter notebook
 ```
+## Results
 
+#### F1 Scores
+
+CapsNet named entity recognition **f1 scores** on ConLL-2003. The results can be reproduced by launching /code/model_testing.ipynb.   
+
+   Model     |   Precision   |   Recall  |  F1 
+   :---------|:------:|:---:|:----:
+   Chiu (2016) |  91.39 | 91.85 | 91.62             
+   CapsNet |  87.59 | 87.33 | 87.46
+   CapsNet+decoder  |  86.40 | 87.17 | 86.78
+   CNN Baseline |  85.93 | 86.23 | 86.08
+   CoNLL-2003 Baseline  |  71.91 | 50.90| 59.61
+
+## Files
+### /code
+|File|Description|
+|--|--|
+|buildCapsModel.py| capsnet model implementation|
+|buildCNNModel.py| cnn model implementation|
+|capsulelayers.py| capsnet modules - slightly adapted from [Xifeng Guo](https://github.com/XifengGuo/CapsNet-Keras)'s implementation|
+|evaluation_helper.py| helper functions for model evaluation|
+|Examine_History.ipynb| code to plot and investigate model training history and dev results|
+|error_analysis_demo.ipynb| notebook to generate a model evaluation report |
+|error_analysis_testset.ipynb| notebook to generate model evaluation reports for test set |
+|glove_helper.py| helper code for loading Glove embeddings|
+|loadutils.py| helper functions for loading and storing models and the data set|
+|model_testing.ipynb| demo code for best model and baseline test set performance |
+|model_training_tmpl.ipynb| notebook to orchestrate and run model training sessions |
+|trainCapsModel.py| interface code to train a capsnet model|
+|trainCNNModel.py| interface code to train a CNN model|
+|/common | helper code for building and manipulating a vocabulary 
+
+### /data
+> CoNLL-2003 data set
+
+
+### /models
+> Final models and their training history
 
 ## setup GCP gpu for tensorflow and keras
 https://hackernoon.com/launch-a-gpu-backed-google-compute-engine-instance-and-setup-tensorflow-keras-and-jupyter-902369ed5272
@@ -60,28 +98,6 @@ https://hackernoon.com/launch-a-gpu-backed-google-compute-engine-instance-and-se
 |[OntoNotes coreference annotation and modeling](https://github.com/magizbox/underthesea/wiki/TASK-CONLL-2012)|OntoNotes Benchmark papers|
 |[Named Entity Recognition: Exploring Features](http://www.oegai.at/konvens2012/proceedings/17_tkachenko12o/17_tkachenko12o.pdf)|Explore faetures for NER task. Both CoNLL-2003 and OntoNotes version 4 are used.|
 
-## Files
-### /code
-|File|Description|
-|--|--|
-|buildCapsModel.py| capsnet model implementation|
-|buildCNNModel.py| cnn model implementation|
-|capsulelayers.py| capsnet modules - slightly adapted from [Xifeng Guo](https://github.com/XifengGuo/CapsNet-Keras)'s implementation|
-|evaluation_helper.py| helper functions for model evaluation|
-|Examine_History.ipynb| code to plot and investigate model training history and dev results|
-|error_analysis_demo.ipynb| notebook to generate a model evaluation report |
-|error_analysis_testset.ipynb| notebook to generate model evaluation reports for test set |
-|glove_helper.py| helper code for loading Glove embeddings|
-|loadutils.py| helper functions for loading and storing models and the data set|
-|model_testing.ipynb| demo code for best model and baseline test set performance |
-|model_training_tmpl.ipynb| notebook to orchestrate and run model training sessions |
-|trainCapsModel.py| interface code to train a capsnet model|
-|trainCNNModel.py| interface code to train a CNN model|
-|/common | helper code for building and manipulating a vocabulary | 
-
-### /data
-> CoNLL-2003 data set
+| 
 
 
-### /models
-> Final models and their training history
