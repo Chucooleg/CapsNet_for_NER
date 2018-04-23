@@ -2,6 +2,28 @@
 Adapt Capsule Network for Name Entity Recognition Task  
 <hr>  
 
+## Usage
+
+**Step 1.
+Install [Keras>=2.0.7](https://github.com/fchollet/keras) 
+with [TensorFlow>=1.2](https://github.com/tensorflow/tensorflow) backend.**
+```
+pip install tensorflow
+pip install keras
+```
+
+**Step 2. Clone this repository to local.**
+```
+git clone https://github.com/Chucooleg/CapsNet_for_NER capsnet-ner
+cd capsnet-ner
+```
+
+**Step 3. Run jupyter notebook.**
+```
+jupyter notebook
+```
+
+
 ## setup GCP gpu for tensorflow and keras
 https://hackernoon.com/launch-a-gpu-backed-google-compute-engine-instance-and-setup-tensorflow-keras-and-jupyter-902369ed5272
 
