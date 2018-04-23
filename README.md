@@ -28,6 +28,7 @@ jupyter notebook
 Training was done in code/model_training_tmpl.ipynb with CapsNet and CNN. Variations of window size, embedding type, additional features and decoder were used.
 
    Rank | Model | Decoder | Window | Embed |  +Fea  |  F1 
+   :----|:-----:|:-------:|:------:|:-----:|:------:|:----:
    1    | CAP   |   off   |   11   | glove |   yes  | 92.24
    2    | CAP   |   off   |   11   | glove |   yes  | 92.15            
    3    | CAP   |   on    |   7    | glove |   yes  | 92.11
