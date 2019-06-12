@@ -1,9 +1,6 @@
 # CapsNet_for_NER
-Capsule Network adapted for Name Entity Recognition with the CoNLL-2003 Shared Task.  
-Read the paper [here](https://github.com/Chucooleg/CapsNet_for_NER/raw/master/Named_Entity_Recognition_with_Capsule_Network.pdf)
+[Capsule Network adapted for Name Entity Recognition with the CoNLL-2003 Shared Task](https://github.com/Chucooleg/CapsNet_for_NER/blob/master/Named_Entity_Recognition_with_Capsule_Network.pdf).
 <hr>  
-
-
 
 ## Usage
 
